@@ -1,0 +1,7 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="waffle">
+  <xacro:include filename="$(find final_project)/urdf/waffle.xacro" />
+  <xacro:include filename="$(find final_project)/urdf/imu.xacro" />
+  <xacro:waffle/>
+  <!-- <xacro:waffle_imu/> -->
+
+</robot>
