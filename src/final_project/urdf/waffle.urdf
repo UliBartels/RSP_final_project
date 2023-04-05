@@ -317,8 +317,51 @@
           <stddev>0.01</stddev>
         </noise>
       </lidar>
-      <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
     </sensor>
   </gazebo>
-  <!-- <xacro:waffle_camera/> -->
+  <gazebo>
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
+  </gazebo>
+  <gazebo reference="camera_rgb_frame">
+    <inertial>
+      <pose>0.069 -0.047 0.107 0 0 0</pose>
+      <inertia>
+        <ixx>0.001</ixx>
+        <ixy>0.000</ixy>
+        <ixz>0.000</ixz>
+        <iyy>0.001</iyy>
+        <iyz>0.000</iyz>
+        <izz>0.001</izz>
+      </inertia>
+      <mass>0.035</mass>
+    </inertial>
+    <pose>0.069 -0.047 0.107 0 0 0</pose>
+    <sensor name="waffle_camera" type="camera">
+      <always_on> 1 </always_on>
+      <visualize>true</visualize>
+      <update_rate>30</update_rate>
+      <topic> waffle_camera </topic>
+      <camera name="intel_realsense_r200">
+        <horizontal_fov>1.02974</horizontal_fov>
+        <image>
+          <width>1920</width>
+          <height>1080</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame. -->
+          <!--       That pixel's noise value is added to each of its color -->
+          <!--       channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <!-- <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/> -->
+    </sensor>
+  </gazebo>
 </robot>

@@ -14,7 +14,7 @@
         <mass>0.035</mass>
       </inertial>
 
-      <!-- <pose>0.069 -0.047 0.107 0 0 0</pose> -->
+      <pose>0.069 -0.047 0.107 0 0 0</pose>
       <sensor type="camera" name="waffle_camera">
         <always_on> 1 </always_on>
         <visualize>true</visualize>
@@ -40,7 +40,7 @@
             <stddev>0.007</stddev>
           </noise>
         </camera>
-        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
+        <!-- <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/> -->
       </sensor>
     </gazebo>
   </xacro:macro>

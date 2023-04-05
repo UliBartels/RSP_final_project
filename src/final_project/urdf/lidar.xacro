@@ -28,8 +28,11 @@
             <stddev>0.01</stddev>
           </noise>
         </lidar>
-        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
       </sensor>
+    </gazebo>
+
+    <gazebo>
+      <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
     </gazebo>
   </xacro:macro>
 </robot>
