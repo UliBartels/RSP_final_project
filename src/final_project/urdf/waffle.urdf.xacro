@@ -1,7 +1,11 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="waffle">
   <xacro:include filename="$(find final_project)/urdf/waffle.xacro" />
   <xacro:include filename="$(find final_project)/urdf/imu.xacro" />
+  <xacro:include filename="$(find final_project)/urdf/lidar.xacro" />
+  <xacro:include filename="$(find final_project)/urdf/camera.xacro" />
   <xacro:waffle/>
-  <!-- <xacro:waffle_imu/> -->
+  <xacro:waffle_imu/>
+  <xacro:waffle_lidar/>
+  <xacro:waffle_camera/>
 
 </robot>

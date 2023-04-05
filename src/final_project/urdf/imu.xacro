@@ -2,9 +2,10 @@
   <xacro:macro name="waffle_imu">
     <gazebo reference="imu_link">
       <sensor type="imu" name="waffle_imu">
-        <always_on>true</always_on>
+        <always_on> 1 </always_on>
         <update_rate>200</update_rate>
         <topic> waffle_imu </topic>
+        <visualize> true </visualize>
         <imu>
           <angular_velocity>
             <x>
@@ -47,7 +48,7 @@
             </z>
           </linear_acceleration>
         </imu>
-        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
+        <plugin filename="ignition-gazebo-imu-system" name="ignition::gazebo::systems::Imu"/>
       </sensor>
     </gazebo>
   </xacro:macro>
