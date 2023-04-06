@@ -3,9 +3,11 @@
   <xacro:include filename="$(find final_project)/urdf/imu.xacro" />
   <xacro:include filename="$(find final_project)/urdf/lidar.xacro" />
   <xacro:include filename="$(find final_project)/urdf/camera.xacro" />
+  <xacro:include filename="$(find final_project)/urdf/turtlebot3_plugin.xacro" />
   <xacro:waffle/>
   <xacro:waffle_imu/>
   <xacro:waffle_lidar/>
   <xacro:waffle_camera/>
+  <xacro:turtlebot3_plugin/>
 
 </robot>

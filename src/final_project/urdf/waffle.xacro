@@ -287,5 +287,8 @@
         <child link="camera_depth_optical_frame"/>
     </joint>
     <link name="camera_depth_optical_frame"/>
+
+
+
   </xacro:macro>
 </robot>

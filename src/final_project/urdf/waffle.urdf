@@ -364,4 +364,5 @@
       <!-- <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/> -->
     </sensor>
   </gazebo>
+  <!-- <xacro:turtlebot3_plugins/> -->
 </robot>
