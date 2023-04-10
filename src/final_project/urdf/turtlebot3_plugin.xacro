@@ -1,5 +1,5 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waffle">
-  <xacro:macro name="turtlebot3_plugin">
+  <xacro:macro name="turtlebot3_plugin" params="entity_name">
     <gazebo>
       <plugin name="ignition::gazebo::systems::DiffDrive" filename="ignition-gazebo-diff-drive-system">
 
@@ -22,7 +22,7 @@
         <!-- <max_wheel_torque>20</max_wheel_torque> -->
         <max_angular_acceleration>1.0</max_angular_acceleration>
 
-        <topic>cmd_vel</topic>
+        <topic>${entity_name}/cmd_vel</topic>
 
         <!-- output -->
         <!-- <publish_odom>true</publish_odom> -->

@@ -7,7 +7,7 @@
     pkg="robot_state_publisher"
     exec="robot_state_publisher"
     output="screen">
-    <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro')"/>
+    <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity_name)')"/>
     <remap from="joint_states" to="/world/empty/model/$(var entity_name)/joint_state"/>
   </node>
 
@@ -26,8 +26,9 @@
     pkg="turtlebot3_teleop"
     exec="teleop_keyboard"
     output="screen"
-    launch-prefix="xterm -e"
-  />
+    launch-prefix="xterm -e">
+    <remap from="/cmd_vel" to="$(var entity_name)/cmd_vel"/>
+  </node>
 
   <node
     pkg="ros_ign_bridge"
@@ -38,7 +39,7 @@
   <node
     pkg="ros_ign_bridge"
     exec="parameter_bridge"
-    args="/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+    args="$(var entity_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
     output="screen"/>
 
 </launch>
