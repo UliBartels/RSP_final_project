@@ -1,4 +1,4 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waffle">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="turtlebot3_plugin" params="entity_name">
     <gazebo>
       <plugin name="ignition::gazebo::systems::DiffDrive" filename="ignition-gazebo-diff-drive-system">

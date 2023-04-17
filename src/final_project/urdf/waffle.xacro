@@ -1,5 +1,6 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waffle">
-  <xacro:macro name="waffle">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="waffle" params="prefix">
+  <!-- <xacro:arg name="entity_name" default="waffle"/> -->
     <!-- Init colour -->
     <material name="black">
         <color rgba="0.0 0.0 0.0 1.0"/>

@@ -1,12 +1,12 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waffle">
-  <xacro:macro name="waffle_lidar">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="waffle_lidar" params="prefix">
     <gazebo reference="base_scan">
-      <sensor type="gpu_lidar" name="waffle_lidar">
+      <sensor type="gpu_lidar" name="${prefix}_lidar">
         <always_on> 1 </always_on>
         <visualize>true</visualize>
         <pose>-0.064 0 0.121 0 0 0</pose>
         <update_rate>5</update_rate>
-        <topic> waffle_lidar </topic>
+        <topic> ${prefix}_lidar </topic>
         <ignition_frame_id> base_scan </ignition_frame_id>
         <lidar>
           <scan>
@@ -31,8 +31,5 @@
       </sensor>
     </gazebo>
 
-    <gazebo>
-      <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
-    </gazebo>
   </xacro:macro>
 </robot>

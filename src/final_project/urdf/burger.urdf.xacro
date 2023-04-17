@@ -1,16 +1,14 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="waffle">
-  <xacro:arg name="entity_name" default="waffle"/>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="burger">
+  <xacro:arg name="entity_name" default="burger"/>
   <xacro:include filename="$(find final_project)/urdf/waffle.xacro" />
   <xacro:include filename="$(find final_project)/urdf/imu.xacro" />
   <xacro:include filename="$(find final_project)/urdf/lidar.xacro" />
   <xacro:include filename="$(find final_project)/urdf/camera.xacro" />
   <xacro:include filename="$(find final_project)/urdf/turtlebot3_plugin.xacro" />
-  <xacro:include filename="$(find final_project)/urdf/ignition_system_plugin.xacro" />
   <xacro:waffle prefix="$(arg entity_name)"/>
   <xacro:waffle_imu prefix="$(arg entity_name)"/>
   <xacro:waffle_lidar prefix="$(arg entity_name)"/>
   <xacro:waffle_camera prefix="$(arg entity_name)"/>
   <xacro:turtlebot3_plugin entity_name="$(arg entity_name)"/>
-  <xacro:ignition_system_plugin/>
 
 </robot>
