@@ -41,6 +41,12 @@
     args="$(var entity_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
     output="screen"/>
 
+  <node
+    pkg="ros_ign_bridge"
+    exec="parameter_bridge"
+    args="$(var entity_name)_lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan"
+    output="screen"/>
+
   </group>
 
   <!-- <group> -->
