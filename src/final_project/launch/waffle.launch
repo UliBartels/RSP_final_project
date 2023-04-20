@@ -3,14 +3,16 @@
   <arg name="entity2_name" default="burger"/>
   <arg name="ns1_name" default="waffle"/>
   <arg name="ns2_name" default="burger"/>
-  <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
+  <!-- <set_env name="TURTLEBOT3_MODEL" value="waffle"/> -->
+  <!-- <set_env name="IGN_GUI_PLUGIN_PATH" value="/usr/lib/x86_64-linux-gnu/ign-gazebo-6/plugins/gui"/> -->
   <!-- <executable cmd="export TURTLEBOT3_MODEL=waffle" output="screen"/> -->
 
 
-  <include file="$(find-pkg-share ros_ign_gazebo)/launch/ign_gazebo.launch.py">
-    <!-- <arg name="ign_args" value="$(find-pkg-share edumip_gazebo)/worlds/tot.sdf"/> -->
-    <arg name="ign_args" value="empty.sdf -v 4"/>
-  </include>
+  <!-- <include file="$(find-pkg-share ros_ign_gazebo)/launch/ign_gazebo.launch.py"> -->
+  <!--   <!-1- <arg name="ign_args" value="$(find-pkg-share edumip_gazebo)/worlds/tot.sdf"/> -1-> -->
+  <!--   <arg name="ign_args" value="$(find-pkg-share final_project)/world/template.sdf -v 4"/> -->
+  <!-- </include> -->
+ <executable cmd="ign gazebo $(find-pkg-share final_project)/world/template.sdf -v 4" output="screen"/>
 
   <group>
     <push-ros-namespace namespace="$(var ns1_name)"/>
