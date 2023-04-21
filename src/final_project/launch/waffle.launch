@@ -3,15 +3,13 @@
   <arg name="entity2_name" default="burger"/>
   <arg name="ns1_name" default="waffle"/>
   <arg name="ns2_name" default="burger"/>
-  <!-- <set_env name="TURTLEBOT3_MODEL" value="waffle"/> -->
+
+  <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
+  <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
   <!-- <set_env name="IGN_GUI_PLUGIN_PATH" value="/usr/lib/x86_64-linux-gnu/ign-gazebo-6/plugins/gui"/> -->
   <!-- <executable cmd="export TURTLEBOT3_MODEL=waffle" output="screen"/> -->
 
 
-  <!-- <include file="$(find-pkg-share ros_ign_gazebo)/launch/ign_gazebo.launch.py"> -->
-  <!--   <!-1- <arg name="ign_args" value="$(find-pkg-share edumip_gazebo)/worlds/tot.sdf"/> -1-> -->
-  <!--   <arg name="ign_args" value="$(find-pkg-share final_project)/world/template.sdf -v 4"/> -->
-  <!-- </include> -->
  <executable cmd="ign gazebo $(find-pkg-share final_project)/world/template.sdf -v 4" output="screen"/>
 
   <group>
@@ -27,7 +25,7 @@
   <node
     pkg="ros_ign_gazebo"
     exec="create"
-    args="-topic robot_description -name $(var entity_name)"
+    args="-topic robot_description -name $(var entity_name) -z -0.11"
     output="screen"/>
 
 
@@ -45,36 +43,36 @@
 
   </group>
 
-  <group>
-    <push-ros-namespace namespace="$(var ns2_name)"/>
-  <node
-    pkg="robot_state_publisher"
-    exec="robot_state_publisher"
-    output="screen">
-    <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/burger.urdf.xacro entity_name:=$(var entity2_name)')"/>
-    <remap from="joint_states" to="/world/empty/model/$(var entity2_name)/joint_state"/>
-  </node>
+  <!-- <group> -->
+  <!--   <push-ros-namespace namespace="$(var ns2_name)"/> -->
+  <!-- <node -->
+  <!--   pkg="robot_state_publisher" -->
+  <!--   exec="robot_state_publisher" -->
+  <!--   output="screen"> -->
+  <!--   <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/burger.urdf.xacro entity_name:=$(var entity2_name)')"/> -->
+  <!--   <remap from="joint_states" to="/world/empty/model/$(var entity2_name)/joint_state"/> -->
+  <!-- </node> -->
 
-  <node
-    pkg="ros_ign_gazebo"
-    exec="create"
-    args="-topic robot_description -name $(var entity2_name)"
-    output="screen"/>
+  <!-- <node -->
+  <!--   pkg="ros_ign_gazebo" -->
+  <!--   exec="create" -->
+  <!--   args="-topic robot_description -name $(var entity2_name)" -->
+  <!--   output="screen"/> -->
 
 
-  <node
-    pkg="ros_ign_bridge"
-    exec="parameter_bridge"
-        args="/world/empty/model/$(var entity2_name)/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model"
-    output="screen"/>
+  <!-- <node -->
+  <!--   pkg="ros_ign_bridge" -->
+  <!--   exec="parameter_bridge" -->
+  <!--       args="/world/empty/model/$(var entity2_name)/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model" -->
+  <!--   output="screen"/> -->
 
-  <node
-    pkg="ros_ign_bridge"
-    exec="parameter_bridge"
-    args="$(var entity2_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
-    output="screen"/>
+  <!-- <node -->
+  <!--   pkg="ros_ign_bridge" -->
+  <!--   exec="parameter_bridge" -->
+  <!--   args="$(var entity2_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist" -->
+  <!--   output="screen"/> -->
 
-  </group>
+  <!-- </group> -->
 
   <node
     pkg="turtlebot3_teleop"
@@ -84,12 +82,12 @@
     <remap from="cmd_vel" to="$(var ns1_name)/$(var entity_name)/cmd_vel"/>
   </node>
 
-  <node
-    pkg="turtlebot3_teleop"
-    exec="teleop_keyboard"
-    output="screen"
-    launch-prefix="xterm -e">
-    <remap from="cmd_vel" to="$(var ns2_name)/$(var entity2_name)/cmd_vel"/>
-  </node>
+  <!-- <node -->
+  <!--   pkg="turtlebot3_teleop" -->
+  <!--   exec="teleop_keyboard" -->
+  <!--   output="screen" -->
+  <!--   launch-prefix="xterm -e"> -->
+  <!--   <remap from="cmd_vel" to="$(var ns2_name)/$(var entity2_name)/cmd_vel"/> -->
+  <!-- </node> -->
 
 </launch>
