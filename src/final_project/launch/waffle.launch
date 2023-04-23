@@ -20,6 +20,7 @@
     output="screen">
     <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity_name)')"/>
     <remap from="joint_states" to="/world/empty/model/$(var entity_name)/joint_state"/>
+    <remap from="robot_description" to="/$(var entity_name)/robot_description"/>
   </node>
 
   <node
@@ -96,4 +97,9 @@
   <!--   <remap from="cmd_vel" to="$(var ns2_name)/$(var entity2_name)/cmd_vel"/> -->
   <!-- </node> -->
 
+  <node
+      pkg="rviz2"
+      exec="rviz2"
+      args = "-d $(find-pkg-share final_project)/rviz/simulation.rviz"
+      output="screen"/>
 </launch>
