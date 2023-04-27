@@ -12,9 +12,11 @@
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
   <depend>rclcpp_action</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_geometry_msgs</depend>
+  <depend>tf2_msgs</depend>
   <depend>robot_state_publisher</depend>
 
   <test_depend>ament_lint_auto</test_depend>

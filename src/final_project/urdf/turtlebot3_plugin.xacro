@@ -29,9 +29,11 @@
         <!-- <publish_odom_tf>true</publish_odom_tf> -->
         <!-- <publish_wheel_tf>false</publish_wheel_tf> -->
 
+        <!-- <tf_topic>  ${entity_name}/tf </tf_topic> -->
+        <tf_topic>  tf </tf_topic>
         <odom_topic>odom</odom_topic>
-        <child_frame_id>odom</child_frame_id>
-        <frame_id>base_footprint</frame_id>
+        <child_frame_id>base_footprint</child_frame_id>
+        <frame_id>odom</frame_id>
 
       </plugin>
 
