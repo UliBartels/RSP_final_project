@@ -17,7 +17,7 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(tf2_msgs REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 
-install( DIRECTORY launch urdf models world rviz DESTINATION share/${PROJECT_NAME} )
+install( DIRECTORY launch urdf models world rviz param map DESTINATION share/${PROJECT_NAME} )
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
