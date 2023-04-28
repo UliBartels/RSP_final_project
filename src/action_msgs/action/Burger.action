@@ -1,0 +1,12 @@
+#goal 
+uint8 action 
+
+---
+# result 
+uint8  result 
+
+---
+#feedback 
+float32 progress
+
+
