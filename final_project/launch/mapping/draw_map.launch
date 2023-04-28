@@ -74,7 +74,7 @@
   <node
       pkg="rviz2"
       exec="rviz2"
-      args = "-d $(find-pkg-share final_project)/rviz/simulation.rviz"
+      args = "-d $(find-pkg-share final_project)/rviz/draw_map.rviz"
       output="screen"/>
 
   <node
