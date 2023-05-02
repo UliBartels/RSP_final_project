@@ -17,9 +17,9 @@ namespace turtlebot_action{
     
   }
   
-  /* rclcpp_action::GoalResponse */
-  /* burger_server::goal_callback(const rclcpp_action::GoalUUID&, */
-			       /* BurgerAction::Goal::ConstSharedPtr goal){ */
+  rclcpp_action::GoalResponse
+  burger_server::goal_callback(const rclcpp_action::GoalUUID&,
+			       BurgerAction::Goal::ConstSharedPtr goal){
 
     /* if( typeid(goal)== typeid(uint)){ */
     /*   std::cout << "accept" << std::endl; */
@@ -27,10 +27,10 @@ namespace turtlebot_action{
     /* } */
     /* else{ */
     /*   std::cout << "reject" << std::endl; */
-    /*   return rclcpp_action::GoalResponse::REJECT; */
+      return rclcpp_action::GoalResponse::REJECT;
     /* } */    
     
-  /* } */
+  }
 
 
   rclcpp_action::CancelResponse

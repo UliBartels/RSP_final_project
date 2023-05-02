@@ -1,4 +1,4 @@
-#include <turtlebot_action/maze_action.hpp>
+#include <turtlebot_actionlib/maze_action.hpp>
 
 using namespace std::chrono_literals;
 using namespace std::placeholders;
@@ -6,24 +6,32 @@ using namespace std::placeholders;
 namespace turtlebot_action{
 
   action_server::action_server( const std::string& name ):
-    Node( name ){
+    Node(name){
     // Create a callback group
      burger_client_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
      waffle_client_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
 
-  // Create an action client for the burger
+  // Create an action client for the burger and waffle
   burger_client = rclcpp_action::create_client<BurgerAction>(this, "burger_action_server", burger_client_group);
   waffle_client = rclcpp_action::create_client<WaffleAction>(this, "waffle_action_server", waffle_client_group);
 
 
+  // create an server for Maze
     server  = rclcpp_action::create_server<MazeAction>
       ( this,
 	"maze",
 	std::bind( &action_server::goal_callback, this, _1, _2 ),
 	std::bind( &action_server::cancel_callback, this, _1 ),
-	std::bind( &action_server::execute, this, _1 ) );
+	std::bind( &action_server::execute, this, _1) );
     
-    
+    geometry_msgs::msg::PoseStamped start_pose, end_pose;
+    geometry_msgs::msg::Pose pose;
+    start_pose.header.frame_id = "map";
+    end_pose.header.frame_id = "map";
+    start_pose.header.stamp = now();
+    end_pose.header.stamp = now();
+    start_pose.pose = pose ;
+    end_pose.pose = pose;
   }  
 
   rclcpp_action::GoalResponse
@@ -40,9 +48,9 @@ namespace turtlebot_action{
     /* } */    
     
     
-    RCLCPP_INFO(node_->get_logger(), "Received goal with start position (%f, %f) and end position (%f, %f )",
-    goal->start_pose.position.x(), goal->start_pose.position.y(),
-    goal->end_pose.position.x(), goal->end_pose.position.y());
+    RCLCPP_INFO(this->get_logger(), "Received goal with start position (%f, %f) and end position (%f, %f )",
+    goal->start_pose.position.x, goal->start_pose.position.y,
+    goal->end_pose.position.x, goal->end_pose.position.y);
   }
 
 
@@ -55,7 +63,7 @@ namespace turtlebot_action{
   
   // ----------------------call for both burger and waffle----------------------------------------------//
 // define the call for burger
- int  action_server::burger_call(const int& command==1){
+ int  action_server::burger_call(const int& command=1){
 
    BurgerAction::Goal goal;
 
@@ -156,33 +164,33 @@ namespace turtlebot_action{
 
    /* **TODO** */ 
     //main action work flow 
-void  action_server::execute
-  (const std::hared_ptr<rclcpp_action::ServerGoalHandle<MazeAction>>
-   goal_handle, const int& command){
+void action_server::execute
+  (const std::shared_ptr<rclcpp_action::ServerGoalHandle<MazeAction>>
+   goal_handle){
 
     std::cout << "maze server processing" << std::endl;
     // send a goal to the burger to move to start_location position
-    auto feedback = std::make_shared<MazeAction::Feedback>();
-    feedback->message = "place burger at start_location postion";
-    goal_handle->publish_feedback( feedback );
+    /* auto feedback = std::make_shared<MazeAction::Feedback>(); */
+    /* feedback->message = "place burger at start_location postion"; */
+    /* goal_handle->publish_feedback( feedback ); */
 
-    auto goal = goal_handle -> get_goal();
-    /* TODO */
-    // publish the start postion of the burger 
-    this -> pub
+    /* auto goal = goal_handle -> get_goal(); */
+    /* /1* TODO *1/ */
+    /* // set the parameter for start and end location */
 
-  /* auto burger_result = callback(goal -> start_location); */
-    std::cout << "burger result output" << burger_result << std::endl;
-    std::cout << "burger is ready to go" << std::endl;
+    
+  /* /1* auto burger_result = callback(goal -> start_location); *1/ */
+    /* std::cout << "burger result output" << burger_result << std::endl; */
+    /* std::cout << "burger is ready to go" << std::endl; */
 
 
-    /* TODO */
-    // switch case of the waffle 
-    auto burger_result = this -> burger_execute(command); 
+    /* /1* TODO *1/ */
+    /* // switch case of the waffle */ 
+    /* auto burger_result = this -> burger_execute(command); */ 
 
   }
 
-int action_server::burger_execute(const int& command){
+void action_server::burger_execute(const int command){
   
   switch(command){
     case 1:
@@ -203,7 +211,6 @@ int action_server::burger_execute(const int& command){
     default:
       std::cout << "Invalid command" << std::endl;
     }
-  return 1;
   }
 
 void action_server::publish_pose(const std::string& name, const geometry_msgs::msg::Pose& pose ){

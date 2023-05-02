@@ -13,20 +13,22 @@ find_package(rclcpp_action REQUIRED)
 find_package(maze_msgs REQUIRED)
 
 include_directories( include )
-add_library( maze SHARED src/burger_action.cpp src/waffle_action.cpp )
+add_library( maze SHARED src/burger_action.cpp src/waffle_action.cpp src/maze_action.cpp)
 ament_target_dependencies(maze rclcpp rclcpp_action maze_msgs )
 
-# add_executable( server src/maze_server.cpp )
-# target_link_libraries( server maze )
-# ament_target_dependencies( server rclcpp rclcpp_action maze_msgs )
+add_executable( server src/maze_server.cpp )
+target_link_libraries( server maze )
+ament_target_dependencies( server rclcpp rclcpp_action maze_msgs )
 
 # add_executable( client src/maze_client.cpp )
 # target_link_libraries( client maze )
 # ament_target_dependencies( client rclcpp rclcpp_action maze_msgs )
 
-# install( DIRECTORY include/ DESTINATION include )
-# install( TARGETS maze  LIBRARY DESTINATION lib )
+install( DIRECTORY include/ DESTINATION include )
+install( TARGETS maze  LIBRARY DESTINATION lib )
 # install( TARGETS server client  DESTINATION lib/${PROJECT_NAME} )
+install( TARGETS server DESTINATION lib/${PROJECT_NAME} )
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
