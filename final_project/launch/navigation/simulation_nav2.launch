@@ -69,10 +69,10 @@
   <!--     args = "-d $(find-pkg-share final_project)/rviz/slam.rviz" -->
   <!--     output="screen"/> -->
 
-  <node
-      pkg="slam_toolbox"
-      exec="async_slam_toolbox_node"
-      args = "scan:=$(var ns1_name)/$(var entity_name)_lidar"
-      output="screen"/>
+  <!-- <node -->
+  <!--     pkg="slam_toolbox" -->
+  <!--     exec="async_slam_toolbox_node" -->
+  <!--     args = "scan:=$(var ns1_name)/$(var entity_name)_lidar" -->
+  <!--     output="screen"/> -->
 
 </launch>
