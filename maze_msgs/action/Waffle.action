@@ -1,12 +1,8 @@
-#goal 
-uint8 action 
-
+# goal 
+geometry_msgs/msg/Pose target
 ---
 # result 
 uint8  result 
-
 ---
 #feedback 
 float32 progress
-
-
