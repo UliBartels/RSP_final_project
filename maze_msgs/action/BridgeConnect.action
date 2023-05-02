@@ -1,7 +1,6 @@
 #goal 
-geometry_msgs/Pose start_pose
-geometry_msgs/Pose end_pose
-geometry_msgs/Pose airtag_pose
+geometry_msgs/PoseStamped start_pose
+geometry_msgs/PoseStamped end_pose
 ---
 # result 
 uint8  result 

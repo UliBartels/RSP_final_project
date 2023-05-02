@@ -5,7 +5,6 @@ int main( int argc, char** argv ){
 
   rclcpp::init( argc, argv );
 
-  /* rclcpp::spin( std::make_shared<turtlebot_action::action_server>("pnp") ); */
 
   std::shared_ptr<turtlebot_action::action_server> s1 = std::make_shared<turtlebot_action::action_server>("maze") ;
   std::shared_ptr<turtlebot_action::burger_server> s2 = std::make_shared<turtlebot_action::burger_server>("burger") ;

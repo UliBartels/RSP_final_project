@@ -10,7 +10,7 @@ namespace turtlebot_action{
 
     server  = rclcpp_action::create_server<WaffleAction>
       ( this,
-	"burger_action_server",
+	"waffle_action_server",
 	std::bind( &waffle_server::goal_callback, this, _1, _2 ),
 	std::bind( &waffle_server::cancel_callback, this, _1 ),
 	std::bind( &waffle_server::accept_goal, this, _1 ) );
@@ -21,14 +21,14 @@ namespace turtlebot_action{
   waffle_server::goal_callback(const rclcpp_action::GoalUUID&,
 			       WaffleAction::Goal::ConstSharedPtr goal){
 
-    if( typeid(goal->target)== typeid(uint)){
-      std::cout << "accept" << std::endl;
+    /* if( typeid(goal->target)== typeid(uint)){ */
+    /*   std::cout << "accept" << std::endl; */
       return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
-    }
-    else{
-      std::cout << "reject" << std::endl;
-      return rclcpp_action::GoalResponse::REJECT;
-    }    
+    /* } */
+    /* else{ */
+    /*   std::cout << "reject" << std::endl; */
+    /*   return rclcpp_action::GoalResponse::REJECT; */
+    /* } */    
     
   }
 

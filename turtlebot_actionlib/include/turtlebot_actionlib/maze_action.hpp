@@ -16,6 +16,7 @@ namespace turtlebot_action{
     using BurgerAction = maze_msgs::action::Burger;
     using WaffleAction = maze_msgs::action::Waffle;
 
+    rclcpp::Node::SharedPtr node_;
     rclcpp_action::Client<BurgerAction>::SharedPtr burger_client;
     rclcpp_action::Client<WaffleAction>::SharedPtr waffle_client;
     rclcpp_action::Server<MazeAction>::SharedPtr server;
@@ -37,7 +38,7 @@ namespace turtlebot_action{
      goal_handle );
 
     // ---------------------------------------------------------------//
-    int  burger_call(const int& command);
+    int  burger_call(const geometry_msgs::msg::PoseStamped target_location);
     
     void burger_response_callback
     ( rclcpp_action::ClientGoalHandle<BurgerAction>::SharedPtr handle );
@@ -48,7 +49,7 @@ namespace turtlebot_action{
     ( const rclcpp_action::ClientGoalHandle<BurgerAction>::WrappedResult&
       result );
     //-------------------------------------------------------------//
-    int  waffle_call(const geometry_msgs::msg::Pose& AirTagPose);
+    int  waffle_call(const geometry_msgs::msg::PoseStamped& AirTagPose);
     
     void waffle_response_callback
     ( rclcpp_action::ClientGoalHandle<WaffleAction>::SharedPtr handle );
@@ -65,8 +66,8 @@ namespace turtlebot_action{
     (const std::shared_ptr<rclcpp_action::ServerGoalHandle<MazeAction>>
      goal_handle);
 
-    void burger_execute(const int command);
-    void publish_pose(const std::string& name, const geometry_msgs::msg::Pose& pose);
+    /* void burger_execute(const int command); */
+    /* void publish_pose(const std::string& name, const geometry_msgs::msg::Pose& pose); */
   };
 }
 

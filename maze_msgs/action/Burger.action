@@ -1,5 +1,5 @@
 # goal 
-uint8 order
+geometry_msgs/PoseStamped target
 ---
 # result 
 uint8  result 
