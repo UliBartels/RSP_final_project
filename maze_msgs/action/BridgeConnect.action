@@ -1,6 +1,12 @@
 #goal 
 geometry_msgs/PoseStamped start_pose
 geometry_msgs/PoseStamped end_pose
+geometry_msgs/PoseStamped p1 
+geometry_msgs/PoseStamped p2
+geometry_msgs/PoseStamped p3
+geometry_msgs/PoseStamped p4 
+geometry_msgs/PoseStamped w1 
+geometry_msgs/PoseStamped w2 
 ---
 # result 
 uint8  result 

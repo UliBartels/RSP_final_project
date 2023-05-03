@@ -66,27 +66,34 @@ namespace turtlebot_action{
     (const std::shared_ptr<rclcpp_action::ServerGoalHandle<MazeAction>>
      goal_handle);
 
-    /* void burger_execute(const int command); */
-    /* void publish_pose(const std::string& name, const geometry_msgs::msg::Pose& pose); */
+  };
+
+ class action_client : public rclcpp::Node {
+  private:
+    using MazeAction = maze_msgs::action::BridgeConnect;
+    using BurgerAction = maze_msgs::action::Burger;
+    using WaffleAction = maze_msgs::action::Waffle;
+    rclcpp_action::Client<MazeAction>::SharedPtr client;
+  public:
+    action_client( const std::string& name );
+
+    
+    void call(const geometry_msgs::msg::PoseStamped& start,
+      const geometry_msgs::msg::PoseStamped& end,
+      const geometry_msgs::msg::PoseStamped& P1,
+      const geometry_msgs::msg::PoseStamped& P2,
+      const geometry_msgs::msg::PoseStamped& P3,
+      const geometry_msgs::msg::PoseStamped& P4,
+      const geometry_msgs::msg::PoseStamped& W1,
+      const geometry_msgs::msg::PoseStamped& W2);
+    void response_callback
+    ( rclcpp_action::ClientGoalHandle<MazeAction>::SharedPtr handle );
+    void feedback_callback
+    ( rclcpp_action::ClientGoalHandle<MazeAction>::SharedPtr handle,
+      const std::shared_ptr<const MazeAction::Feedback> feedback );
+    void result_callback
+    ( const rclcpp_action::ClientGoalHandle<MazeAction>::WrappedResult&
+      result );
+    
   };
 }
-
- /* class action_client : public rclcpp::Node { */
- /*  private: */
- /*    rclcpp_action::Client<maze_msgs::action::BridgeConnect>::SharedPtr client; */
- /*  public: */
- /*    action_client( const std::string& name ); */
-
-    
- /*    void call(const std::array<float, 2>& pick, const std::array<float,2>& place); */
- /*    void response_callback */
- /*    ( rclcpp_action::ClientGoalHandle<maze_msgs::action::BridgeConnect>::SharedPtr handle ); */
- /*    void feedback_callback */
- /*    ( rclcpp_action::ClientGoalHandle<maze_msgs::action::BridgeConnect>::SharedPtr handle, */
- /*      const std::shared_ptr<const maze_msgs::action::BridgeConnect::Feedback> feedback ); */
- /*    void result_callback */
- /*    ( const rclcpp_action::ClientGoalHandle<maze_msgs::action::BridgeConnect>::WrappedResult& */
- /*      result ); */
-    
- /*  }; */
-/* } */

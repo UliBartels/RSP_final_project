@@ -20,14 +20,13 @@ add_executable( server src/maze_server.cpp )
 target_link_libraries( server maze )
 ament_target_dependencies( server rclcpp rclcpp_action maze_msgs )
 
-# add_executable( client src/maze_client.cpp )
-# target_link_libraries( client maze )
-# ament_target_dependencies( client rclcpp rclcpp_action maze_msgs )
+add_executable( client src/maze_client.cpp )
+target_link_libraries( client maze )
+ament_target_dependencies( client rclcpp rclcpp_action maze_msgs )
 
 install( DIRECTORY include/ DESTINATION include )
 install( TARGETS maze  LIBRARY DESTINATION lib )
-# install( TARGETS server client  DESTINATION lib/${PROJECT_NAME} )
-install( TARGETS server DESTINATION lib/${PROJECT_NAME} )
+install( TARGETS server client  DESTINATION lib/${PROJECT_NAME} )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
