@@ -135,7 +135,7 @@ namespace turtlebot_action{
     const std::shared_ptr<const WaffleAction::Feedback> feedback )
   {
     std::cout << "waffle feedback" << std::endl
-	      <<(double) feedback->progress*100<<"%"  << std::endl;
+	      << feedback->progress << std::endl;
   }
   void action_server::waffle_result_callback
   ( const rclcpp_action::ClientGoalHandle<WaffleAction>::WrappedResult&
@@ -156,24 +156,24 @@ void action_server::execute
     std::cout << "maze server processing" << std::endl;
     // send a goal to the burger to move to start_location position
     auto feedback = std::make_shared<MazeAction::Feedback>();
-    feedback->message = "place burger at start_location postion";
-    goal_handle->publish_feedback( feedback );
+    /* feedback->message = "place burger at start_location postion"; */
+    /* goal_handle->publish_feedback( feedback ); */
 
     auto goal = goal_handle -> get_goal();
-    // set the parameter for start and end location
-    auto burger_result = burger_call(goal->start_pose);
-    std::cout << "burger result output" << burger_result << std::endl;
-    std::cout << "burger is ready to go" << std::endl;
+    /* // set the parameter for start and end location */
+    /* auto burger_result = burger_call(goal->start_pose); */
+    /* std::cout << "burger result output" << burger_result << std::endl; */
+    /* std::cout << "burger is ready to go" << std::endl; */
 
 
 
-    // move to waypoint 1
-    feedback->message = "Moving to the P1";
-    goal_handle->publish_feedback( feedback );
+    /* // move to waypoint 1 */
+    /* feedback->message = "Moving to the P1"; */
+    /* goal_handle->publish_feedback( feedback ); */
 
-    burger_result = burger_call(goal -> p1);
-    std::cout << "burger result output" << burger_result << std::endl;
-    std::cout << "burger move to P1 is done" << std::endl;
+    /* burger_result = burger_call(goal -> p1); */
+    /* std::cout << "burger result output" << burger_result << std::endl; */
+    /* std::cout << "burger move to P1 is done" << std::endl; */
    
 
     // call waffle to come  

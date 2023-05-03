@@ -8,9 +8,13 @@
   <xacro:include filename="$(find final_project)/urdf/ignition_system_plugin.xacro" />
   <xacro:waffle prefix="$(arg entity_name)"/>
   <xacro:waffle_imu prefix="$(arg entity_name)"/>
-  <xacro:waffle_lidar prefix="$(arg entity_name)"/>
+  <xacro:waffle_lidar prefix="$(arg entity_name)">
+    <pose>-0.064 0 0 0 0 0</pose>
+  </xacro:waffle_lidar>
   <xacro:waffle_camera prefix="$(arg entity_name)"/>
-  <xacro:turtlebot3_plugin entity_name="$(arg entity_name)"/>
   <xacro:ignition_system_plugin/>
+  <xacro:turtlebot3_plugin entity_name="$(arg entity_name)">
+    <wheel_separation>0.287</wheel_separation>
+  </xacro:turtlebot3_plugin>
 
 </robot>
