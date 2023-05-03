@@ -6,7 +6,7 @@
 class nav2pose_server : public rclcpp::Node{
 
 private:
-  rclcpp_action::Server<nav2_msgs::action::NavigateToPose>::SharedPtr nav2pose_server;
+  rclcpp_action::Server<nav2_msgs::action::NavigateToPose>::SharedPtr server;
 
 public:
 
@@ -27,18 +27,18 @@ public:
 class nav2pose_client : public rclcpp::Node{
 
 private:
-  rclcpp_action::Client<nav2_msgs::action::NavigateToPose>::SharedPtr nav2pose_client;
+  rclcpp_action::Client<nav2_msgs::action::NavigateToPose>::SharedPtr client;
 
 public:
   nav2pose_client( const std::string& name );
 
-  void call_server( const geometry_msgs::msg::PoseStamped& goal );
+  void call_server( const geometry_msgs::msg::PoseStamped& target );
   void client_response_callback( rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr handle );
   void client_feedback_callback(
                                 rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr handle,
                                 const std::shared_ptr<const nav2_msgs::action::NavigateToPose::Feedback> feedback
                                 );
-  void client_result_callback(
+  void client_result_callback( const
                               rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& result
  );
-}
+};

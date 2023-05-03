@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(NavToPose)
+project(navtopose)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -14,13 +14,13 @@ find_package(rclcpp_action REQUIRED)
 
 include_directories( include )
 
-add_library( nav2pose_lib SHARED src/NavToPose_client.cpp src/NavToPose.cpp )
+add_library( nav2pose_lib SHARED src/NavToPose.cpp )
 ament_target_dependencies( nav2pose_lib rclcpp rclcpp_action geometry_msgs nav2_msgs )
 
-add_executable( nav2pose_server src/nav2pose_server.cpp )
+add_executable( nav2pose_server src/NavToPose_server.cpp )
 target_link_libraries( nav2pose_server nav2pose_lib )
 
-add_executable( nav2pose_client src/nav2pose_client.cpp )
+add_executable( nav2pose_client src/NavToPose_client.cpp )
 target_link_libraries( nav2pose_client nav2pose_lib )
 
 install( DIRECTORY include/ DESTINATION include )

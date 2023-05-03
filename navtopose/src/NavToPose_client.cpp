@@ -9,7 +9,7 @@ int main( int argc, char** argv ){
   pose1.header.frame_id = "map";
   pose1.pose.position.x = 1.62;
   pose1.pose.position.y = -1.84;
-  client->call_pnp( pose1 );
+  client->call_server( pose1 );
   rclcpp::spin(client);
   rclcpp::shutdown();
 
