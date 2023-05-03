@@ -59,7 +59,7 @@ void nav2pose_client::client_feedback_callback(
                                 rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr handle,
                                 const std::shared_ptr<const nav2_msgs::action::NavigateToPose::Feedback> feedback
                                                ){
-  std::cout << "nav2pose client feedback callback!\n";
+  this -> get_pose( feedback->current_pose  );
 
 }
 
@@ -68,19 +68,36 @@ void nav2pose_client::client_result_callback(const rclcpp_action::ClientGoalHand
   std::cout << "nav2pose client result callback!\n";
 }
 
-void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target )
-{
-  std::cout << "Calling nav2pose_server!\n";
-  nav2_msgs::action::NavigateToPose::Goal goal;
-  goal.pose = target;
+  void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target )
+  {
+    std::cout << "Calling nav2pose_server!\n";
+    nav2_msgs::action::NavigateToPose::Goal goal;
+    goal.pose = target;
 
-  rclcpp_action::Client<nav2_msgs::action::NavigateToPose>::SendGoalOptions options;
-  options.goal_response_callback = std::bind(&nav2pose_client::client_response_callback, this, _1);
-  options.feedback_callback = std::bind(&nav2pose_client::client_feedback_callback, this, _1, _2);
-  options.result_callback = std::bind(&nav2pose_client::client_result_callback, this, _1);
+    rclcpp_action::Client<nav2_msgs::action::NavigateToPose>::SendGoalOptions options;
+    options.goal_response_callback = std::bind(&nav2pose_client::client_response_callback, this, _1);
+    options.feedback_callback = std::bind(&nav2pose_client::client_feedback_callback, this, _1, _2);
+    options.result_callback = std::bind(&nav2pose_client::client_result_callback, this, _1);
 
-  client->async_send_goal( goal, options );
-  std::cout << "nav2pose_client: Goal Sent!\n";
+    client->async_send_goal( goal, options );
+    std::cout << "nav2pose_client: Goal Sent!\n";
 
-}
+  }
+
+  void nav2pose_client::get_pose( const geometry_msgs::msg::PoseStamped& Pose ) const
+  {
+    std::cout << "Current Pose:\n"
+      << "position:\n"
+      // << "seq " << Pose.header.seq << std::endl
+      << "x " << Pose.pose.position.x << std::endl
+      << "y " << Pose.pose.position.y << std::endl
+      << "z " << Pose.pose.position.z << std::endl
+      << "orientation:\n"
+      << "x " << Pose.pose.orientation.x << std::endl
+      << "y " << Pose.pose.orientation.y << std::endl
+      << "z " << Pose.pose.orientation.z << std::endl
+      << "w " << Pose.pose.orientation.w << std::endl;
+
+  }
+
 }

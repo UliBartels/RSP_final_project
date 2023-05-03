@@ -43,5 +43,7 @@ public:
   void client_result_callback( const
                               rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& result
  );
+
+  void get_pose( const geometry_msgs::msg::PoseStamped& Pose ) const;
 };
-};
+}
