@@ -12,20 +12,20 @@ find_package(nav2_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rclcpp_action REQUIRED)
 
-include_directories( include )
-
+include_directories( include)
+ament_export_include_directories(include)
 add_library( nav2pose_lib SHARED src/NavToPose.cpp )
 ament_target_dependencies( nav2pose_lib rclcpp rclcpp_action geometry_msgs nav2_msgs )
 
-add_executable( nav2pose_server src/NavToPose_server.cpp )
-target_link_libraries( nav2pose_server nav2pose_lib )
+# add_executable( nav2pose_server src/NavToPose_server.cpp )
+# target_link_libraries( nav2pose_server nav2pose_lib )
 
-add_executable( nav2pose_client src/NavToPose_client.cpp )
-target_link_libraries( nav2pose_client nav2pose_lib )
+# add_executable( nav2pose_client src/NavToPose_client.cpp )
+# target_link_libraries( nav2pose_client nav2pose_lib )
 
 install( DIRECTORY include/ DESTINATION include )
 install( TARGETS nav2pose_lib LIBRARY DESTINATION lib )
-install( TARGETS nav2pose_server nav2pose_client DESTINATION lib/${PROJECT_NAME} )
+# install( TARGETS nav2pose_server nav2pose_client DESTINATION lib/${PROJECT_NAME} )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -5,4 +5,4 @@ geometry_msgs/PoseStamped target
 uint8  result 
 ---
 #feedback 
-float32 progress
+string progress
