@@ -3,6 +3,8 @@
 #include <nav2_msgs/action/navigate_to_pose.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 
+namespace nav2pose{
+
 class nav2pose_server : public rclcpp::Node{
 
 private:
@@ -41,4 +43,5 @@ public:
   void client_result_callback( const
                               rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& result
  );
+};
 };

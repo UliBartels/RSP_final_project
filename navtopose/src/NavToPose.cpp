@@ -3,8 +3,17 @@
 using namespace std::chrono_literals;
 using namespace std::placeholders;
 
+namespace nav2pose{
+
 nav2pose_server::nav2pose_server( const std::string& name ):
   Node(name){
+  server = rclcpp_action::create_server<nav2_msgs::action::NavigateToPose>( this,
+                                                                            name,
+                                                                            std::bind( &nav2pose_server::goal_callback, this, _1, _2 ),
+                                                                            std::bind( &nav2pose_server::cancel_callback, this, _1 ),
+                                                                            std::bind( &nav2pose_server::accept_goal, this, _1 ));
+  std::cout << "nav2pose_server created!\n";
+
 
 }
 
@@ -12,8 +21,11 @@ rclcpp_action::GoalResponse nav2pose_server::goal_callback( const rclcpp_action:
 {
   std::cout << "Target Pose is set!\n";
   std::cout << "Position (" << goal->pose.pose.position.x
+    << ", "
     << goal->pose.pose.position.y
+    << ", "
     << goal->pose.pose.position.z
+    << ")"
     << std::endl;
   return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
 }
@@ -25,7 +37,7 @@ rclcpp_action::CancelResponse nav2pose_server::cancel_callback( const std::share
 }
 
 
-void accept_goal( const std::shared_ptr<rclcpp_action::ServerGoalHandle<nav2_msgs::action::NavigateToPose>> goal_handle ){
+void nav2pose_server::accept_goal( const std::shared_ptr<rclcpp_action::ServerGoalHandle<nav2_msgs::action::NavigateToPose>> goal_handle ){
   std::cout << "Robot Server Processing\n";
 
 }
@@ -33,7 +45,8 @@ void accept_goal( const std::shared_ptr<rclcpp_action::ServerGoalHandle<nav2_msg
 // ---------------------------------------------------- Client ------------------------------------------------------------
 nav2pose_client::nav2pose_client( const std::string& name ):
   Node(name){
-  client = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( this, "nav2pose_client" );
+  client = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( this, name );
+  std::cout << "nav2pose_client created!\n";
   client -> wait_for_action_server();
 }
 
@@ -69,4 +82,5 @@ void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target
   client->async_send_goal( goal, options );
   std::cout << "nav2pose_client: Goal Sent!\n";
 
+}
 }
