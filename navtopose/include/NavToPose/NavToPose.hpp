@@ -1,5 +1,6 @@
 #include <rclcpp_action/rclcpp_action.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <rclcpp/parameter.hpp>
 #include <nav2_msgs/action/navigate_to_pose.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 
@@ -30,6 +31,7 @@ class nav2pose_client : public rclcpp::Node{
 
 private:
   rclcpp_action::Client<nav2_msgs::action::NavigateToPose>::SharedPtr client;
+  int result;
 
 public:
   nav2pose_client( const std::string& name );
@@ -41,9 +43,10 @@ public:
                                 const std::shared_ptr<const nav2_msgs::action::NavigateToPose::Feedback> feedback
                                 );
   void client_result_callback( const
-                              rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& result
+                              rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& res
  );
 
   void get_pose( const geometry_msgs::msg::PoseStamped& Pose ) const;
-};
+  int get_result() const;
+  };
 }

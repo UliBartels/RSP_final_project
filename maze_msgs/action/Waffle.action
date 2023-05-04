@@ -1,8 +1,8 @@
 # goal 
-geometry_msgs/Pose target
+geometry_msgs/PoseStamped target
 ---
 # result 
 uint8  result 
 ---
 #feedback 
-float32 progress
+string progress

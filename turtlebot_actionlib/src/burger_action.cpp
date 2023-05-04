@@ -23,11 +23,11 @@ namespace turtlebot_action{
 
     /* if( typeid(goal)== typeid(uint)){ */
     /*   std::cout << "accept" << std::endl; */
-    /*   return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE; */
+      return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
     /* } */
     /* else{ */
     /*   std::cout << "reject" << std::endl; */
-      return rclcpp_action::GoalResponse::REJECT;
+      /* return rclcpp_action::GoalResponse::REJECT; */
     /* } */    
     
   }
@@ -45,7 +45,7 @@ namespace turtlebot_action{
   (const std::shared_ptr<rclcpp_action::ServerGoalHandle<BurgerAction>>
    goal_handle ){
 
-    std::cout << "server processing" << std::endl;
+    std::cout << "burger server processing" << std::endl;
     for( int i=0; i<5; i++ ){
       
       std::this_thread::sleep_for( 1000ms );

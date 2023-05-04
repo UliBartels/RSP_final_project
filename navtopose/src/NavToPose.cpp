@@ -37,7 +37,7 @@ rclcpp_action::CancelResponse nav2pose_server::cancel_callback( const std::share
 }
 
 
-void nav2pose_server::accept_goal( const std::shared_ptr<rclcpp_action::ServerGoalHandle<nav2_msgs::action::NavigateToPose>> goal_handle ){
+  void nav2pose_server::accept_goal( const std::shared_ptr<rclcpp_action::ServerGoalHandle<nav2_msgs::action::NavigateToPose>> goal_handle ){
   std::cout << "Robot Server Processing\n";
 
 }
@@ -48,24 +48,31 @@ nav2pose_client::nav2pose_client( const std::string& name ):
   client = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( this, name );
   std::cout << "nav2pose_client created!\n";
   client -> wait_for_action_server();
+  result = 0;
+  declare_parameter("result", result);
 }
 
-void nav2pose_client::client_response_callback( rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr )
+  void nav2pose_client::client_response_callback( rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr )
 {
   std::cout << "nav2pose client response callback!\n";
+  result = 2;
 }
 
-void nav2pose_client::client_feedback_callback(
+  void nav2pose_client::client_feedback_callback(
                                 rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr handle,
                                 const std::shared_ptr<const nav2_msgs::action::NavigateToPose::Feedback> feedback
                                                ){
-  this -> get_pose( feedback->current_pose  );
+  this-> get_pose( feedback->current_pose  );
 
 }
 
-void nav2pose_client::client_result_callback(const rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& result)
+  void nav2pose_client::client_result_callback(const rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& res)
 {
   std::cout << "nav2pose client result callback!\n";
+  result = 1;
+  rclcpp::Parameter param("result", result);
+  set_parameter(param);
+  std::cout << "result is " << this->get_result() << std::endl;
 }
 
   void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target )
@@ -81,7 +88,8 @@ void nav2pose_client::client_result_callback(const rclcpp_action::ClientGoalHand
 
     client->async_send_goal( goal, options );
     std::cout << "nav2pose_client: Goal Sent!\n";
-
+    //result
+    result = 0;
   }
 
   void nav2pose_client::get_pose( const geometry_msgs::msg::PoseStamped& Pose ) const
@@ -99,5 +107,8 @@ void nav2pose_client::client_result_callback(const rclcpp_action::ClientGoalHand
       << "w " << Pose.pose.orientation.w << std::endl;
 
   }
+ int nav2pose_client::get_result() const{
+   return result;
+ }
 
 }
