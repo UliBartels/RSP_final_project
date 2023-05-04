@@ -47,6 +47,7 @@ namespace turtlebot_action{
     feedback->progress = "feedback:call nav2 server";
     // get result
     auto result = std::make_shared<WaffleAction::Result>();
+    std::cout << "nav2pose_client result = " << NavToPose_client -> get_result() << std::endl;
     result->result = NavToPose_client -> get_result();
     if (result->result == 1){
       goal_handle -> succeed(result);

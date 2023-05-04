@@ -48,11 +48,14 @@ nav2pose_client::nav2pose_client( const std::string& name ):
   client = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( this, name );
   std::cout << "nav2pose_client created!\n";
   client -> wait_for_action_server();
+  result = 0;
+  declare_parameter("result", result);
 }
 
   void nav2pose_client::client_response_callback( rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr )
 {
   std::cout << "nav2pose client response callback!\n";
+  result = 2;
 }
 
   void nav2pose_client::client_feedback_callback(
@@ -67,6 +70,9 @@ nav2pose_client::nav2pose_client( const std::string& name ):
 {
   std::cout << "nav2pose client result callback!\n";
   result = 1;
+  rclcpp::Parameter param("result", result);
+  set_parameter(param);
+  std::cout << "result is " << this->get_result() << std::endl;
 }
 
   void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target )
