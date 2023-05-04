@@ -12,10 +12,11 @@ namespace turtlebot_action{
     using WaffleAction = maze_msgs::action::Waffle;
 
     rclcpp_action::Server<WaffleAction>::SharedPtr server;
-    std::shared_ptr<nav2pose::nav2pose_client> NavToPose_client;
   public:
 
     waffle_server( const std::string& name );
+
+    std::shared_ptr<nav2pose::nav2pose_client> NavToPose_client;
 
     rclcpp_action::GoalResponse
     goal_callback(const rclcpp_action::GoalUUID& id,

@@ -31,6 +31,7 @@ class nav2pose_client : public rclcpp::Node{
 
 private:
   rclcpp_action::Client<nav2_msgs::action::NavigateToPose>::SharedPtr client;
+  rclcpp::CallbackGroup::SharedPtr nav2pose_client_group;
   int result;
 
 public:

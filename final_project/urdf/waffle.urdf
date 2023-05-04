@@ -6,36 +6,36 @@
 <robot name="waffle">
   <!-- <xacro:arg name="entity_name" default="waffle"/> -->
   <!-- Init colour -->
-  <!-- <material name="black"> -->
-  <!--     <color rgba="0.0 0.0 0.0 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="dark"> -->
-  <!--     <color rgba="0.3 0.3 0.3 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="light_black"> -->
-  <!--     <color rgba="0.4 0.4 0.4 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="blue"> -->
-  <!--     <color rgba="0.0 0.0 0.8 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="green"> -->
-  <!--     <color rgba="0.0 0.8 0.0 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="grey"> -->
-  <!--     <color rgba="0.5 0.5 0.5 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="orange"> -->
-  <!--     <color rgba="1.0 0.4235 0.0392 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="brown"> -->
-  <!--     <color rgba="0.8706 0.8118 0.7647 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="red"> -->
-  <!--     <color rgba="0.8 0.0 0.0 1.0"/> -->
-  <!-- </material> -->
-  <!-- <material name="white"> -->
-  <!--     <color rgba="1.0 1.0 1.0 1.0"/> -->
-  <!-- </material> -->
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="dark">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+  <material name="light_black">
+    <color rgba="0.4 0.4 0.4 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.4235 0.0392 1.0"/>
+  </material>
+  <material name="brown">
+    <color rgba="0.8706 0.8118 0.7647 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
   <link name="base_footprint"/>
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
@@ -48,10 +48,7 @@
       <geometry>
         <mesh filename="file:///home/jimliu/Desktop/RSP_final_project/install/final_project/share/final_project/models/turtlebot3_common/meshes/waffle_base.dae" scale="0.001 0.001 0.001"/>
       </geometry>
-      <!-- <material name="light_black"/> -->
-      <material name="light_black">
-        <color rgba="0.4 0.4 0.4 1.0"/>
-      </material>
+      <material name="light_black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="-0.064 0 0.047"/>
@@ -77,10 +74,7 @@
       <geometry>
         <mesh filename="file:///home/jimliu/Desktop/RSP_final_project/install/final_project/share/final_project/models/turtlebot3_common/meshes/tire.dae" scale="0.001 0.001 0.001"/>
       </geometry>
-      <!-- <material name="dark"/> -->
-      <material name="dark">
-        <color rgba="0.3 0.3 0.3 1.0"/>
-      </material>
+      <material name="dark"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -106,10 +100,7 @@
       <geometry>
         <mesh filename="file:///home/jimliu/Desktop/RSP_final_project/install/final_project/share/final_project/models/turtlebot3_common/meshes/tire.dae" scale="0.001 0.001 0.001"/>
       </geometry>
-      <!-- <material name="dark"/> -->
-      <material name="dark">
-        <color rgba="0.3 0.3 0.3 1.0"/>
-      </material>
+      <material name="dark"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -179,10 +170,7 @@
       <geometry>
         <mesh filename="file:///home/jimliu/Desktop/RSP_final_project/install/final_project/share/final_project/models/turtlebot3_common/meshes/lds.dae" scale="0.001 0.001 0.001"/>
       </geometry>
-      <!-- <material name="dark"/> -->
-      <material name="dark">
-        <color rgba="0.3 0.3 0.3 1.0"/>
-      </material>
+      <material name="dark"/>
     </visual>
     <collision name="lidar_sensor_collision">
       <!-- <pose>-0.052 0 0.111 0 0 0</pose> -->
@@ -308,6 +296,7 @@
       <always_on> 1 </always_on>
       <visualize>true</visualize>
       <!-- <pose>-0.064 0 0.121 0 0 0</pose> -->
+      <!-- <pose>-0.064 0 0 0 0 0</pose> -->
       <pose>-0.064 0 0 0 0 0</pose>
       <update_rate>5</update_rate>
       <topic> waffle_lidar </topic>
@@ -377,6 +366,9 @@
     </sensor>
   </gazebo>
   <gazebo>
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
+  </gazebo>
+  <gazebo>
     <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
       <!-- <ros> -->
       <!--   <!-\- <namespace>/tb3</namespace> -\-> -->
@@ -386,6 +378,7 @@
       <left_joint>wheel_left_joint</left_joint>
       <right_joint>wheel_right_joint</right_joint>
       <!-- kinematics -->
+      <!-- <wheel_separation>0.287</wheel_separation> -->
       <wheel_separation>0.287</wheel_separation>
       <!-- <wheel_diameter>0.066</wheel_diameter> -->
       <wheel_radius>0.033</wheel_radius>
@@ -397,9 +390,11 @@
       <!-- <publish_odom>true</publish_odom> -->
       <!-- <publish_odom_tf>true</publish_odom_tf> -->
       <!-- <publish_wheel_tf>false</publish_wheel_tf> -->
+      <!-- <tf_topic>  ${entity_name}/tf </tf_topic> -->
+      <tf_topic>  tf </tf_topic>
       <odom_topic>odom</odom_topic>
-      <child_frame_id>odom</child_frame_id>
-      <frame_id>base_footprint</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+      <frame_id>odom</frame_id>
     </plugin>
     <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher">
       <!-- <ros> -->
@@ -410,8 +405,5 @@
       <joint_name>wheel_left_joint</joint_name>
       <joint_name>wheel_right_joint</joint_name>
     </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors"/>
   </gazebo>
 </robot>
