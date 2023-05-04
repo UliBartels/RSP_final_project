@@ -15,8 +15,6 @@ namespace turtlebot_action{
 	std::bind( &waffle_server::cancel_callback, this, _1 ),
 	std::bind( &waffle_server::accept_goal, this, _1 ) );
 
-
-  NavToPose_client = std::make_shared<nav2pose::nav2pose_client>("navigate_to_pose");
   }
   
   rclcpp_action::GoalResponse
@@ -47,7 +45,8 @@ namespace turtlebot_action{
     feedback->progress = "feedback:call nav2 server";
     // get result
     auto result = std::make_shared<WaffleAction::Result>();
-    std::cout << "nav2pose_client result = " << NavToPose_client -> get_result() << std::endl;
+    std::cout << "Waffle is moving to target. Please Wait...\n";
+    while ( NavToPose_client -> get_result() != 1 ){}
     result->result = NavToPose_client -> get_result();
     if (result->result == 1){
       goal_handle -> succeed(result);
