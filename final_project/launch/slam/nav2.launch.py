@@ -83,7 +83,7 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             'params_file',
-            default_value=os.path.join(bringup_dir, 'param', 'waffle.yaml'),
+            default_value=os.path.join(bringup_dir, 'param', 'nav2_params.yaml'),
             description='Full path to the ROS2 parameters file to use'),
 
         Node(
