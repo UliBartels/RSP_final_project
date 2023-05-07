@@ -1,11 +1,12 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="waffle_lidar" params="prefix">
+  <xacro:macro name="waffle_lidar" params="prefix *pose">
     <gazebo reference="base_scan">
       <sensor type="gpu_lidar" name="${prefix}_lidar">
         <always_on> 1 </always_on>
         <visualize>true</visualize>
         <!-- <pose>-0.064 0 0.121 0 0 0</pose> -->
-        <pose>-0.064 0 0 0 0 0</pose>
+        <!-- <pose>-0.064 0 0 0 0 0</pose> -->
+        <xacro:insert_block name="pose"/>
         <update_rate>5</update_rate>
         <topic> ${prefix}_lidar </topic>
         <ignition_frame_id> base_scan </ignition_frame_id>

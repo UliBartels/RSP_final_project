@@ -44,12 +44,14 @@ def generate_launch_description():
             'param',
             param_file_name))
 
-    nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
+    # nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
+    # Modify nav2 launch file dir, it should point to final_project/launch/navigation
+    nav2_launch_file_dir = os.path.join(get_package_share_directory('final_project'), 'launch/navigation')
 
     rviz_config_dir = os.path.join(
-        get_package_share_directory('nav2_bringup'),
+        get_package_share_directory('final_project'),
         'rviz',
-        'nav2_default_view.rviz')
+        'simulation_nav2.rviz')
 
     return LaunchDescription([
         DeclareLaunchArgument(

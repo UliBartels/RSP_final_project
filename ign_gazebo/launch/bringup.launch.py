@@ -10,6 +10,7 @@ from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitut
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetEnvironmentVariable
+from launch.substitutions import EnvironmentVariable
 
 import xacro
 
@@ -40,7 +41,10 @@ def generate_launch_description():
 	ns1 = LaunchConfiguration('ns1')
 	ns2 = LaunchConfiguration('ns2')
 
-	SetEnvironmentVariable(name='TURTLEBOT3_MODEL', value='waffle')
+	print('printing env variable: ')
+	#SetEnvironmentVariable(name='TURTLEBOT3_MODEL', value='waffle'),
+	#SetEnvironmentVariable(name='TURTLEBOT3_MODEL', value='waffle')
+	#model = ExecuteProcess(cmd=['echo', EnvironmentVariable('TURTLEBOT3_MODEL')], output='screen')
 
 	entity1_name_arg = DeclareLaunchArgument(
 		'entity1_name',
@@ -88,7 +92,7 @@ def generate_launch_description():
 		executable='rviz2',
 		name='rviz2',
 		arguments=['-d'+os.path.join(get_package_share_directory('final_project'),
-			'rviz','simulation.rviz')]
+			'rviz','slam.rviz')]
 		)
 
 	# teleop_waffle = Node(
@@ -99,6 +103,22 @@ def generate_launch_description():
 	# 	remmapings=[('cmd_vel', 'waffle/cmd_vel')]
 	# 	)
 
+	# nav_launch =  IncludeLaunchDescription(
+	# 	PythonLaunchDescriptionSource([os.path.join(
+	# 		get_package_share_directory('final_project'),'launch','navigation','navigation2.launch.py'
+	# 		)])
+	# ) 
+
+
+	# slam_launch = Node(
+	# 	package='slam_toolbox',
+	# 	executable='async_slam_toolbox_node',
+	# 	remappings=[
+	# 		("scan", "waffle/waffle_lidar")
+	# 	]
+	# )
+
+
 	return LaunchDescription([
 		ns1_arg,
 		ns2_arg,
@@ -106,6 +126,8 @@ def generate_launch_description():
 		entity2_name_arg,
 		robot_state_publisher_call,
 		ignition_launch,
-		rviz_launch
+		#rviz_launch
+		#nav_launch,
+		#slam_launch
 		#teleop_waffle
 		])

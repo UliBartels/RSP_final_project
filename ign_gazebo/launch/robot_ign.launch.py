@@ -28,6 +28,9 @@ def generate_launch_description():
 
 	burger_urdf = os.path.join(main_pkg,'urdf','burger.urdf')
 
+
+	share_pkg_path_world = os.path.join(get_package_share_directory('ign_gazebo'))
+	worlds_file = os.path.join(share_pkg_path_world,'worlds','sample_world.sdf')
 # declare launch arguments and set their default values
 
 	entity1_name = LaunchConfiguration('entity1_name')
@@ -62,7 +65,7 @@ def generate_launch_description():
 
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
-		default_value='--render-engine ogre '+world_file + ' -v 4'
+		default_value='--render-engine ogre '+worlds_file + ' -v 4'
 	)
 
 # and bam! launch and spawn everything ignition 
@@ -77,7 +80,7 @@ def generate_launch_description():
 		package='ros_ign_gazebo',
 		namespace=ns1,
 		executable='create',
-		arguments=['-file', waffle_urdf, '-name', entity1_name, '-z', "-0.11"],
+		arguments=['-file', waffle_urdf, '-name', entity1_name, '-y', "1", '-z', "-0.11"],
 		output='screen'
 	)
 
@@ -86,7 +89,7 @@ def generate_launch_description():
 		package='ros_ign_gazebo',
 		namespace=ns2,
 		executable='create',
-		arguments=['-file', burger_urdf, '-name', entity2_name, '-z', "-0.11", '-x', "1.0"],
+		arguments=['-file', burger_urdf, '-name', entity2_name, '-x', "1.0"],
 		output='screen'
 	)
 

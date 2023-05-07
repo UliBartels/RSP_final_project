@@ -1,0 +1,7 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="aruco_markers">
+
+       <xacro:include filename="$(find ign_gazebo)/urdf/bot_world.xacro"/> 
+       
+       <xacro:world/>
+       
+</robot>
