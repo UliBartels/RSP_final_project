@@ -177,12 +177,12 @@ void action_server::execute
 
     // call waffle to come  
     feedback->message = "Waffle come to W1";
-    goal->publish_feedback(feedback);
-    auto waffle_result = waffle_call(goal -> w1); 
+    // goal->publish_feedback(feedback);
+    auto waffle_result = waffle_call(goal -> w1);
 
     // call waffle to come W2
     feedback->message = "Waffle come to W2";
-    goal->publish_feedback(feedback);
+    // goal->publish_feedback(feedback);
     waffle_result = waffle_call(goal -> w2); 
     
     auto maze_result = std::make_shared<MazeAction::Result>();
