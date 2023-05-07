@@ -10,7 +10,7 @@
   <!-- <executable cmd="export TURTLEBOT3_MODEL=waffle" output="screen"/> -->
 
 
- <executable cmd="ign gazebo $(find-pkg-share final_project)/world/test-nav2_map.sdf -r -v 4" output="screen"/>
+ <executable cmd="ign gazebo $(find-pkg-share final_project)/world/turtlebot_world.sdf -r -v 4" output="screen"/>
 
   <group>
     <push-ros-namespace namespace="$(var ns1_name)"/>
