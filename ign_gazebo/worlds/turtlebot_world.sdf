@@ -1,0 +1,852 @@
+<sdf version='1.9'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='ignition::gazebo::systems::Physics' filename='ignition-gazebo-physics-system'/>
+    <plugin name='ignition::gazebo::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
+    <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
+    <plugin name='ignition::gazebo::systems::Contact' filename='ignition-gazebo-contact-system'/>
+   
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='tags'>
+      <link name='base_box'>
+        <inertial>
+          <pose>0 0 0.0825 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_box_collision'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='base_box_visual'>
+          <pose>0 0 0.0825 0 0 1.57</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.875 0.625 0.375 1</diffuse>
+            <ambient>0.875 0.625 0.375 1</ambient>
+          </material>
+        </visual>
+        <pose>0 0 0 0 -0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='box_1_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>box_1</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='box_1'>
+        <pose>0.42 0 0 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 0.0825 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='box_1_collision'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_1_visual'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.875 0.625 0.375 1</diffuse>
+            <ambient>0.875 0.625 0.375 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='box_2_joint' type='revolute'>
+        <pose>-0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>box_2</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='box_2'>
+        <pose>-0.42 0 0 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 0.0825 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='box_2_collision'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_2_visual'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.875 0.625 0.375 1</diffuse>
+            <ambient>0.875 0.625 0.375 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='box_3_joint' type='revolute'>
+        <pose>-0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>box_3</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='box_3'>
+        <pose>-0.21 -0.1275 0 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 0.0825 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='box_3_collision'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_3_visual'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.875 0.625 0.375 1</diffuse>
+            <ambient>0.875 0.625 0.375 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='box_4_joint' type='revolute'>
+        <pose>-0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>box_4</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='box_4'>
+        <pose>-0.63 0 0 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 0.0825 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='box_4_collision'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='box_4_visual'>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.255 0.21 0.165</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.875 0.625 0.375 1</diffuse>
+            <ambient>0.875 0.625 0.375 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='shelf_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>shelf_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='shelf_link'>
+        <pose>-2 -2 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>4</mass>
+          <inertia>
+            <ixx>3</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2</iyy>
+            <iyz>0</iyz>
+            <izz>2</izz>
+          </inertia>
+        </inertial>
+        <collision name='shelf_link_collision'>
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.5 0.6 1.8</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='shelf_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.2 0.3 0.3</scale>
+              <uri>file:///home/nivya/rsp_finalproject/install/ign_gazebo/share/ign_gazebo/meshes/shelf_big_movai.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='wall_1_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>wall_1</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wall_1'>
+        <pose>3.3 -1 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 1 0 -0 0</pose>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.059999999999999998</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.059999999999999998</izz>
+          </inertia>
+        </inertial>
+        <collision name='wall_1_collision'>
+          <pose>0 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 7.5 2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='wall_1_visual'>
+          <pose>0 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 7.5 2</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.625 0 0 1</diffuse>
+            <ambient>0.625 0 0 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='wall_2_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>wall_2</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wall_2'>
+        <pose>-0.1 2.8 0 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 1 0 -0 0</pose>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.059999999999999998</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.059999999999999998</izz>
+          </inertia>
+        </inertial>
+        <collision name='wall_2_collision'>
+          <pose>0 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 7.5 2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='wall_2_visual'>
+          <pose>0 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 7.5 2</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>0.625 0 0 1</diffuse>
+            <ambient>0.625 0 0 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='wb1_w1_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>wb1_w1</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wb1_w1'>
+        <pose>3.2 0 1 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='wb1_w1_collision'>
+          <pose>0 0 0.1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.2 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='wb1_w1_visual'>
+          <pose>0 0 0.1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='marker01_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>wb1_w1</parent>
+        <child>marker01_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='marker01_link'>
+        <pose>3.15 0 1.1 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>3.7500000000000001e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.875e-06</iyy>
+            <iyz>0</iyz>
+            <izz>1.875e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='marker01_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='marker01_link_visual'>
+          <pose>0 0 0 0 1.570796326794897 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.25 0.25 0.25</scale>
+              <uri>file:///home/nivya/rsp_finalproject/install/ign_gazebo/share/ign_gazebo/meshes/marker01.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0 0 0 1</diffuse>
+            <ambient>0 0 0 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='wb1_w2_joint' type='revolute'>
+        <pose>0 -0 0 0 -0 0</pose>
+        <parent>base_box</parent>
+        <child>wb1_w2</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wb1_w2'>
+        <pose>1.4 2.7 1 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <mass>0.17999999999999999</mass>
+          <inertia>
+            <ixx>0.00059999999999999995</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00059999999999999995</iyy>
+            <iyz>0</iyz>
+            <izz>0.00059999999999999995</izz>
+          </inertia>
+        </inertial>
+        <collision name='wb1_w2_collision'>
+          <pose>0 0 0.1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.2 0.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='wb1_w2_visual'>
+          <pose>0 0 0.1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='marker03_joint' type='revolute'>
+        <pose>0 0 0 0 -0 0</pose>
+        <parent>wb1_w2</parent>
+        <child>marker03_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-10000000000000000</lower>
+            <upper>10000000000000000</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='marker03_link'>
+        <pose>1.39996 2.65 1.1 0 -0 1.57</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>3.7500000000000001e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.875e-06</iyy>
+            <iyz>0</iyz>
+            <izz>1.875e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='marker03_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='marker03_link_visual'>
+          <pose>0 0 0 0 1.570796326794897 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.25 0.25 0.25</scale>
+              <uri>file:///home/nivya/rsp_finalproject/install/ign_gazebo/share/ign_gazebo/meshes/marker03.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0 0 0 1</diffuse>
+            <ambient>0 0 0 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.1 -0.9</direction>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>

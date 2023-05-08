@@ -12,7 +12,7 @@ nav2pose_server::nav2pose_server( const std::string& name ):
                                                                             std::bind( &nav2pose_server::goal_callback, this, _1, _2 ),
                                                                             std::bind( &nav2pose_server::cancel_callback, this, _1 ),
                                                                             std::bind( &nav2pose_server::accept_goal, this, _1 ));
-  std::cout << "nav2pose_server created!\n";
+  /* std::cout << "nav2pose_server created!\n"; */
 
 
 }
@@ -47,7 +47,7 @@ nav2pose_client::nav2pose_client( const std::string& name ):
   Node(name){
   nav2pose_client_group = this->create_callback_group( rclcpp::CallbackGroupType::MutuallyExclusive );
   client = rclcpp_action::create_client<nav2_msgs::action::NavigateToPose>( this, name, nav2pose_client_group );
-  std::cout << "nav2pose_client created!\n";
+  /* std::cout << "nav2pose_client created!\n"; */
   client -> wait_for_action_server();
   result = 0;
   declare_parameter("result", result);
@@ -55,7 +55,7 @@ nav2pose_client::nav2pose_client( const std::string& name ):
 
   void nav2pose_client::client_response_callback( rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr )
 {
-  std::cout << "nav2pose client response callback!\n";
+  /* std::cout << "nav2pose client response callback!\n"; */
   result = 2;
 }
 
@@ -69,7 +69,7 @@ nav2pose_client::nav2pose_client( const std::string& name ):
 
   void nav2pose_client::client_result_callback(const rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::WrappedResult& res)
 {
-  std::cout << "nav2pose client result callback!\n";
+  /* std::cout << "nav2pose client result callback!\n"; */
   result = 1;
   // rclcpp::Parameter param("result", result);
   // set_parameter(param);
@@ -78,7 +78,7 @@ nav2pose_client::nav2pose_client( const std::string& name ):
 
   void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target )
   {
-    std::cout << "Calling nav2pose_server!\n";
+    /* std::cout << "Calling nav2pose_server!\n"; */
     nav2_msgs::action::NavigateToPose::Goal goal;
     goal.pose = target;
 
@@ -88,7 +88,7 @@ nav2pose_client::nav2pose_client( const std::string& name ):
     options.result_callback = std::bind(&nav2pose_client::client_result_callback, this, _1);
 
     client->async_send_goal( goal, options );
-    std::cout << "nav2pose_client: Goal Sent!\n";
+    /* std::cout << "nav2pose_client: Goal Sent!\n"; */
     //result
     result = 0;
   }

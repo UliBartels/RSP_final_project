@@ -74,7 +74,6 @@ namespace turtlebot_action{
     
     };
     return 0;
-    /* return burger_result.result->result; */
   }
   
   void action_server::burger_response_callback
@@ -134,14 +133,14 @@ namespace turtlebot_action{
   ( rclcpp_action::ClientGoalHandle<WaffleAction>::SharedPtr ,
     const std::shared_ptr<const WaffleAction::Feedback> feedback )
   {
-    std::cout << "waffle feedback" << std::endl
+    std::cout << "waffle feedback: " 
 	      << feedback->progress << std::endl;
   }
   void action_server::waffle_result_callback
   ( const rclcpp_action::ClientGoalHandle<WaffleAction>::WrappedResult&
     result )
   {
-    std::cout << "waffle result" << std::endl
+    std::cout << "waffle result: " 
 	      << (int)result.result->result << std::endl;
   }
 
@@ -178,13 +177,16 @@ void action_server::execute
 
     // call waffle to come  
     feedback->message = "Waffle come to W1";
-    auto waffle_result = waffle_call(goal -> w1); 
-    std::cout << "waffle result output" << waffle_result << std::endl;
-    std::cout << "waffle move to W1 is done" << std::endl;
+    // goal->publish_feedback(feedback);
+    auto waffle_result = waffle_call(goal -> w1);
 
-
+    // call waffle to come W2
+    feedback->message = "Waffle come to W2";
+    // goal->publish_feedback(feedback);
+    waffle_result = waffle_call(goal -> w2); 
+    
     auto maze_result = std::make_shared<MazeAction::Result>();
-    maze_result -> result = 1;
+    maze_result -> result = waffle_result;
     goal_handle -> succeed(maze_result);
 
   }
