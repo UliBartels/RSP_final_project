@@ -95,13 +95,10 @@ def generate_launch_description():
 			'rviz','slam.rviz')]
 		)
 
-	# teleop_waffle = Node(
-	# 	package='turtlebot3_teleop',
-	# 	executable='teleop_keyboard',
-	# 	output='screen',
-	# 	prefix='xterm -e',
-	# 	remmapings=[('cmd_vel', 'waffle/cmd_vel')]
-	# 	)
+	# teleop_burger = ExecuteProcess(
+	# 	cmd=[
+	# 	    'gnome-terminal', '--', 'bash -c', '"export TURTLEBOT3_MODEL=burger"']
+	# )
 
 	# nav_launch =  IncludeLaunchDescription(
 	# 	PythonLaunchDescriptionSource([os.path.join(
@@ -126,7 +123,8 @@ def generate_launch_description():
 		entity2_name_arg,
 		robot_state_publisher_call,
 		ignition_launch,
-		#rviz_launch
+		rviz_launch,
+		# teleop_burger
 		#nav_launch,
 		#slam_launch
 		#teleop_waffle

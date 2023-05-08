@@ -41,6 +41,9 @@ def generate_launch_description():
 	# 	parameters=[{'robot_description' : LaunchConfiguration('world_desc')}]
 	# )
 
+	share_pkg_path_burger = os.path.join(get_package_share_directory('final_project'))
+	burger_urdf = os.path.join(share_pkg_path_burger,'urdf','waffle.urdf')
+
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
 		default_value='--render-engine ogre '+worlds_file + ' -v 4'
@@ -50,6 +53,14 @@ def generate_launch_description():
 		PythonLaunchDescriptionSource([os.path.join(
 			get_package_share_directory('ros_ign_gazebo'),'launch','ign_gazebo.launch.py'
 			)]), launch_arguments={'ign_args': ign_args}.items()	
+	)
+
+	spawn_burger = Node(
+		package='ros_ign_gazebo',
+		namespace='waffle',
+		executable='create',
+		arguments=['-file', burger_urdf, '-name', 'waffle', '-x', "1.0"],
+		output='screen'
 	)
 
 
@@ -69,6 +80,7 @@ def generate_launch_description():
 		#node_publisher_world,
 		ign_launch_arg,
 		gazebo_launch,
+		spawn_burger
 		#spawn_world
 
 		])

@@ -56,7 +56,6 @@ def generate_launch_description():
 # access all packages and urdfs required to spawn stuff to ignition
 
 	main_pkg = get_package_share_directory('final_project')
-	world_file = os.path.join(main_pkg,'world','template.sdf')
 
 	waffle_urdf = os.path.join(main_pkg,'urdf','waffle.urdf')
 
