@@ -107,7 +107,7 @@ def generate_launch_description():
 		executable='robot_state_publisher',
 		namespace=ns1,
 		output='screen',
-		parameters=[{'robot_description' : LaunchConfiguration('waffle_desc')}],
+		parameters=[{'robot_description' : LaunchConfiguration('waffle_desc')}, {'frame_prefix' : 'waffle/'}],
 		remappings=[
 		('joint_states', '/world/empty/model/waffle/joint_state')]
 	)
@@ -118,7 +118,7 @@ def generate_launch_description():
 		executable='robot_state_publisher',
 		namespace=ns2,
 		output='screen',
-		parameters=[{'robot_description' : LaunchConfiguration('burger_desc')}],
+		parameters=[{'robot_description' : LaunchConfiguration('burger_desc')}, {'frame_prefix' : 'burger/'}],
 		remappings=[
 		('joint_states', '/world/empty/model/burger/joint_state')]
 	)

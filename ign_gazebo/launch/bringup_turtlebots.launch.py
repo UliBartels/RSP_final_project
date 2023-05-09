@@ -24,6 +24,7 @@ def generate_launch_description():
 # access all packages and urdfs required to spawn stuff to ignition
 
 	main_pkg = get_package_share_directory('final_project')
+
 	world_file = os.path.join(main_pkg,'world','template.sdf')
 
 	waffle_urdf = os.path.join(main_pkg,'urdf','waffle.urdf')
@@ -85,6 +86,12 @@ def generate_launch_description():
 
 	)
 
+	nav_launch = IncludeLaunchDescription(
+		PythonLaunchDescriptionSource([os.path.join(
+			main_pkg,'launch','navigation','bringup_launch.py'
+			)])
+	)
+
 # visualize in rviz
 
 	rviz_launch = Node(
@@ -99,6 +106,8 @@ def generate_launch_description():
 		cmd=[
 		    'gnome-terminal -e', '--', 'bash -c "export TURTLEBOT3_MODEL=burger"']
 	)
+
+
 
 	# nav_launch =  IncludeLaunchDescription(
 	# 	PythonLaunchDescriptionSource([os.path.join(
@@ -121,9 +130,11 @@ def generate_launch_description():
 		ns2_arg,
 		entity1_name_arg,
 		entity2_name_arg,
+		nav_launch,
 		rviz_launch,
 		robot_state_publisher_call,
 		ignition_launch,
+
 		# teleop_burger
 		#nav_launch,
 		#slam_launch
