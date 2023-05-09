@@ -19,10 +19,27 @@ import xacro
 
 def generate_launch_description():
 
+	def world_str(context):
+		pkg_path = os.path.join(get_package_share_directory('ign_gazebo'))
+		world_xacro_file = os.path.join(pkg_path,'urdf','bot_world.urdf.xacro')
+		world_description_config = xacro.process_file(
+			world_xacro_file
+		)
+		world_desc = world_description_config.toprettyxml(indent=' ')
+
+		file = open(pkg_path+'/urdf/bot_world.urdf','w')
+		file.write(world_desc)
+		file.close()
+
+		return [SetLaunchConfiguration('world_desc', world_desc)]
+
+	create_world_description_arg = OpaqueFunction(function=world_str)
+
+
 # access all packages and urdfs required to spawn stuff to ignition
 
 	main_pkg = get_package_share_directory('final_project')
-	world_file = os.path.join(main_pkg,'world','template.sdf')
+	#world_file = os.path.join(main_pkg,'world','template.sdf')
 
 	waffle_urdf = os.path.join(main_pkg,'urdf','waffle.urdf')
 
@@ -65,8 +82,7 @@ def generate_launch_description():
 
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
-		# default_value='--render-engine ogre '+worlds_file + ' -v 4'
-		default_value= worlds_file + ' -v 4'
+		default_value='--render-engine ogre empty.sdf -v 4'
 	)
 
 # and bam! launch and spawn everything ignition 
@@ -76,6 +92,18 @@ def generate_launch_description():
 			get_package_share_directory('ros_ign_gazebo'),'launch','ign_gazebo.launch.py'
 			)]), launch_arguments={'ign_args': ign_args}.items()	
 	)
+
+# spawn the world first
+	urdf_file_world = os.path.join(share_pkg_path_world,'urdf','bot_world.urdf')
+
+	spawn_world = Node(
+
+		package='ros_ign_gazebo',
+		executable='create',
+		arguments=[ '-file', urdf_file_world, '-name', "tags"],
+		output='screen'
+		)
+
 
 	spawn_waffle = Node(
 		package='ros_ign_gazebo',
@@ -113,12 +141,14 @@ def generate_launch_description():
 	)
 
 	return LaunchDescription([
+		create_world_description_arg,
 		entity1_name_arg,
 		entity2_name_arg,
 		ns1_arg,
 		ns2_arg,
 		ign_launch_arg,
 		gazebo_launch,
+		spawn_world,
 		spawn_waffle,
 		spawn_burger,
 		ign_waffle_bridge,

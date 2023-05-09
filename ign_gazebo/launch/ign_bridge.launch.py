@@ -38,7 +38,7 @@ def generate_launch_description():
 			executable='parameter_bridge',
 			namespace=context.launch_configurations['ns'],
 			output='screen',
-			arguments=['/world/empty/model/' + context.launch_configurations['ns'] + '/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model'],
+			arguments=['/world/empty/model/' + context.launch_configurations['ns'] + '/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model']
 		)
 
 		return [joint_state_bridge]
@@ -70,7 +70,7 @@ def generate_launch_description():
 			executable='parameter_bridge',
 			#namespace=context.launch_configurations['ns'],
 			output='screen',
-			arguments=[context.launch_configurations['ns'] + '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist'],
+			arguments=[context.launch_configurations['ns'] + '/cmd_vel@geometry_msgs/msg/Twist[ignition.msgs.Twist'],
 		)
 
 		return [cmd_vel_bridge]

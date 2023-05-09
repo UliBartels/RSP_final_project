@@ -3,6 +3,7 @@
   <arg name="entity2_name" default="burger"/>
   <arg name="ns1_name" default="waffle"/>
   <arg name="ns2_name" default="burger"/>
+  <arg name="world_model" default="$(find-pkg-share ign_gazebo)/urdf/bot_world.urdf"/>
 
   <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
   <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
@@ -10,10 +11,12 @@
   <!-- <executable cmd="export TURTLEBOT3_MODEL=waffle" output="screen"/> -->
 
 
- <executable cmd="ign gazebo $(find-pkg-share final_project)/world/turtlebot_world.sdf -r -v 4" output="screen"/>
+ <executable cmd="ign gazebo $(find-pkg-share final_project)/world/template.sdf -r -v 4" output="screen"/>
+ <!-- <executable cmd="ign gazebo $(find-pkg-share ign_gazebo)/worlds/turtlebot_world.sdf -r -v 4" output="screen"/> -->
 
   <group>
     <push-ros-namespace namespace="$(var ns1_name)"/>
+
   <node
     pkg="robot_state_publisher"
     exec="robot_state_publisher"
@@ -26,7 +29,13 @@
   <node
     pkg="ros_ign_gazebo"
     exec="create"
-    args="-topic robot_description -name $(var entity_name) -z -0.11"
+    args="-topic robot_description -name $(var entity_name) -y 1 -z -0.11"
+    output="screen"/>
+
+  <node
+    pkg="ros_ign_gazebo"
+    exec="create"
+    args="-file $(var world_model) -name tags"
     output="screen"/>
 
 
