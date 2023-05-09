@@ -38,7 +38,7 @@ def generate_launch_description():
 			executable='parameter_bridge',
 			namespace=context.launch_configurations['ns'],
 			output='screen',
-			arguments=['/world/empty/model/' + context.launch_configurations['ns'] + '/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model']
+			arguments=['/world/empty/model/' + context.launch_configurations['ns'] + '/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model'],
 		)
 
 		return [joint_state_bridge]
@@ -108,6 +108,7 @@ def generate_launch_description():
 		return [tf_bridge]
 
 	create_tf_bridge_def = OpaqueFunction(function=create_tf_bridge)
+
 
 
 	return LaunchDescription([

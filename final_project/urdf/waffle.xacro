@@ -75,13 +75,6 @@
         </inertial>
     </link>
 
-    <joint name="wheel_left_joint" type="continuous">
-        <parent link="base_link"/>
-        <child link="wheel_left_link"/>
-        <origin xyz="0.0 0.144 0.023" rpy="-1.57 0 0"/>
-        <axis xyz="0 0 1"/>
-    </joint>
-
     <link name="wheel_left_link">
         <visual>
         <origin xyz="0 0 0" rpy="1.57 0 0"/>
@@ -106,6 +99,14 @@
                 izz="2.0712558e-05" />
         </inertial>
     </link>
+
+    <joint name="wheel_left_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="wheel_left_link"/>
+        <origin xyz="0.0 0.144 0.023" rpy="-1.57 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
 
     <joint name="wheel_right_joint" type="continuous">
         <parent link="base_link"/>

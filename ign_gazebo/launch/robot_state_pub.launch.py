@@ -3,7 +3,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, GroupAction, ExecuteProcess, SetLaunchConfiguration
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution, FindExecutable, PythonExpression
@@ -16,42 +16,6 @@ import xacro
 # This file creates the robot_description topics for both waffle and burger
 
 def generate_launch_description():
-
-# get the right urdfs from .urdf.xacro for both the robots
-
-	def render_str_waffle(context):
-		pkg_path = os.path.join(get_package_share_directory('final_project'))
-		waffle_xacro_file = os.path.join(pkg_path,'urdf','waffle.urdf.xacro')
-		waffle_description_config = xacro.process_file(
-			waffle_xacro_file
-		)
-		waffle_desc = waffle_description_config.toprettyxml(indent=' ')
-
-		waffle_file = open(pkg_path+'/urdf/waffle.urdf','w')
-		waffle_file.write(waffle_desc)
-		waffle_file.close()
-
-		return [SetLaunchConfiguration('waffle_desc', waffle_desc)]
-
-	create_waffle_description_arg = OpaqueFunction(function=render_str_waffle)
-
-
-	def render_str_burger(context):
-		pkg_path = os.path.join(get_package_share_directory('final_project'))
-		burger_xacro_file = os.path.join(pkg_path,'urdf','burger.urdf.xacro')
-		burger_description_config = xacro.process_file(
-			burger_xacro_file
-		)
-		burger_desc = burger_description_config.toprettyxml(indent=' ')
-
-		burger_file = open(pkg_path+'/urdf/burger.urdf','w')
-		burger_file.write(burger_desc)
-		burger_file.close()
-
-		return [SetLaunchConfiguration('burger_desc', burger_desc)]
-
-	create_burger_description_arg = OpaqueFunction(function=render_str_burger)
-
 
 # access all packages and urdfs required to spawn stuff to ignition
 
@@ -91,6 +55,50 @@ def generate_launch_description():
 		default_value='burger'
 	)
 
+# get the right urdfs from .urdf.xacro for both the robots
+
+	def render_str_waffle(context):
+		pkg_path = os.path.join(get_package_share_directory('final_project'))
+		waffle_xacro_file = os.path.join(pkg_path,'urdf','waffle.urdf.xacro')
+		waffle_description_config = xacro.process_file(
+			waffle_xacro_file,
+			mappings={
+				'entity_name': context.launch_configurations['entity1_name'], 
+			}
+		)
+		waffle_desc = waffle_description_config.toprettyxml(indent=' ')
+
+		waffle_file = open(pkg_path+'/urdf/waffle.urdf','w')
+		waffle_file.write(waffle_desc)
+		waffle_file.close()
+
+		return [SetLaunchConfiguration('waffle_desc', waffle_desc)]
+
+	create_waffle_description_arg = OpaqueFunction(function=render_str_waffle)
+
+
+	def render_str_burger(context):
+		pkg_path = os.path.join(get_package_share_directory('final_project'))
+		burger_xacro_file = os.path.join(pkg_path,'urdf','burger.urdf.xacro')
+		burger_description_config = xacro.process_file(
+			burger_xacro_file,
+			mappings={
+				'entity_name': context.launch_configurations['entity2_name'], 
+			}
+		)
+		burger_desc = burger_description_config.toprettyxml(indent=' ')
+
+		burger_file = open(pkg_path+'/urdf/burger.urdf','w')
+		burger_file.write(burger_desc)
+		burger_file.close()
+
+		return [SetLaunchConfiguration('burger_desc', burger_desc)]
+
+	create_burger_description_arg = OpaqueFunction(function=render_str_burger)
+
+	urdf_pkg_path = os.path.join(get_package_share_directory('final_project'))
+	waffle_urdf = os.path.join(urdf_pkg_path,'urdf','waffle.urdf')
+
 # run robot_state_publishers 
 
 	robot_state_pub_node_waffle = Node(
@@ -99,7 +107,9 @@ def generate_launch_description():
 		executable='robot_state_publisher',
 		namespace=ns1,
 		output='screen',
-		parameters=[{'robot_description' : LaunchConfiguration('waffle_desc')}]
+		parameters=[{'robot_description' : LaunchConfiguration('waffle_desc')}],
+		remappings=[
+		('joint_states', '/world/empty/model/waffle/joint_state')]
 	)
 
 	robot_state_pub_node_burger = Node(
@@ -108,16 +118,23 @@ def generate_launch_description():
 		executable='robot_state_publisher',
 		namespace=ns2,
 		output='screen',
-		parameters=[{'robot_description' : LaunchConfiguration('burger_desc')}]
+		parameters=[{'robot_description' : LaunchConfiguration('burger_desc')}],
+		remappings=[
+		('joint_states', '/world/empty/model/burger/joint_state')]
 	)
 
+
+
 	return LaunchDescription([
-		create_burger_description_arg,
-		create_waffle_description_arg,
 		entity1_name_arg,
 		entity2_name_arg,
 		ns1_arg,
 		ns2_arg,
-		robot_state_pub_node_waffle,
-		robot_state_pub_node_burger
+		create_burger_description_arg,
+		create_waffle_description_arg,
+		#joint_state_pub_waffle,
+		#joint_state_pub_burger,
+			TimerAction(period = 5.0,
+		actions=[robot_state_pub_node_burger, robot_state_pub_node_waffle])
+
 		])
