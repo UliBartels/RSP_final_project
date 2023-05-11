@@ -3,13 +3,12 @@
   <arg name="entity2_name" default="burger"/>
   <arg name="ns1_name" default="waffle"/>
   <arg name="ns2_name" default="burger"/>
-  <arg name="world_model" default="$(find-pkg-share ign_gazebo)/urdf/bot_world.urdf"/>
 
   <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
   <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
 
 
- <executable cmd="ign gazebo $(find-pkg-share final_project)/world/template.sdf -r -v 4" output="screen"/>
+ <executable cmd="ign gazebo $(find-pkg-share final_project)/world/test-nav2_map.sdf -r -v 4" output="screen"/>
 
   <group>
     <push-ros-namespace namespace="$(var ns1_name)"/>
@@ -18,6 +17,7 @@
     exec="robot_state_publisher"
     output="screen">
     <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity_name)')"/>
+    <param name='frame_prefix' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity_name)')"/>
     <remap from="joint_states" to="/world/empty/model/$(var entity_name)/joint_state"/>
     <remap from="robot_description" to="/$(var entity_name)/robot_description"/>
   </node>
@@ -25,13 +25,7 @@
   <node
     pkg="ros_ign_gazebo"
     exec="create"
-    args="-topic robot_description -name $(var entity_name) -y 1 -z -0.11"
-    output="screen"/>
-
-  <node
-    pkg="ros_ign_gazebo"
-    exec="create"
-    args="-file $(var world_model) -name tags"
+    args="-topic robot_description -name $(var entity_name) -z -0.11"
     output="screen"/>
 
 

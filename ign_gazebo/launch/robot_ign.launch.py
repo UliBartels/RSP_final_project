@@ -82,7 +82,7 @@ def generate_launch_description():
 
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
-		default_value='--render-engine ogre empty.sdf -v 4'
+		default_value='empty.sdf -v 4'
 	)
 
 # and bam! launch and spawn everything ignition 
