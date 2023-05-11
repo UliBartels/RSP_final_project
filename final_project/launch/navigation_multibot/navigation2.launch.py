@@ -46,7 +46,7 @@ def generate_launch_description():
 
     # nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
     # Modify nav2 launch file dir, it should point to final_project/launch/navigation
-    nav2_launch_file_dir = os.path.join(get_package_share_directory('final_project'), 'launch/navigation')
+    nav2_launch_file_dir = os.path.join(get_package_share_directory('final_project'), 'launch/navigation_multibot')
 
     rviz_config_dir = os.path.join(
         get_package_share_directory('final_project'),
