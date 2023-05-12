@@ -37,7 +37,7 @@
 
 		</link>
 
-		<joint name="${name}_joint" type="continuous">
+		<joint name="${name}_joint" type="fixed">
 
 			<xacro:insert_block name="origin" />
 			<parent link="${parent}"/>
@@ -237,17 +237,17 @@
 
 		</link>
 
-    <xacro:box_world name="box_1" parent="base_box">
-    	<origin xyz="0.42 0 0" rpy="0 0 1.57"/>
-    </xacro:box_world>
+    <!-- <xacro:box_world name="box_1" parent="base_box"> -->
+    <!-- 	<origin xyz="0.42 0 0" rpy="0 0 1.57"/> -->
+    <!-- </xacro:box_world> -->
 
     <xacro:box_world name="box_2" parent="base_box">
     	<origin xyz="-0.42 0 0" rpy="0 0 1.57"/>
     </xacro:box_world>
 
-    <xacro:box_world name="box_3" parent="base_box">
-    	<origin xyz="-0.21 -0.1275 0" rpy="0 0 1.57"/>
-    </xacro:box_world>
+    <!-- <xacro:box_world name="box_3" parent="base_box"> -->
+    <!-- 	<origin xyz="-0.21 -0.1275 0" rpy="0 0 1.57"/> -->
+    <!-- </xacro:box_world> -->
     
     <xacro:box_world name="box_4" parent="base_box">
     	<origin xyz="-0.63 0 0" rpy="0 0 1.57"/>
@@ -296,7 +296,7 @@
 
 		</link>
 
-		<joint name="wb1_w1_joint" type="continuous">
+		<joint name="wb1_w1_joint" type="fixed">
 
 			<origin xyz="3.2 0.0 1.0" rpy="0 0 0"/>
 			<parent link="base_box"/>
@@ -338,7 +338,7 @@
 
 		</link>
 
-		<joint name="wb1_w2_joint" type="continuous">
+		<joint name="wb1_w2_joint" type="fixed">
 
 			<origin xyz="1.4 2.7 1.0" rpy="0 0 1.57"/>
 			<parent link="base_box"/>
