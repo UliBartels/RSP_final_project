@@ -3,7 +3,7 @@
   <xacro:include filename="$(find final_project)/urdf/burger.xacro" />
   <xacro:include filename="$(find final_project)/urdf/imu.xacro" />
   <!-- <xacro:include filename="$(find final_project)/urdf/camera.xacro" /> -->
-  <xacro:include filename="$(find final_project)/urdf/turtlebot3_plugin.xacro" />
+  <xacro:include filename="$(find final_project)/urdf/turtlebot3_plugin_burger.xacro" />
 
   <!-- uncomment the next two lines if only spawn burger! -->
   <!-- <xacro:include filename="$(find final_project)/urdf/ignition_system_plugin.xacro" /> -->

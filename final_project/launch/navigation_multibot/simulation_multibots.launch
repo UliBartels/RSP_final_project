@@ -70,6 +70,7 @@
       <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/burger.urdf.xacro entity_name:=$(var entity2_name)')"/>
       <remap from="joint_states" to="/world/empty/model/$(var entity2_name)/joint_state"/>
       <remap from="robot_description" to="/$(var entity2_name)/robot_description"/>
+      <param name="frame_prefix" value="$(var entity2_name)/"/>
     </node>
 
     <node
