@@ -1,8 +1,41 @@
+<!-- <launch> -->
+<!--   <!-\- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -\-> -->
+<!--   <set_env name="TURTLEBOT3_MODEL" value="waffle"/> -->
+
+<!--   <executable cmd = "ros2 launch turtlebot3_cartographer cartographer.launch.py" output="screen"/> -->
+
+<!--   <!-\- <node -\-> -->
+<!--   <!-\-     pkg="rviz2" -\-> -->
+<!--   <!-\-     exec="rviz2" -\-> -->
+<!--   <!-\-     args = "-d $(find-pkg-share final_project)/rviz/turtlebot_draw_map.rviz" -\-> -->
+<!--   <!-\-     output="screen"/> -\-> -->
+
+<!--   <node -->
+<!--     pkg="turtlebot3_teleop" -->
+<!--     exec="teleop_keyboard" -->
+<!--     output="screen" -->
+<!--     launch-prefix="xterm -e"> -->
+<!--   </node> -->
+
+<!-- </launch> -->
 <launch>
+  <arg name="entity_name" default="waffle"/>
+  <arg name="entity2_name" default="burger"/>
+  <arg name="ns1_name" default="waffle"/>
+  <arg name="ns2_name" default="burger"/>
+  <arg name="world_model" default="$(find-pkg-share ign_gazebo)/urdf/bot_world.urdf"/>
+
   <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
   <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
-
-  <executable cmd = "ros2 launch turtlebot3_cartographer cartographer.launch.py" output="screen"/>
+  <!-- <set_env name="IGN_GUI_PLUGIN_PATH" value="/usr/lib/x86_64-linux-gnu/ign-gazebo-6/plugins/gui"/> -->
+  <!-- <executable cmd="export TURTLEBOT3_MODEL=waffle" output="screen"/> -->
+  <node
+    pkg="turtlebot3_teleop"
+    exec="teleop_keyboard"
+    output="screen"
+    launch-prefix="xterm -e">
+    <!-- <remap from="cmd_vel" to="$(var entity_name)/cmd_vel"/> -->
+  </node>
 
   <node
       pkg="rviz2"
@@ -10,11 +43,11 @@
       args = "-d $(find-pkg-share final_project)/rviz/turtlebot_draw_map.rviz"
       output="screen"/>
 
-  <node
-    pkg="turtlebot3_teleop"
-    exec="teleop_keyboard"
-    output="screen"
-    launch-prefix="xterm -e">
-  </node>
+  <!-- <executable cmd="ros2 launch slam_toolbox online_async_launch.py" output="screen"/> -->
+
+  <!-- <node -->
+  <!--     pkg="slam_toolbox" -->
+  <!--     exec="async_slam_toolbox_node" -->
+  <!--     output="screen"/> -->
 
 </launch>
