@@ -1,5 +1,5 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="turtlebot3_plugin" params="entity_name">
+  <xacro:macro name="turtlebot3_plugin" params="entity_name *wheel_separation">
     <gazebo>
       <plugin name="ignition::gazebo::systems::DiffDrive" filename="ignition-gazebo-diff-drive-system">
 
@@ -14,7 +14,8 @@
         <right_joint>wheel_right_joint</right_joint>
 
         <!-- kinematics -->
-        <wheel_separation>0.287</wheel_separation>
+        <!-- <wheel_separation>0.287</wheel_separation> -->
+        <xacro:insert_block name="wheel_separation"/>
         <!-- <wheel_diameter>0.066</wheel_diameter> -->
         <wheel_radius>0.033</wheel_radius>
 
