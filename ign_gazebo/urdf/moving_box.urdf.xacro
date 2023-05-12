@@ -1,0 +1,11 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Moving_box">
+
+       <xacro:include filename="$(find ign_gazebo)/urdf/moving_box.xacro"/> 
+       
+       <link name = "world">
+           <origin xyz = "0 0 0" rpy = "0 0 0"/>
+       </link>
+    <xacro:box_world name="box_3" parent="world">
+    	<origin xyz="-0.21 -0.1275 0" rpy="0 0 1.57"/>
+    </xacro:box_world>
+</robot>
