@@ -52,7 +52,7 @@ def generate_launch_description():
 
     remappings_control = [('/tf', 'tf'),
                           ('/tf_static', 'tf_static'),
-                          ('/cmd_vel', '/waffle/waffle/cmd_vel')]
+                          ('/cmd_vel', '/waffle/cmd_vel')]
 
     # Create our own temporary YAML files that include substitutions
     param_substitutions = {
