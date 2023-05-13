@@ -86,11 +86,11 @@ def generate_launch_description():
 
 	)
 
-	nav_launch = IncludeLaunchDescription(
-		PythonLaunchDescriptionSource([os.path.join(
-			main_pkg,'launch','navigation','bringup_launch.py'
-			)])
-	)
+	# nav_launch = IncludeLaunchDescription(
+	# 	PythonLaunchDescriptionSource([os.path.join(
+	# 		main_pkg,'launch','navigation','bringup_launch.py'
+	# 		)])
+	# )
 
 # visualize in rviz
 
@@ -130,7 +130,7 @@ def generate_launch_description():
 		ns2_arg,
 		entity1_name_arg,
 		entity2_name_arg,
-		nav_launch,
+		# nav_launch,
 		rviz_launch,
 		robot_state_publisher_call,
 		ignition_launch,

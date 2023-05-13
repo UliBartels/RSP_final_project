@@ -23,6 +23,7 @@
     <remap from="robot_description" to="/$(var entity_name)/robot_description"/>
   </node>
 
+
   <node
     pkg="ros_ign_gazebo"
     exec="create"
