@@ -17,7 +17,6 @@
     exec="robot_state_publisher"
     output="screen">
     <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity_name)')"/>
-    <param name='frame_prefix' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity_name)')"/>
     <remap from="joint_states" to="/world/empty/model/$(var entity_name)/joint_state"/>
     <remap from="robot_description" to="/$(var entity_name)/robot_description"/>
   </node>
