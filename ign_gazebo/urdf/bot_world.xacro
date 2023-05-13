@@ -131,7 +131,7 @@
 
 		</link>
 
-		<joint name="${name}_joint" type="continuous">
+		<joint name="${name}_joint" type="fixed">
 
 			<xacro:insert_block name="origin" />
 			<parent link="${parent}"/>
@@ -237,20 +237,13 @@
 
 		</link>
 
-    <xacro:box_world name="box_1" parent="base_box">
-    	<origin xyz="0.42 0 0" rpy="0 0 1.57"/>
-    </xacro:box_world>
 
     <xacro:box_world name="box_2" parent="base_box">
-    	<origin xyz="-0.42 0 0" rpy="0 0 1.57"/>
-    </xacro:box_world>
-
-    <xacro:box_world name="box_3" parent="base_box">
-    	<origin xyz="-0.21 -0.1275 0" rpy="0 0 1.57"/>
+    	<origin xyz="-0.431 0 0" rpy="0 0 1.57"/>
     </xacro:box_world>
     
     <xacro:box_world name="box_4" parent="base_box">
-    	<origin xyz="-0.63 0 0" rpy="0 0 1.57"/>
+    	<origin xyz="-0.65 0 0" rpy="0 0 1.57"/>
     </xacro:box_world>
 
 

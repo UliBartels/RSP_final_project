@@ -15,21 +15,14 @@ namespace turtlebot_action{
 	std::bind( &burger_server::cancel_callback, this, _1 ),
 	std::bind( &burger_server::accept_goal, this, _1 ) );
     
+    cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/cmd_vel" , 10 );
   }
   
   rclcpp_action::GoalResponse
   burger_server::goal_callback(const rclcpp_action::GoalUUID&,
 			       BurgerAction::Goal::ConstSharedPtr goal){
 
-    /* if( typeid(goal)== typeid(uint)){ */
-    /*   std::cout << "accept" << std::endl; */
-      return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
-    /* } */
-    /* else{ */
-    /*   std::cout << "reject" << std::endl; */
-      /* return rclcpp_action::GoalResponse::REJECT; */
-    /* } */    
-    
+    return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
   }
 
 
@@ -46,21 +39,33 @@ namespace turtlebot_action{
    goal_handle ){
 
     std::cout << "burger server processing" << std::endl;
-    for( int i=0; i<5; i++ ){
-      
-      std::this_thread::sleep_for( 1000ms );
-      auto feedback = std::make_shared<BurgerAction::Feedback>();
-      feedback->progress  = 0.2 * (i+1) ;
-      goal_handle->publish_feedback( feedback );
-      
-    }
 
+      
+    std::this_thread::sleep_for( 1000ms );
+    auto feedback = std::make_shared<BurgerAction::Feedback>();
     auto result = std::make_shared<BurgerAction::Result>();
-    result->result = 1;
-    goal_handle->succeed(result);
+    auto goal = goal_handle -> get_goal();
     
+    cmd_publish(goal->command);
+    feedback -> progress = "Burger is moving " + goal->command;
+    result->result = 1;
+    goal_handle -> succeed(result);
   }
-  
-  
+     
+  void burger_server::cmd_publish(const std::string& command){
+    geometry_msgs::msg::Twist v;
+    if (command == "Forward"){
+      v.linear.x = 0.02;
+      cmd_publisher->publish(v);
+    }
+    else if (command == "Stop"){
+      v.linear.x = 0;
+      cmd_publisher->publish(v);
+    }
+    else if (command == "Backward"){
+      v.linear.x = -.02;
+      cmd_publisher->publish(v);
+    }
+  } 
 }
 

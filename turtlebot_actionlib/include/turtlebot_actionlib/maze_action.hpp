@@ -6,6 +6,9 @@
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <geometry_msgs/msg/pose.hpp>
+#include <geometry_msgs/msg/twist.hpp>
+#include <ros2_aruco_interfaces/msg/aruco_markers.hpp>
+#include <turtlebot_actionlib/camera_subscriber.hpp>
 
 namespace turtlebot_action{
 
@@ -22,7 +25,6 @@ namespace turtlebot_action{
     rclcpp_action::Server<MazeAction>::SharedPtr server;
     rclcpp::CallbackGroup::SharedPtr burger_client_group;
     rclcpp::CallbackGroup::SharedPtr waffle_client_group;
-    rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr maze_publisher;
 
   public:
 
@@ -38,7 +40,7 @@ namespace turtlebot_action{
      goal_handle );
 
     // ---------------------------------------------------------------//
-    int  burger_call(const geometry_msgs::msg::PoseStamped target_location);
+    int  burger_call(const std::string& Command);
     
     void burger_response_callback
     ( rclcpp_action::ClientGoalHandle<BurgerAction>::SharedPtr handle );
@@ -65,7 +67,7 @@ namespace turtlebot_action{
     execute
     (const std::shared_ptr<rclcpp_action::ServerGoalHandle<MazeAction>>
      goal_handle);
-
+    std::shared_ptr<turtlebot_action::subscriber> Aruco_subscriber;
   };
 
  class action_client : public rclcpp::Node {
@@ -80,10 +82,6 @@ namespace turtlebot_action{
     
     void call(const geometry_msgs::msg::PoseStamped& start,
       const geometry_msgs::msg::PoseStamped& end,
-      const geometry_msgs::msg::PoseStamped& P1,
-      const geometry_msgs::msg::PoseStamped& P2,
-      const geometry_msgs::msg::PoseStamped& P3,
-      const geometry_msgs::msg::PoseStamped& P4,
       const geometry_msgs::msg::PoseStamped& W1,
       const geometry_msgs::msg::PoseStamped& W2);
     void response_callback

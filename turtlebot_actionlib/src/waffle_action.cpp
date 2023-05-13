@@ -15,6 +15,7 @@ namespace turtlebot_action{
 	std::bind( &waffle_server::cancel_callback, this, _1 ),
 	std::bind( &waffle_server::accept_goal, this, _1 ) );
 
+    cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/waffle/cmd_vel" , 10 );
   }
   
   rclcpp_action::GoalResponse
@@ -36,7 +37,7 @@ namespace turtlebot_action{
   (const std::shared_ptr<rclcpp_action::ServerGoalHandle<WaffleAction>>
    goal_handle ){
 
-    /* std::cout << "Waffle server processing" << std::endl; */
+    std::cout << "Waffle server processing" << std::endl;
 
     auto feedback = std::make_shared<WaffleAction::Feedback>();
     auto goal = goal_handle -> get_goal();
@@ -47,7 +48,12 @@ namespace turtlebot_action{
     std::cout << "Waffle is moving to target. Please Wait...\n";
     while ( NavToPose_client -> get_result() != 1 ){}
     result->result = NavToPose_client -> get_result();
+    // add the teleop operation after it get w1
     if (result->result == 1){
+
+      teleop_publish("Forward");
+      rclcpp::sleep_for(10000ms);
+      teleop_publish("Stop");
       goal_handle -> succeed(result);
       feedback->progress = "finish waffle nav2 path";
       goal_handle->publish_feedback(feedback);}
@@ -56,7 +62,20 @@ namespace turtlebot_action{
       feedback->progress = "abort waffle nav2 path";
       goal_handle->publish_feedback(feedback);
     }
-
+  }
+  void waffle_server::teleop_publish(const std::string& command){
+    geometry_msgs::msg::Twist v;
+    if (command == "Forward"){
+      v.linear.x = 0.3;
+      cmd_publisher->publish(v);
+    }
+    else if (command == "Stop"){
+      v.linear.x = 0;
+      cmd_publisher->publish(v);
+    }
+    else if (command == "Backward"){
+      v.linear.x = -.02;
+      cmd_publisher->publish(v);
+    }
   }
 }
-

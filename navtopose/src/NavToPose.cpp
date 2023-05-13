@@ -71,9 +71,9 @@ nav2pose_client::nav2pose_client( const std::string& name ):
 {
   /* std::cout << "nav2pose client result callback!\n"; */
   result = 1;
-  // rclcpp::Parameter param("result", result);
-  // set_parameter(param);
-  // std::cout << "result is " << this->get_result() << std::endl;
+  rclcpp::Parameter param("result", result);
+  set_parameter(param);
+  std::cout << "result is " << this->get_result() << std::endl;
 }
 
   void nav2pose_client::call_server( const geometry_msgs::msg::PoseStamped& target )

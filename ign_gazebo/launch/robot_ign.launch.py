@@ -45,9 +45,9 @@ def generate_launch_description():
 
 	burger_urdf = os.path.join(main_pkg,'urdf','burger.urdf')
 
-
 	share_pkg_path_world = os.path.join(get_package_share_directory('ign_gazebo'))
 	worlds_file = os.path.join(share_pkg_path_world,'worlds','sample_world.sdf')
+	box_urdf = os.path.join(share_pkg_path_world,'urdf','moving_box.urdf')
 # declare launch arguments and set their default values
 
 	entity1_name = LaunchConfiguration('entity1_name')
@@ -82,7 +82,7 @@ def generate_launch_description():
 
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
-		default_value='empty.sdf -v 4'
+		default_value='--render-engine ogre empty.sdf -v 4'
 	)
 
 # and bam! launch and spawn everything ignition 
@@ -100,7 +100,7 @@ def generate_launch_description():
 
 		package='ros_ign_gazebo',
 		executable='create',
-		arguments=[ '-file', urdf_file_world, '-name', "tags"],
+		arguments=[ '-file', urdf_file_world, '-name', "World Configuration"],
 		output='screen'
 		)
 
@@ -118,10 +118,17 @@ def generate_launch_description():
 		package='ros_ign_gazebo',
 		namespace=ns2,
 		executable='create',
-		arguments=['-file', burger_urdf, '-name', entity2_name, '-x', "1.0"],
+		arguments=['-file', burger_urdf, '-name', entity2_name,'-x', "-.63",
+             '-z', ".1657"],
 		output='screen'
 	)
 
+	spawn_box = Node(
+		package='ros_ign_gazebo',
+		executable='create',
+		arguments=['-file', box_urdf, '-name',"Moving Box"],
+		output='screen'
+	)
 # call the ros_ign_bridge 
 
 	ign_waffle_bridge = IncludeLaunchDescription(
@@ -151,6 +158,7 @@ def generate_launch_description():
 		spawn_world,
 		spawn_waffle,
 		spawn_burger,
+		spawn_box,
 		ign_waffle_bridge,
 		ign_burger_bridge
 		])

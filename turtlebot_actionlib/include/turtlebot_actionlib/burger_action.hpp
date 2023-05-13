@@ -1,6 +1,7 @@
 #include <rclcpp_action/rclcpp_action.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <maze_msgs/action/burger.hpp>
+#include <geometry_msgs/msg/twist.hpp>
 
 namespace turtlebot_action{
 
@@ -11,6 +12,7 @@ namespace turtlebot_action{
     using BurgerAction = maze_msgs::action::Burger;
     rclcpp_action::Server<BurgerAction>::SharedPtr server;
 
+    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher;
   public:
 
     burger_server( const std::string& name );
@@ -29,9 +31,7 @@ namespace turtlebot_action{
     (const std::shared_ptr<rclcpp_action::ServerGoalHandle<BurgerAction>>
      goal_handle );
     
+    void cmd_publish(const std::string& command);
   };
-
-
-
 }
 

@@ -6,7 +6,6 @@ int main( int argc, char** argv ){
 
   std::shared_ptr<turtlebot_action::action_client> client = std::make_shared<turtlebot_action::action_client>("client");
 
-  geometry_msgs::msg::PoseStamped P1,P2,P3,P4;
   geometry_msgs::msg::PoseStamped W1,W2;
   geometry_msgs::msg::PoseStamped start,end;
   W1.header.frame_id = "map";
@@ -15,7 +14,7 @@ int main( int argc, char** argv ){
   W2.header.frame_id = "map";
   W2.pose.position.x = 1;
   W2.pose.position.y = -1.2;
-  client->call(start,end,P1,P2,P3,P4,W1,W2);
+  client->call(start,end,W1,W2);
   rclcpp::spin(client);
   rclcpp::shutdown();
 

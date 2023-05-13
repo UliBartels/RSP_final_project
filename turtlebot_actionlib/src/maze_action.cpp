@@ -11,9 +11,9 @@ namespace turtlebot_action{
      burger_client_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
      waffle_client_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
 
-  // Create an action client for the burger and waffle
-  burger_client = rclcpp_action::create_client<BurgerAction>(this, "burger_action_server", burger_client_group);
-  waffle_client = rclcpp_action::create_client<WaffleAction>(this, "waffle_action_server", waffle_client_group);
+    // Create an action client for the burger and waffle
+    burger_client = rclcpp_action::create_client<BurgerAction>(this, "burger_action_server", burger_client_group);
+    waffle_client = rclcpp_action::create_client<WaffleAction>(this, "waffle_action_server", waffle_client_group);
 
 
   // create an server for Maze
@@ -45,17 +45,12 @@ namespace turtlebot_action{
   
   // ----------------------call for both burger and waffle----------------------------------------------//
 // define the call for burger
- int  action_server::burger_call(const geometry_msgs::msg::PoseStamped target_location){
+ int  action_server::burger_call(const std::string& Command){
 
 
     BurgerAction::Goal goal;
-    goal.target = target_location;
+    goal.command = Command;
 
-     std::cout << "burger target : "
-       << goal.target.pose.position.x<<std::setw(5) 
-       << goal.target.pose.position.y<<std::setw(5) 
-       << goal.target.pose.position.z<<std::setw(5) 
-       << std::endl;
     rclcpp_action::Client<BurgerAction>::SendGoalOptions options;
     options.goal_response_callback =
       std::bind(&action_server::burger_response_callback, this, _1);
@@ -69,7 +64,6 @@ namespace turtlebot_action{
     auto goal_handle = burger_client->async_send_goal(goal, options);
     auto burger_result = burger_client-> async_get_result( goal_handle.get());
     if (burger_result.get().code == rclcpp_action::ResultCode::SUCCEEDED){
-
     return 1;
     
     };
@@ -86,7 +80,7 @@ namespace turtlebot_action{
     const std::shared_ptr<const BurgerAction::Feedback> feedback )
   {
     std::cout << "burger feedback" << std::endl
-	      << (double)feedback->progress*100<< "%" << std::endl;
+	      << feedback->progress << std::endl;
   }
   void action_server::burger_result_callback
   ( const rclcpp_action::ClientGoalHandle<BurgerAction>::WrappedResult&
@@ -155,42 +149,59 @@ void action_server::execute
     std::cout << "maze server processing" << std::endl;
     // send a goal to the burger to move to start_location position
     auto feedback = std::make_shared<MazeAction::Feedback>();
-    /* feedback->message = "place burger at start_location postion"; */
-    /* goal_handle->publish_feedback( feedback ); */
+    feedback->message = "place burger at start_location postion";
+    goal_handle->publish_feedback( feedback );
 
     auto goal = goal_handle -> get_goal();
-    /* // set the parameter for start and end location */
-    /* auto burger_result = burger_call(goal->start_pose); */
-    /* std::cout << "burger result output" << burger_result << std::endl; */
-    /* std::cout << "burger is ready to go" << std::endl; */
-
-
-
-    /* // move to waypoint 1 */
-    /* feedback->message = "Moving to the P1"; */
-    /* goal_handle->publish_feedback( feedback ); */
-
-    /* burger_result = burger_call(goal -> p1); */
-    /* std::cout << "burger result output" << burger_result << std::endl; */
-    /* std::cout << "burger move to P1 is done" << std::endl; */
-   
-
-    // call waffle to come  
-    feedback->message = "Waffle come to W1";
-    // goal->publish_feedback(feedback);
-    auto waffle_result = waffle_call(goal -> w1);
-
-    // call waffle to come W2
-    feedback->message = "Waffle come to W2";
-    // goal->publish_feedback(feedback);
-    waffle_result = waffle_call(goal -> w2); 
     
+
+    // ------------------Test Whaffle -------------------------//
+     // call waffle to come  
+    feedback->message = "Waffle come to W1";
+    goal_handle->publish_feedback(feedback);
+    auto waffle_result = waffle_call(goal -> w1); 
+    feedback->message = "Waffle finish bridge";
+
+    // -----------------Test Burger ---------------------------//
+/* // Burger start Moving */ 
+/*     if (Aruco_subscriber->z_distance != NULL){ */ 
+/*       auto burger_result = burger_call("Forward"); */
+/*       feedback->message = "Burger Moving Forward"; */
+/*       goal_handle->publish_feedback( feedback ); */
+/*     } */
+/* // two stop location: 0.58 0.23 */
+/*     while(Aruco_subscriber->z_distance > 0.58){ */ 
+/*       std::cout << Aruco_subscriber->z_distance<< std::endl; */
+/*       rclcpp::sleep_for(100ms);}; */
+/* // Butger stop when close to the gap */
+/*     auto burger_result = burger_call("Stop"); */
+/*     feedback->message = "Stop"; */
+/*     goal_handle->publish_feedback( feedback ); */
+
+/* // Burger call waffle to come */ 
+/*     feedback->message = "Waffle come to W1"; */
+/*     goal_handle->publish_feedback(feedback); */
+/*     auto waffle_result = waffle_call(goal -> w1); */ 
+/*     /1* auto waffle_result =  1; *1/ */
+/*     if (waffle_result == 1){ */
+/*       rclcpp::sleep_for(10000ms); */
+/*       burger_result = burger_call("Forward"); */
+/*       feedback->message = "Forward"; */
+/*       goal_handle->publish_feedback( feedback ); */
+/*     } */
+
+/*     while(Aruco_subscriber->z_distance > 0.23){ */ 
+/*       std::cout << Aruco_subscriber->z_distance<< std::endl; */
+/*       rclcpp::sleep_for(100ms);}; */
+
+/* // Butger stop when close to the gap */
+/*     burger_result = burger_call("Stop"); */
+/*     feedback->message = "Stop"; */
+/*     goal_handle->publish_feedback( feedback ); */
     auto maze_result = std::make_shared<MazeAction::Result>();
-    maze_result -> result = waffle_result;
-    goal_handle -> succeed(maze_result);
-
-  }
-
+    maze_result -> result = waffle_result; 
+    goal_handle -> succeed(maze_result); 
+}
 
   action_client::action_client( const std::string& name ) :
     Node(name){
@@ -200,10 +211,6 @@ void action_server::execute
   }
   void action_client::call(const geometry_msgs::msg::PoseStamped& start,
       const geometry_msgs::msg::PoseStamped& end,
-      const geometry_msgs::msg::PoseStamped& P1,
-      const geometry_msgs::msg::PoseStamped& P2,
-      const geometry_msgs::msg::PoseStamped& P3,
-      const geometry_msgs::msg::PoseStamped& P4,
       const geometry_msgs::msg::PoseStamped& W1,
       const geometry_msgs::msg::PoseStamped& W2){
 
@@ -212,10 +219,6 @@ void action_server::execute
     MazeAction::Goal goal;
     goal.start_pose = start;
     goal.end_pose =  end;
-    goal.p1 =  P1;
-    goal.p2 =  P2;
-    goal.p3 =  P3;
-    goal.p4 =  P4;
     goal.w1 =  W1;
     goal.w2 =  W2;
 

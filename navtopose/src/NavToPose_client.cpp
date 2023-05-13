@@ -10,7 +10,6 @@ int main( int argc, char** argv ){
   pose1.pose.position.x = 1.62;
   pose1.pose.position.y = -1.84;
   client->call_server( pose1 );
-  std::cout << "result is " << client->get_result() << std::endl;
   rclcpp::spin(client);
   rclcpp::shutdown();
 
