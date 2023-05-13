@@ -1,0 +1,96 @@
+<launch>
+  <arg name="entity1_name" default="waffle"/>
+  <arg name="entity2_name" default="burger"/>
+
+  <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
+
+
+ <executable cmd="ign gazebo $(find-pkg-share final_project)/world/test-nav2_map.sdf -r -v 4" output="screen"/>
+
+  <group>
+    <!-- spawn waffle -->
+    <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
+    <node
+      pkg="robot_state_publisher"
+      exec="robot_state_publisher"
+      output="screen">
+      <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/waffle.urdf.xacro entity_name:=$(var entity1_name)')"/>
+      <remap from="joint_states" to="/world/empty/model/$(var entity1_name)/joint_state"/>
+      <remap from="robot_description" to="/$(var entity1_name)/robot_description"/>
+    </node>
+
+    <node
+      pkg="ros_ign_gazebo"
+      exec="create"
+      args="-topic $(var entity1_name)/robot_description -name $(var entity1_name) -z -0.11"
+      output="screen"/>
+
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+          args="/world/empty/model/$(var entity1_name)/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model"
+      output="screen"/>
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+      args="$(var entity1_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+      output="screen"/>
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+      args="$(var entity1_name)_lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan"
+      output="screen"/>
+
+  <node
+    pkg="ros_ign_bridge"
+    exec="parameter_bridge"
+    args="odom@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
+    output="screen"/>
+
+  <node
+    pkg="ros_ign_bridge"
+    exec="parameter_bridge"
+    args="tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V"
+    output="screen"/>
+
+  <include file="$(find-pkg-share final_project)/launch/navigation_multibot/navigation2.launch.py"/>
+
+  </group>
+
+  <group>
+    <!-- spawn burger -->
+    <set_env name="TURTLEBOT3_MODEL" value="burger"/>
+    <node
+      pkg="robot_state_publisher"
+      exec="robot_state_publisher"
+      output="screen">
+      <param name='robot_description' value="$(command 'xacro $(find-pkg-share final_project)/urdf/burger.urdf.xacro entity_name:=$(var entity2_name)')"/>
+      <remap from="joint_states" to="/world/empty/model/$(var entity2_name)/joint_state"/>
+      <remap from="robot_description" to="/$(var entity2_name)/robot_description"/>
+      <param name="frame_prefix" value="$(var entity2_name)/"/>
+    </node>
+
+    <node
+      pkg="ros_ign_gazebo"
+      exec="create"
+      args="-topic $(var entity2_name)/robot_description -name $(var entity2_name) -y -1.0"
+      output="screen"/>
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+          args="/world/empty/model/$(var entity2_name)/joint_state@sensor_msgs/msg/JointState@ignition.msgs.Model"
+      output="screen"/>
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+      args="$(var entity2_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+      output="screen"/>
+
+  </group>
+
+</launch>

@@ -31,7 +31,7 @@ def generate_launch_description():
     # Modify bringup_dir, it should point to final_project
     bringup_dir = get_package_share_directory('final_project')
     # Modify bringup_dir, it should point to final_project/launch/navigation
-    launch_dir = os.path.join(bringup_dir, 'launch/navigation')
+    launch_dir = os.path.join(bringup_dir, 'launch/navigation_multibot')
 
     # Create the launch configuration variables
     namespace = LaunchConfiguration('namespace')
