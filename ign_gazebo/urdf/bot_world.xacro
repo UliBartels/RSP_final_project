@@ -1,0 +1,364 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="markers_project">
+
+	<xacro:macro name="aruco_markers" params="name parent *origin">
+
+		<link name="${name}_link">
+
+		<inertial>
+        	<mass value="0.001"/>
+        	<origin xyz="0 0 0"/>
+        	<inertia ixx="3.7499999999999997e-06" ixy="0.0" ixz="0.0" iyy="1.8750008333333333e-06" iyz="0.0" izz="1.8750008333333333e-06"/>
+      	</inertial>
+
+			<visual>
+
+				<origin xyz="0 0 0.0" rpy="0 1.57 0"/>
+			
+				<geometry>
+					<mesh filename="file://$(find ign_gazebo)/meshes/${name}.stl" scale="0.25 0.25 0.25"/>
+
+				</geometry>
+
+				<material name="Gray">
+					<color rgba="0.0 0.0 0.0 1.0"/>
+				</material>
+
+			</visual>
+
+			<collision>
+			
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+			
+				<geometry>
+					<box size="0.1 0.1 0.1"/>
+				</geometry>
+	
+			</collision>
+
+		</link>
+
+		<joint name="${name}_joint" type="fixed">
+
+			<xacro:insert_block name="origin" />
+			<parent link="${parent}"/>
+			<child link="${name}_link"/>
+
+		</joint>
+	
+	</xacro:macro>
+
+
+	<xacro:macro name="shelf" params="name parent *origin">
+
+		<link name="${name}_link">
+
+		<inertial>
+        	<mass value="4"/>
+        	<origin xyz="0 0 0"/>
+        	<inertia ixx="3" ixy="0.0" ixz="0.0" iyy="2" iyz="0.0" izz="2"/>
+      	</inertial>
+
+			<visual>
+
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			
+				<geometry>
+					<mesh filename="file://$(find ign_gazebo)/meshes/shelf_big_movai.dae" scale="0.2 0.3 0.3"/>
+				</geometry>
+
+			</visual>
+
+			<collision>
+			
+				<origin xyz="0 0 0.9" rpy="0 0 0"/>
+			
+				<geometry>
+					<box size="4.5 0.6 1.8"/>
+				</geometry>
+	
+			</collision>
+
+		</link>
+
+		<joint name="${name}_joint" type="continuous">
+
+			<xacro:insert_block name="origin" />
+			<parent link="${parent}"/>
+			<child link="${name}_link"/>
+
+		</joint>
+	
+	</xacro:macro>
+
+
+	<xacro:macro name="box_world" params="name parent *origin">
+
+		<xacro:property name="box_height" value="0.165"/>
+		<xacro:property name="box_width" value="0.21"/>
+		<xacro:property name="box_length" value="0.255"/>
+
+		<link name="${name}">
+
+			<visual>
+
+				<origin xyz="0 0 ${0.5*box_height}" rpy="0 0 0"/>
+				<geometry>
+					<box size="${box_length} ${box_width} ${box_height}"/>
+				</geometry>
+
+				<material name="Almond">
+					<color rgba="0.7 0.5 0.3 1.0"/>
+				</material>
+
+			</visual>
+
+			<collision>
+
+				<origin xyz="0 0 ${0.5*box_height}" rpy="0 0 0"/>
+				<geometry>
+					<box size="${box_length} ${box_width} ${box_height}"/>
+				</geometry>
+
+			</collision>
+
+			<inertial>
+
+				<origin xyz="0 0 ${0.5*box_height}" rpy="0 0 0"/>
+				<mass value="0.180"/>
+				<inertia ixx="6.0e-4" ixy="0" ixz="0" iyy="6.0e-4" iyz="0" izz="6.0e-4"/>
+
+			</inertial>
+
+		</link>
+
+		<joint name="${name}_joint" type="continuous">
+
+			<xacro:insert_block name="origin" />
+			<parent link="${parent}"/>
+			<child link="${name}"/>
+
+		</joint>
+
+	</xacro:macro>
+
+	<xacro:macro name="wall_world" params="name parent *origin">
+
+		<xacro:property name="wall_height" value="2.0"/>
+		<xacro:property name="wall_width" value="7.5"/>
+		<xacro:property name="wall_length" value="0.2"/>
+
+		<link name="${name}">
+
+			<visual>
+
+				<origin xyz="0 0 ${0.5*wall_height}" rpy="0 0 0"/>
+				<geometry>
+					<box size="${wall_length} ${wall_width} ${wall_height}"/>
+				</geometry>
+
+				<material name="Maroon">
+					<color rgba="0.5 0.0 0.0 1.0"/>
+				</material>
+
+			</visual>
+
+			<collision>
+
+				<origin xyz="0 0 ${0.5*wall_height}" rpy="0 0 0"/>
+				<geometry>
+					<box size="${wall_length} ${wall_width} ${wall_height}"/>
+				</geometry>
+
+			</collision>
+
+			<inertial>
+
+				<origin xyz="0 0 ${0.5*wall_height}" rpy="0 0 0"/>
+				<mass value="2"/>
+				<inertia ixx="6.0e-2" ixy="0" ixz="0" iyy="6.0e-4" iyz="0" izz="6.0e-2"/>
+
+			</inertial>
+
+		</link>
+
+		<joint name="${name}_joint" type="continuous">
+
+		  <xacro:insert_block name="origin" />
+			<parent link="${parent}"/>
+			<child link="${name}"/>
+
+		</joint>
+
+	</xacro:macro>
+
+	<xacro:macro name="world">
+		<xacro:property name="box_height" value="0.165"/>
+		<xacro:property name="box_width" value="0.21"/>
+		<xacro:property name="box_length" value="0.255"/>
+		<xacro:property name="wall_height" value="2.0"/>
+		<xacro:property name="wall_width" value="5.0"/>
+		<xacro:property name="wall_length" value="0.2"/>
+		<xacro:property name="wb_length" value="0.1"/>
+		<xacro:property name="wb_width" value="0.2"/>
+		<xacro:property name="wb_height" value="0.2"/>
+
+
+		<link name="base_box">
+
+			<visual>
+
+				<origin xyz="0 0 ${0.5*box_height}" rpy="0 0 1.57"/>
+				<geometry>
+					<box size="${box_length} ${box_width} ${box_height}"/>
+				</geometry>
+
+				<material name="Almond">
+					<color rgba="0.7 0.5 0.3 1.0"/>
+				</material>
+
+			</visual>
+
+			<collision>
+
+				<origin xyz="0 0 ${0.5*box_height}" rpy="0 0 0"/>
+				<geometry>
+					<box size="${box_length} ${box_width} ${box_height}"/>
+				</geometry>
+
+			</collision>
+
+			<inertial>
+
+				<origin xyz="0 0 ${0.5*box_height}" rpy="0 0 0"/>
+				<mass value="0.180"/>
+				<inertia ixx="6.0e-4" ixy="0" ixz="0" iyy="6.0e-4" iyz="0" izz="6.0e-4"/>
+
+			</inertial>
+
+		</link>
+
+    <xacro:box_world name="box_1" parent="base_box">
+    	<origin xyz="0.42 0 0" rpy="0 0 1.57"/>
+    </xacro:box_world>
+
+    <xacro:box_world name="box_2" parent="base_box">
+    	<origin xyz="-0.42 0 0" rpy="0 0 1.57"/>
+    </xacro:box_world>
+
+    <xacro:box_world name="box_3" parent="base_box">
+    	<origin xyz="-0.21 -0.1275 0" rpy="0 0 1.57"/>
+    </xacro:box_world>
+    
+    <xacro:box_world name="box_4" parent="base_box">
+    	<origin xyz="-0.63 0 0" rpy="0 0 1.57"/>
+    </xacro:box_world>
+
+
+    <xacro:wall_world name="wall_1" parent="base_box">
+    	<origin xyz="3.3 -1.0 0.0" rpy="0 0 0"/>
+		</xacro:wall_world>
+
+    <xacro:wall_world name="wall_2" parent="base_box">
+    	<origin xyz="-0.1 2.8 0.0" rpy="0 0 1.57"/>
+		</xacro:wall_world>
+
+		<link name="wb1_w1">
+
+			<visual>
+
+				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<geometry>
+					<box size="${wb_length} ${wb_width} ${wb_height}"/>
+				</geometry>
+
+				<material name="White">
+					<color rgba="1.0 1.0 1.0 1.0"/>
+				</material>
+
+			</visual>
+
+			<collision>
+
+				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<geometry>
+					<box size="${wb_length} ${wb_width} ${wb_height}"/>
+				</geometry>
+
+			</collision>
+
+			<inertial>
+
+				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<mass value="0.180"/>
+				<inertia ixx="6.0e-4" ixy="0" ixz="0" iyy="6.0e-4" iyz="0" izz="6.0e-4"/>
+
+			</inertial>
+
+		</link>
+
+		<joint name="wb1_w1_joint" type="fixed">
+
+			<origin xyz="3.2 0.0 1.0" rpy="0 0 0"/>
+			<parent link="base_box"/>
+			<child link="wb1_w1"/>
+
+		</joint>
+
+		<link name="wb1_w2">
+
+			<visual>
+
+				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<geometry>
+					<box size="${wb_length} ${wb_width} ${wb_height}"/>
+				</geometry>
+
+				<material name="White">
+					<color rgba="1.0 1.0 1.0 1.0"/>
+				</material>
+
+			</visual>
+
+			<collision>
+
+				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<geometry>
+					<box size="${wb_length} ${wb_width} ${wb_height}"/>
+				</geometry>
+
+			</collision>
+
+			<inertial>
+
+				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<mass value="0.180"/>
+				<inertia ixx="6.0e-4" ixy="0" ixz="0" iyy="6.0e-4" iyz="0" izz="6.0e-4"/>
+
+			</inertial>
+
+		</link>
+
+		<joint name="wb1_w2_joint" type="fixed">
+
+			<origin xyz="1.4 2.7 1.0" rpy="0 0 1.57"/>
+			<parent link="base_box"/>
+			<child link="wb1_w2"/>
+
+		</joint>
+
+		
+    <xacro:aruco_markers name="marker01" parent="wb1_w1">
+    	<origin xyz="-0.05 0.0 0.1" rpy="0 0 0"/>
+    </xacro:aruco_markers>	
+
+    <xacro:aruco_markers name="marker03" parent="wb1_w2">
+    	<origin xyz="-0.05 0 0.1" rpy="0 0 0"/>
+    </xacro:aruco_markers>
+
+    <xacro:shelf name="shelf" parent="base_box">
+    	<origin xyz="-2.0 -2.0 0.0" rpy="0 0 0"/>
+    </xacro:shelf>	
+
+	</xacro:macro>
+
+</robot>
