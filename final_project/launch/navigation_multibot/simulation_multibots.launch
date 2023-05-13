@@ -41,6 +41,12 @@
     <node
       pkg="ros_ign_bridge"
       exec="parameter_bridge"
+      args="$(var entity1_name)_camera@sensor_msgs/msg/Image[ignition.msgs.Image"
+      output="screen"/>
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
       args="$(var entity1_name)_lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan"
       output="screen"/>
 
@@ -89,6 +95,12 @@
       pkg="ros_ign_bridge"
       exec="parameter_bridge"
       args="$(var entity2_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+      output="screen"/>
+
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+      args="$(var entity2_name)_camera@sensor_msgs/msg/Image[ignition.msgs.Image"
       output="screen"/>
 
   </group>

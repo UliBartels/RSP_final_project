@@ -2,7 +2,7 @@
   <xacro:arg name="entity_name" default="burger"/>
   <xacro:include filename="$(find final_project)/urdf/burger.xacro" />
   <xacro:include filename="$(find final_project)/urdf/imu.xacro" />
-  <!-- <xacro:include filename="$(find final_project)/urdf/camera.xacro" /> -->
+  <xacro:include filename="$(find final_project)/urdf/camera.xacro" />
   <xacro:include filename="$(find final_project)/urdf/turtlebot3_plugin_burger.xacro" />
 
   <!-- uncomment the next two lines if only spawn burger! -->
@@ -11,7 +11,7 @@
 
   <xacro:burger prefix="$(arg entity_name)"/>
   <xacro:waffle_imu prefix="$(arg entity_name)"/>
-  <!-- <xacro:waffle_camera prefix="$(arg entity_name)"/> -->
+  <xacro:waffle_camera prefix="$(arg entity_name)"/>
   <xacro:turtlebot3_plugin entity_name="$(arg entity_name)">
     <wheel_separation>0.160</wheel_separation>
   </xacro:turtlebot3_plugin>
