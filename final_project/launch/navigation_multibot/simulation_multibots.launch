@@ -5,7 +5,8 @@
   <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
 
 
- <executable cmd="ign gazebo $(find-pkg-share final_project)/world/test-nav2_map.sdf -r -v 4" output="screen"/>
+ <!-- <executable cmd="ign gazebo $(find-pkg-share final_project)/world/test-nav2_map.sdf -r -v 4" output="screen"/> -->
+ <include file="$(find-pkg-share ign_gazebo)/launch/robot_ign.launch.py"/>
 
   <group>
     <!-- spawn waffle -->
@@ -22,7 +23,7 @@
     <node
       pkg="ros_ign_gazebo"
       exec="create"
-      args="-topic $(var entity1_name)/robot_description -name $(var entity1_name) -z -0.11"
+      args="-topic $(var entity1_name)/robot_description -name $(var entity1_name) -y 1 -z -0.11"
       output="screen"/>
 
 
@@ -62,7 +63,9 @@
     args="tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V"
     output="screen"/>
 
-  <include file="$(find-pkg-share final_project)/launch/navigation_multibot/navigation2.launch.py"/>
+  <include file="$(find-pkg-share final_project)/launch/navigation_multibot/navigation2.launch.py">
+    <arg name="map" value="$(find-pkg-share final_project)/map/gazebo_map.yaml"/>
+  </include>
 
   </group>
 
@@ -82,7 +85,7 @@
     <node
       pkg="ros_ign_gazebo"
       exec="create"
-      args="-topic $(var entity2_name)/robot_description -name $(var entity2_name) -y -1.0"
+      args="-topic $(var entity2_name)/robot_description -name $(var entity2_name) -x -.63 -z 0.1657"
       output="screen"/>
 
     <node

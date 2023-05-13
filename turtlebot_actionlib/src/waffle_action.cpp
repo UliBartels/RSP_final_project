@@ -15,7 +15,7 @@ namespace turtlebot_action{
 	std::bind( &waffle_server::cancel_callback, this, _1 ),
 	std::bind( &waffle_server::accept_goal, this, _1 ) );
 
-    cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/waffle/cmd_vel" , 10 );
+    cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/cmd_vel" , 10 );
   }
   
   rclcpp_action::GoalResponse

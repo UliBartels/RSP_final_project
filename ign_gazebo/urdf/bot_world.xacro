@@ -80,7 +80,7 @@
 
 		</link>
 
-		<joint name="${name}_joint" type="continuous">
+		<joint name="${name}_joint" type="fixed">
 
 			<xacro:insert_block name="origin" />
 			<parent link="${parent}"/>
@@ -181,7 +181,7 @@
 
 		</link>
 
-		<joint name="${name}_joint" type="continuous">
+		<joint name="${name}_joint" type="fixed">
 
 		  <xacro:insert_block name="origin" />
 			<parent link="${parent}"/>
@@ -291,7 +291,7 @@
 
 		<joint name="wb1_w1_joint" type="fixed">
 
-			<origin xyz="3.2 0.0 1.0" rpy="0 0 0"/>
+			<origin xyz="3.2 0.0 0.5" rpy="0 0 0"/>
 			<parent link="base_box"/>
 			<child link="wb1_w1"/>
 
@@ -314,7 +314,8 @@
 
 			<collision>
 
-				<origin xyz="0 0 0.1" rpy="0 0 0"/>
+				<!-- <origin xyz="0 0 0.1" rpy="0 0 0"/> -->
+                <origin xyz="3.2 0.0 0.5" rpy="0 0 0"/>
 				<geometry>
 					<box size="${wb_length} ${wb_width} ${wb_height}"/>
 				</geometry>

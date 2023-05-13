@@ -46,7 +46,7 @@ def generate_launch_description():
 	burger_urdf = os.path.join(main_pkg,'urdf','burger.urdf')
 
 	share_pkg_path_world = os.path.join(get_package_share_directory('ign_gazebo'))
-	worlds_file = os.path.join(share_pkg_path_world,'worlds','sample_world.sdf')
+	worlds_file = os.path.join(main_pkg,'world','template.sdf')
 	box_urdf = os.path.join(share_pkg_path_world,'urdf','moving_box.urdf')
 # declare launch arguments and set their default values
 
@@ -82,7 +82,8 @@ def generate_launch_description():
 
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
-		default_value='--render-engine ogre empty.sdf -v 4'
+		# default_value='-r empty.sdf -v 4'
+		default_value='-v 4 ' + worlds_file
 	)
 
 # and bam! launch and spawn everything ignition 
@@ -149,18 +150,18 @@ def generate_launch_description():
 
 	return LaunchDescription([
 		create_world_description_arg,
-		entity1_name_arg,
-		entity2_name_arg,
-		ns1_arg,
-		ns2_arg,
+		# entity1_name_arg,
+		# entity2_name_arg,
+		# ns1_arg,
+		# ns2_arg,
 		ign_launch_arg,
 		gazebo_launch,
 		spawn_world,
-		spawn_waffle,
-		spawn_burger,
+		# spawn_waffle,
+		# spawn_burger,
 		spawn_box,
-		ign_waffle_bridge,
-		ign_burger_bridge
+		# ign_waffle_bridge,
+		# ign_burger_bridge
 		])
 
 

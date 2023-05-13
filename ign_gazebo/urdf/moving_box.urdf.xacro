@@ -3,4 +3,12 @@
        <xacro:include filename="$(find ign_gazebo)/urdf/moving_box.xacro"/> 
        
        <xacro:box_world name="box_3"/>
+      <link name = "base_link"/>
+      <joint name="box_3_joint" type="fixed">
+        <!-- <axis xyz = "1 0 0"/> -->
+        <origin xyz="-0.215 -0.1275 0" rpy="0 0 1.57"/>
+        <parent link="base_link"/>
+        <child link="box_3"/>
+        <!-- <limit lower= "-1" upper = "1" effort="100" velocity = ".2"/> -->
+      </joint>
 </robot>

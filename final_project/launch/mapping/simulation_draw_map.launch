@@ -3,7 +3,7 @@
   <arg name="entity2_name" default="burger"/>
   <arg name="ns1_name" default="waffle"/>
   <arg name="ns2_name" default="burger"/>
-  <arg name="world_model" default="$(find-pkg-share ign_gazebo)/urdf/bot_world.urdf"/>
+  <include file="$(find-pkg-share ign_gazebo)/launch/robot_ign.launch.py"/>
 
   <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
   <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
@@ -11,7 +11,6 @@
   <!-- <executable cmd="export TURTLEBOT3_MODEL=waffle" output="screen"/> -->
 
 
- <executable cmd="ign gazebo $(find-pkg-share final_project)/world/template.sdf -r -v 4" output="screen"/>
 
   <group>
     <push-ros-namespace namespace="$(var ns1_name)"/>
@@ -28,12 +27,6 @@
     pkg="ros_ign_gazebo"
     exec="create"
     args="-topic robot_description -name $(var entity_name) -y 1 -z -0.11"
-    output="screen"/>
-
-  <node
-    pkg="ros_ign_gazebo"
-    exec="create"
-    args="-file $(var world_model) -name tags"
     output="screen"/>
 
 
