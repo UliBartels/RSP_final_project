@@ -9,8 +9,10 @@ int main( int argc, char** argv ){
   geometry_msgs::msg::PoseStamped W1,W2;
   geometry_msgs::msg::PoseStamped start,end;
   W1.header.frame_id = "map";
-  W1.pose.position.x = 1.62;
-  W1.pose.position.y = -1.84;
+  W1.pose.position.x = -0.19;
+  W1.pose.position.y = -1.92;
+  W1.pose.orientation.z = 0.7071;
+  W1.pose.orientation.w = 0.7071;
   W2.header.frame_id = "map";
   W2.pose.position.x = 1;
   W2.pose.position.y = -1.2;

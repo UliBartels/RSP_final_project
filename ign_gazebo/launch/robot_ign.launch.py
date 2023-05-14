@@ -99,7 +99,7 @@ def generate_launch_description():
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
 		# default_value='-r empty.sdf -v 4'
-		default_value='--render-engine ogre '+worlds_file + ' -v 4'
+		default_value= worlds_file + ' -r -v 4'
 	)
 
 # and bam! launch and spawn everything ignition 

@@ -15,7 +15,7 @@
 				<origin xyz="0 0 0.0" rpy="0 1.57 0"/>
 			
 				<geometry>
-					<mesh filename="file://$(find ign_gazebo)/meshes/${name}.stl" scale="0.25 0.25 0.25"/>
+					<mesh filename="file://$(find ign_gazebo)/meshes/${name}.stl" scale="0.6 0.6 0.6"/>
 
 				</geometry>
 
@@ -182,7 +182,7 @@
 				</geometry>
 
 				<material name="Maroon">
-					<color rgba="0.5 0.0 0.0 1.0"/>
+					<color rgba="1 1 1 1"/>
 				</material>
 
 			</visual>
@@ -224,8 +224,8 @@
 		<xacro:property name="wall_width" value="5.0"/>
 		<xacro:property name="wall_length" value="0.2"/>
 		<xacro:property name="wb_length" value="0.1"/>
-		<xacro:property name="wb_width" value="0.2"/>
-		<xacro:property name="wb_height" value="0.2"/>
+		<xacro:property name="wb_width" value="0.6"/>
+		<xacro:property name="wb_height" value="0.6"/>
 
 
 		<link name="base_box">
@@ -289,11 +289,11 @@
 
     <xacro:box_world name="box_2" parent="base_box">
     	<!-- <origin xyz="-0.431 0 0" rpy="0 0 1.57"/> -->
-    	<origin xyz="-0.431 0 0" rpy="0 0 1.57"/>
+    	<origin xyz="-0.48 0 0" rpy="0 0 1.57"/>
     </xacro:box_world>
     
     <xacro:box_world name="box_4" parent="base_box">
-    	<origin xyz="-0.65 0 0" rpy="0 0 1.57"/>
+    	<origin xyz="-0.71 0 0" rpy="0 0 1.57"/>
     </xacro:box_world>
 
 
