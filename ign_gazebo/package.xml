@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>final_project</name>
+  <name>ign_gazebo</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="janulrichbartels@gmail.com">uli</maintainer>
+  <maintainer email="nivyanair958@gmail.com">nivya</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>final_project</depend>
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>geometry_msgs</depend>

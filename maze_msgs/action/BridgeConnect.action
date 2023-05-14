@@ -1,0 +1,11 @@
+#goal 
+geometry_msgs/PoseStamped start_pose
+geometry_msgs/PoseStamped end_pose
+geometry_msgs/PoseStamped w1 
+geometry_msgs/PoseStamped w2 
+---
+# result 
+uint8  result 
+---
+#feedback 
+string message
