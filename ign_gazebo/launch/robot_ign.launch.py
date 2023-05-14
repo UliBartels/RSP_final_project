@@ -35,6 +35,22 @@ def generate_launch_description():
 
 	create_world_description_arg = OpaqueFunction(function=world_str)
 
+	def moving_box_str(context):
+		pkg_path = os.path.join(get_package_share_directory('ign_gazebo'))
+		box_xacro_file = os.path.join(pkg_path,'urdf','sample_moving_box.urdf.xacro')
+		box_description_config = xacro.process_file(
+			box_xacro_file
+		)
+		box_desc = box_description_config.toprettyxml(indent=' ')
+
+		file = open(pkg_path+'/urdf/sample_moving_box.urdf','w')
+		file.write(box_desc)
+		file.close()
+
+		return [SetLaunchConfiguration('box_desc', box_desc)]
+
+	create_box_description_arg = OpaqueFunction(function=moving_box_str)
+
 
 # access all packages and urdfs required to spawn stuff to ignition
 
@@ -47,7 +63,7 @@ def generate_launch_description():
 
 	share_pkg_path_world = os.path.join(get_package_share_directory('ign_gazebo'))
 	worlds_file = os.path.join(main_pkg,'world','template.sdf')
-	box_urdf = os.path.join(share_pkg_path_world,'urdf','moving_box.urdf')
+	box_urdf = os.path.join(share_pkg_path_world,'urdf','sample_moving_box.urdf')
 # declare launch arguments and set their default values
 
 	entity1_name = LaunchConfiguration('entity1_name')
@@ -83,7 +99,7 @@ def generate_launch_description():
 	ign_launch_arg = DeclareLaunchArgument(
 		'ign_args',
 		# default_value='-r empty.sdf -v 4'
-		default_value='-v 4 ' + worlds_file
+		default_value='--render-engine ogre '+worlds_file + ' -v 4'
 	)
 
 # and bam! launch and spawn everything ignition 
@@ -110,7 +126,7 @@ def generate_launch_description():
 		package='ros_ign_gazebo',
 		namespace=ns1,
 		executable='create',
-		arguments=['-file', waffle_urdf, '-name', entity1_name, '-y', "1", '-z', "-0.11"],
+		arguments=['-file', waffle_urdf, '-name', entity1_name, '-y', "1", '-z', "-0.11", '-Y', "1.57"],
 		output='screen'
 	)
 
@@ -127,7 +143,7 @@ def generate_launch_description():
 	spawn_box = Node(
 		package='ros_ign_gazebo',
 		executable='create',
-		arguments=['-file', box_urdf, '-name',"Moving Box"],
+		arguments=['-file', box_urdf, '-name',"moving box"],
 		output='screen'
 	)
 # call the ros_ign_bridge 
@@ -150,6 +166,7 @@ def generate_launch_description():
 
 	return LaunchDescription([
 		create_world_description_arg,
+		create_box_description_arg,
 		# entity1_name_arg,
 		# entity2_name_arg,
 		# ns1_arg,
