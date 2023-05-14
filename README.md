@@ -1,6 +1,9 @@
 # Table of Contents
-
-1.  [SLAM](#org643380c)
+1.  [Running the Simulation]
+2.  [Running the Physical Hardware]
+    1.  [Turtle Bringup]
+    2.  [Waffle Bringup]
+3.  [SLAM](#org643380c)
     1.  [Waffle bringup](#org56eff83)
     2.  [Run SLAM node](#orgbb19ce0)
     3.  [Save your map](#org2202e9d)
@@ -10,7 +13,6 @@
 <a id="org643380c"></a>
 
 # SLAM
-
 
 <a id="org56eff83"></a>
 
