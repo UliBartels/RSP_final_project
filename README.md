@@ -9,19 +9,49 @@
     3.  [Save your map](#org2202e9d)
 
 <a id="org2202a9d"></a>
-#Running the Simulation
+# Running the Simulation
+
+1. Download the package
+2. Run these commands, in order:
+```
+cd src/
+vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+```
+3. Run
+```
+ros2 launch final_project simulation_multibot.launch
+```
+
 <a id="org2202a9d"></a>
 
 <a id="org2202b9d"></a>
 # Running the Physical Hardware
+Running the demo first requires that you've set up a maze, like so:
+![Image of the Turtlebot Teaming Maze setup](Maze_Setup.jpg)
 
 <a id="org2202c9d"></a>
 ## Turtle Bringup
+1. SSH into Turtle. It's IP should be between 192.168.10.1 and 192.168.10.10.
+2. Run
+```
+ros2 launch final_project burger_bringup.launch.py
+```
 <a id="org2202c9d"></a>
 
 <a id="org2202d9d"></a>
 ## Waffle Bringup
+1. SSH into Waffle. It's IP should be between 192.168.10.1 and 192.168.10.10.
+2. Run
+```
+ros2 launch final_project waffle_bringup.launch.py
+```
 <a id="org2202d9d"></a>
+
+## Run the application
+Once Waffle and Burger are both up and running run `ros2 launch final_project run-application`
 
 <a id="org2202b9d"></a>
 
