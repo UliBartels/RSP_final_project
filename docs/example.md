@@ -1,34 +1,16 @@
 # Table of Contents
-1.  [Running the Simulation](#org2202a9d)
-2.  [Running the Physical Hardware](#org2202b9d)
-    1.  [Turtle Bringup](#org2202c9d)
-    2.  [Waffle Bringup](#org2202d9d)
-3.  [SLAM](#org643380c)
+
+1.  [SLAM](#org643380c)
     1.  [Waffle bringup](#org56eff83)
     2.  [Run SLAM node](#orgbb19ce0)
     3.  [Save your map](#org2202e9d)
 
-<a id="org2202a9d"></a>
-#Running the Simulation
-<a id="org2202a9d"></a>
-
-<a id="org2202b9d"></a>
-# Running the Physical Hardware
-
-<a id="org2202c9d"></a>
-## Turtle Bringup
-<a id="org2202c9d"></a>
-
-<a id="org2202d9d"></a>
-## Waffle Bringup
-<a id="org2202d9d"></a>
-
-<a id="org2202b9d"></a>
 
 
 <a id="org643380c"></a>
 
 # SLAM
+
 
 <a id="org56eff83"></a>
 
