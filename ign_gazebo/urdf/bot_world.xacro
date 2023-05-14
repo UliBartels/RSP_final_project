@@ -288,6 +288,7 @@
     	</gazebo>
 
     <xacro:box_world name="box_2" parent="base_box">
+    	<!-- <origin xyz="-0.431 0 0" rpy="0 0 1.57"/> -->
     	<origin xyz="-0.431 0 0" rpy="0 0 1.57"/>
     </xacro:box_world>
     
