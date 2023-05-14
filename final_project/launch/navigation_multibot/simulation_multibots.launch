@@ -23,7 +23,7 @@
     <node
       pkg="ros_ign_gazebo"
       exec="create"
-      args="-topic $(var entity1_name)/robot_description -name $(var entity1_name) -y 1 -z -0.11"
+      args="-topic $(var entity1_name)/robot_description -name $(var entity1_name) -y 1 -z 0"
       output="screen"/>
 
 
@@ -37,12 +37,6 @@
       pkg="ros_ign_bridge"
       exec="parameter_bridge"
       args="$(var entity1_name)/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
-      output="screen"/>
-
-    <node
-      pkg="ros_ign_bridge"
-      exec="parameter_bridge"
-      args="$(var entity1_name)_camera@sensor_msgs/msg/Image[ignition.msgs.Image"
       output="screen"/>
 
     <node
@@ -106,6 +100,11 @@
       args="$(var entity2_name)_camera@sensor_msgs/msg/Image[ignition.msgs.Image"
       output="screen"/>
 
+    <node
+      pkg="ros_ign_bridge"
+      exec="parameter_bridge"
+      args="camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo"
+      output="screen"/>
   </group>
 
 </launch>
