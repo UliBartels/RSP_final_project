@@ -5,15 +5,18 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
-find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(sensor_msgs REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(rclcpp_action REQUIRED)
-find_package(tf2_ros REQUIRED)
-find_package(tf2_geometry_msgs REQUIRED)
-find_package(robot_state_publisher REQUIRED)
+# No need for dependencies since I'm not compiling anything
+#find_package(ament_cmake REQUIRED)
+#find_package(rclcpp REQUIRED)
+#find_package(rclcpp_action REQUIRED)
+#find_package(turtlebot3_bringup REQUIRED)
+#find_package(v4l2_camera REQUIRED)
+#find_package(ros2_aruco REQUIRED)
+
+#include_directories( include )
+
+install( DIRECTORY launch DESTINATION share/${PROJECT_NAME} )
+#ament_target_dependencies(ros2_aruco v4l2_camera turtlebot3_bringup rclcpp_action rclcpp)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
