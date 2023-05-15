@@ -58,7 +58,6 @@ namespace turtlebot_action{
       teleop_publish("Backward");
       rclcpp::sleep_for(4000ms);
       teleop_publish("Stop");
-      rclcpp::sleep_for(4000ms);
       goal_handle -> succeed(result);
       feedback->progress = "finish waffle nav2 path";
       goal_handle->publish_feedback(feedback);}
