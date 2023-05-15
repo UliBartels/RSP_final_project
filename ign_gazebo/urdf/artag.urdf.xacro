@@ -1,0 +1,5 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ar_tags">
+  <gazebo reference="box_2">
+  </gazebo>
+
+</robot>

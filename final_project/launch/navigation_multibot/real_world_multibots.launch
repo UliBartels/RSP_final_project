@@ -1,0 +1,17 @@
+<launch>
+  <arg name="entity1_name" default="waffle"/>
+
+  <!-- TURTLEBOT3_MODEL variable mush be set. Otherwise, teleop would crash! -->
+
+  <group>
+    <!-- spawn waffle -->
+    <set_env name="TURTLEBOT3_MODEL" value="waffle"/>
+    <include file="$(find-pkg-share final_project)/launch/navigation_multibot/navigation2_real_robot.launch.py">
+      <arg name="map" value="$(find-pkg-share final_project)/map/real_world_with_box.yaml"/>
+      <arg name="params_file" value="$(find-pkg-share final_project)/param/waffle_real.yaml"/>
+    </include>
+
+  </group>
+
+
+</launch>
