@@ -30,7 +30,8 @@ ros2 launch final_project simulation_multibot.launch
 <a id="org2202b9d"></a>
 # Running the Physical Hardware
 Running the demo first requires that you've set up a maze, like so:
-![Image of the Turtlebot Teaming Maze setup](Maze_Setup.jpg)
+![Image of the Turtlebot Teaming Maze setup](/docs/Maze_Setup.jpg)
+You then need to create a Maze. For this, follow the instructions in the SLAM chapter
 
 <a id="org2202c9d"></a>
 ## Turtle Bringup
