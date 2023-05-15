@@ -44,7 +44,14 @@ Once both robots are up and running you can run the application as described in 
 <a id="org2202c9d"></a>
 ## Burger Bringup
 1. SSH into Burger. It's IP is 192.168.10.2
-2. Run
+2. If this is your first time setting up Burger, navigate into turtlebot3_ws and run:
+```
+vcs import < src/RSP_final_project/final_project/bots.repos
+rosdep
+colcon build
+```
+else, move straight to 3.
+3. Run
 ```
 ros2 launch final_project burger_bringup.launch.py
 ```
@@ -53,7 +60,14 @@ ros2 launch final_project burger_bringup.launch.py
 <a id="org2202d9d"></a>
 ## Waffle Bringup
 1. SSH into Waffle. It's IP is 192.168.10.6
-2. Run
+2. 2. If this is your first time setting up Waffle, navigate into turtlebot3_ws and run:
+```
+vcs import < src/RSP_final_project/final_project/bots.repos
+rosdep
+colcon build
+```
+else, move straight to 3.
+3. Run
 ```
 ros2 launch final_project waffle_bringup.launch.py
 ```
