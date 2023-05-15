@@ -14,9 +14,17 @@ int main( int argc, char** argv ){
   W1.pose.orientation.z = 0.7071;
   W1.pose.orientation.w = 0.7071;
   W2.header.frame_id = "map";
-  W2.pose.position.x = 1;
-  W2.pose.position.y = -1.2;
-  client->call(start,end,W1,W2);
+  W2.pose.position.x = 0;
+  W2.pose.position.y = 0;
+  W2.pose.orientation.w = 1;
+
+
+  
+// two stop location: 0.58 0.23
+// two stop location in simulation: 0.0595 0.0516
+  float S1 = 0.0595;
+  float S2 = 0.0516;
+  client->call(S1,S2,W1,W2);
   rclcpp::spin(client);
   rclcpp::shutdown();
 

@@ -80,8 +80,8 @@ namespace turtlebot_action{
     action_client( const std::string& name );
 
     
-    void call(const geometry_msgs::msg::PoseStamped& start,
-      const geometry_msgs::msg::PoseStamped& end,
+    void call(const float& S1,
+      const float& S2,
       const geometry_msgs::msg::PoseStamped& W1,
       const geometry_msgs::msg::PoseStamped& W2);
     void response_callback

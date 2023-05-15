@@ -1,6 +1,6 @@
 #goal 
-geometry_msgs/PoseStamped start_pose
-geometry_msgs/PoseStamped end_pose
+float32 s1
+float32 s2
 geometry_msgs/PoseStamped w1 
 geometry_msgs/PoseStamped w2 
 ---

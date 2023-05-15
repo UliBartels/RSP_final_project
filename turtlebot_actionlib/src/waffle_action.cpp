@@ -41,6 +41,7 @@ namespace turtlebot_action{
 
     auto feedback = std::make_shared<WaffleAction::Feedback>();
     auto goal = goal_handle -> get_goal();
+    
     //call NavToPose
     NavToPose_client -> call_server(goal->target);
     // get result
@@ -52,8 +53,12 @@ namespace turtlebot_action{
     if (result->result == 1){
 
       teleop_publish("Forward");
-      rclcpp::sleep_for(10000ms);
+      rclcpp::sleep_for(4000ms);
       teleop_publish("Stop");
+      teleop_publish("Backward");
+      rclcpp::sleep_for(4000ms);
+      teleop_publish("Stop");
+      rclcpp::sleep_for(4000ms);
       goal_handle -> succeed(result);
       feedback->progress = "finish waffle nav2 path";
       goal_handle->publish_feedback(feedback);}
@@ -74,7 +79,7 @@ namespace turtlebot_action{
       cmd_publisher->publish(v);
     }
     else if (command == "Backward"){
-      v.linear.x = -.02;
+      v.linear.x = -.3;
       cmd_publisher->publish(v);
     }
   }
