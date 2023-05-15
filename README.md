@@ -37,7 +37,7 @@ ros2 run turtlebot_actionlib client
 # Running the Physical Hardware
 Running the demo first requires that you've set up a maze, like so:
 ![Image of the Turtlebot Teaming Maze setup](/docs/Maze_Setup.jpg)
-You then need to create a Maze. For this, follow the instructions in the SLAM chapter
+You then need to create a map. For this, follow the instructions in the SLAM chapter
 
 <a id="org2202c9d"></a>
 ## Burger Bringup
