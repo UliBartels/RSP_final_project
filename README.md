@@ -51,6 +51,7 @@ rosdep
 colcon build
 ```
 else, move straight to 3.
+
 3. Run
 ```
 ros2 launch final_project burger_bringup.launch.py
@@ -67,6 +68,7 @@ rosdep
 colcon build
 ```
 else, move straight to 3.
+
 3. Run
 ```
 ros2 launch final_project waffle_bringup.launch.py
