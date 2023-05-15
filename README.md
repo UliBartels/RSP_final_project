@@ -41,7 +41,7 @@ You then need to create a Maze. For this, follow the instructions in the SLAM ch
 
 <a id="org2202c9d"></a>
 ## Burger Bringup
-1. SSH into Burger. It's IP should be between 192.168.10.1 and 192.168.10.10.
+1. SSH into Burger. It's IP is 192.168.10.2
 2. Run
 ```
 ros2 launch final_project burger_bringup.launch.py
@@ -50,7 +50,7 @@ ros2 launch final_project burger_bringup.launch.py
 
 <a id="org2202d9d"></a>
 ## Waffle Bringup
-1. SSH into Waffle. It's IP should be between 192.168.10.1 and 192.168.10.10.
+1. SSH into Waffle. It's IP is 192.168.10.6
 2. Run
 ```
 ros2 launch final_project waffle_bringup.launch.py
