@@ -43,7 +43,7 @@
       args = "-d $(find-pkg-share final_project)/rviz/turtlebot_draw_map.rviz"
       output="screen"/>
 
-  <!-- <executable cmd="ros2 launch slam_toolbox online_async_launch.py" output="screen"/> -->
+  <executable cmd="ros2 launch slam_toolbox online_async_launch.py" output="screen"/>
 
   <!-- <node -->
   <!--     pkg="slam_toolbox" -->
