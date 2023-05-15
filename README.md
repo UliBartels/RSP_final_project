@@ -20,9 +20,15 @@ cd ..
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
-3. Run
+3. To launch the simulation for the first time you will need to create a map. For this, follow the instructions in the SLAM chapter.
+4. Once you have a map of the virtual environment you can launch the environment again, but this time set-up for the virtual task:
 ```
 ros2 launch final_project simulation_multibot.launch
+```
+5. After you have launched the virtual environment you then need to run the following two commands in two separate terminals:
+```
+ros2 run turtlebot_actionlib server
+ros2 run turtlebot_actionlib client
 ```
 
 <a id="org2202a9d"></a>
