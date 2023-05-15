@@ -40,8 +40,8 @@ Running the demo first requires that you've set up a maze, like so:
 You then need to create a Maze. For this, follow the instructions in the SLAM chapter
 
 <a id="org2202c9d"></a>
-## Turtle Bringup
-1. SSH into Turtle. It's IP should be between 192.168.10.1 and 192.168.10.10.
+## Burger Bringup
+1. SSH into Burger. It's IP should be between 192.168.10.1 and 192.168.10.10.
 2. Run
 ```
 ros2 launch final_project burger_bringup.launch.py
