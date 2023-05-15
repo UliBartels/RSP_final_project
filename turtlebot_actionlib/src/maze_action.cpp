@@ -32,8 +32,8 @@ namespace turtlebot_action{
     return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
     
     RCLCPP_INFO(node_->get_logger(), "Received goal with start position (%f, %f) and end position (%f, %f )",
-    goal->start_pose.pose.position.x, goal->start_pose.pose.position.y,
-    goal->end_pose.pose.position.x, goal->end_pose.pose.position.y);
+    goal->w1.pose.position.x, goal->w1.pose.position.y,
+    goal->w2.pose.position.x, goal->w2.pose.position.y);
   }
 
   rclcpp_action::CancelResponse
@@ -153,22 +153,25 @@ void action_server::execute
     goal_handle->publish_feedback( feedback );
 
     auto goal = goal_handle -> get_goal();
+    auto waffle_result = 0;
+    auto burger_result = 0;
     
 
 
     // -----------------Test Burger ---------------------------//
 // Burger start Moving 
     if (Aruco_subscriber->z_distance != NULL){ 
-      auto burger_result = burger_call("Forward");
+      burger_result = burger_call("Forward");
       feedback->message = "Burger Moving Forward";
       goal_handle->publish_feedback( feedback );
     }
 // two stop location: 0.58 0.23
-    while(Aruco_subscriber->z_distance > 0.58){ 
+// two stop location in simulation: 0.0595 0.0516
+    while(Aruco_subscriber->z_distance > goal->s1){ 
       std::cout << Aruco_subscriber->z_distance<< std::endl;
       rclcpp::sleep_for(100ms);};
 // Butger stop when close to the gap
-    auto burger_result = burger_call("Stop");
+    burger_result = burger_call("Stop");
     feedback->message = "Stop";
     goal_handle->publish_feedback( feedback );
 
@@ -176,24 +179,31 @@ void action_server::execute
      // call waffle to come  
     feedback->message = "Waffle come to W1";
     goal_handle->publish_feedback(feedback);
-    auto waffle_result = waffle_call(goal -> w1); 
+    waffle_result = waffle_call(goal -> w1); 
     feedback->message = "Waffle finish bridge";
     /* auto waffle_result =  1; */
     if (waffle_result == 1){
-      rclcpp::sleep_for(10000ms);
+      rclcpp::sleep_for(5000ms);
       burger_result = burger_call("Forward");
       feedback->message = "Forward";
       goal_handle->publish_feedback( feedback );
     }
 
-    while(Aruco_subscriber->z_distance > 0.23){ 
+    while(Aruco_subscriber->z_distance > goal->s2){ 
       std::cout << Aruco_subscriber->z_distance<< std::endl;
       rclcpp::sleep_for(100ms);};
 
-// Butger stop when close to the gap
     burger_result = burger_call("Stop");
     feedback->message = "Stop";
     goal_handle->publish_feedback( feedback );
+
+    feedback->message = "Waffle come to W2";
+    goal_handle->publish_feedback(feedback);
+    waffle_result = waffle_call(goal -> w2); 
+    feedback->message = "back to origin place";
+
+// Butger stop when close to the gap
+
     auto maze_result = std::make_shared<MazeAction::Result>();
     maze_result -> result = waffle_result; 
     goal_handle -> succeed(maze_result); 
@@ -205,16 +215,16 @@ void action_server::execute
       rclcpp_action::create_client<MazeAction>( this, "maze" );
     client->wait_for_action_server();
   }
-  void action_client::call(const geometry_msgs::msg::PoseStamped& start,
-      const geometry_msgs::msg::PoseStamped& end,
+  void action_client::call(const float& S1,
+      const float& S2,
       const geometry_msgs::msg::PoseStamped& W1,
       const geometry_msgs::msg::PoseStamped& W2){
 
 
     //define the value for request info
     MazeAction::Goal goal;
-    goal.start_pose = start;
-    goal.end_pose =  end;
+    goal.s1 =  S1;
+    goal.s2 =  S2;
     goal.w1 =  W1;
     goal.w2 =  W2;
 
