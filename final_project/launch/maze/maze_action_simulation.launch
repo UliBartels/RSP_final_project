@@ -1,0 +1,32 @@
+<launch>
+  <include file="$(find-pkg-share final_project)/launch/navigation_multibot/simulation_multibots.launch"/>
+
+  <group>
+<executable cmd = "ros2 topic echo /burger_camera" output = "screen"/>
+
+    <node
+      pkg = "ros2_aruco"
+      exec = "aruco_node"
+      output="screen">
+      <param name= 'image_topic' value = '/burger_camera'/>
+      <param name= 'camera_info_topic' value = '/camera_info'/>
+      <param name= 'aruco_dictionary_id' value = 'DICT_4X4_1000'/>
+    </node>
+
+
+  <node
+    pkg = "turtlebot_actionlib"
+    exec = "server"
+    output = "screen"
+    launch-prefix = "xterm -e">
+  </node>
+
+  <!-- <node -->
+  <!--   pkg = "turtlebot_actionlib" -->
+  <!--   exec = "client" -->
+  <!--   output = "screen" -->
+  <!--   launch-prefix = "xterm -e"> -->
+  <!-- </node> -->
+
+  </group>
+</launch>

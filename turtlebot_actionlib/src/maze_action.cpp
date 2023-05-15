@@ -183,7 +183,7 @@ void action_server::execute
     feedback->message = "Waffle finish bridge";
     /* auto waffle_result =  1; */
     if (waffle_result == 1){
-      rclcpp::sleep_for(5000ms);
+      rclcpp::sleep_for(500ms);
       burger_result = burger_call("Forward");
       feedback->message = "Forward";
       goal_handle->publish_feedback( feedback );
