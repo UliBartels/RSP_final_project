@@ -20,8 +20,15 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
 cd ..
  rosdep install --from-paths src --ignore-src -r -y
-colcon build ```
+colcon build
+```
 
+### Navigation2 packages
+We use Nav2 packages to from localization and mapping.
+```
+sudo apt install ros-<ros2-distro>-navigation2
+sudo apt install ros-<ros2-distro>-nav2-bringup
+```
 
 ### Turtlebot3 PC Setup Requirements
 Here are some essential packages that needs to be installed on your PC.
