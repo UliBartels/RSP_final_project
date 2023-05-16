@@ -1,7 +1,7 @@
 
 # Turtlebot Teaming 
 
-# Objective 
+## Objective 
 
 This project shows how two turtlebots can cooperate with each other to finish a task.
 
