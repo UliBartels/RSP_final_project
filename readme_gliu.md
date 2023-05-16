@@ -10,7 +10,7 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 ![]()
 ## Required Versions
 - Ubuntu 20.04 
-- ![https://gazebosim.org/docs](Gazebo Fortress)
+- [https://gazebosim.org/docs](Gazebo Fortress)
 
 Here are some essential packages to install on your PC. Taking ROS Galactic as an example,
 
