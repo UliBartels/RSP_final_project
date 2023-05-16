@@ -25,10 +25,10 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
    #+end_src
 
 #+CAPTION: SLAM Reving in Rviz2
-#+ATTR_HTML: :width 300px
+#+ATTR_HTML: :width 100px
 [[./docs/sim_rviz.png]]
 #+CAPTION: Simulation Opening in ignition Gazebo
-#+ATTR_HTML: :width 300px
+#+ATTR_HTML: :width 100px
 [[/./docs/sim_gazebo.png]]
 
 
