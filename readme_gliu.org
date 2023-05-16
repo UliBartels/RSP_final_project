@@ -1,7 +1,7 @@
 :PROPERTIES:
 :ID:       3f35d3e5-3dac-471e-83b2-03d224ef5fe8
 :END:
-#+title: Project README
+#+title: Project README org
 * Introduction
 This project shows how two turtlebots can cooperate with each other to finish a task.
 - Turtlebot3 Burger: The burger bot wants to go to a target destination. However, it has to pass through a gap to achieve that. The gap is sufficiently wide so that without the aid from waffle bot, it will never reach its target. Therefore, when it reaches the gap, it will wait and requests help from waffle until the gap is filled.
@@ -29,13 +29,15 @@ sudo apt install ros-<ros2-distro>-turtlebot3
 ** Mapping
 We use the SLAM toolbox to create a map.
 1. Create a simulation scene in ignition gazebo. For example, our scene looks like this.
-   =picture=
-2. Run the =simulation_draw_map.launch= file in a new terminal.
+#+CAPTION: Simulation Opening in ignition Gazebo
+#+ATTR_HTML: :width 100px
+[[/./docs/sim_gazebo.png]]
+1. Run the =simulation_draw_map.launch= file in a new terminal.
    #+begin_src shell
 ros2 launch final_project simulation_draw_map.launch
    #+end_src
    This launch file will start up rviz and use waffle's lidar data to create a map. It also starts up a teleop node that allows users to drive around in their simualtion world. The map will update periodically in rviz while the waffle is moving.
-3. Save the map. Open a brand new terminal and run the map saver command.
+2. Save the map. Open a brand new terminal and run the map saver command.
    #+begin_src shell
 ros2 run nav2_map_server map_saver_cli -f <path/to/save/your/map>
    #+end_src
