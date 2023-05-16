@@ -7,35 +7,10 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 
 - Turtlebot3 Burger: The Burger bot wants to go to a target destination on a platform. However, it has to pass through a gap to achieve that. As soon as Burger reaches the gap, it request Waffle for help, wait until Waffle sucessfully finishes its task and continues driving to reach its destination.
 - Turtlebot3 Waffle: The Waffle bot stays on the ground until it receives a “help” message from Burger. Then, it will navigate to the gap, push the box to fill the gap, and will drive back to its starting position.
-
-
-1.  [Introduction](#orgbbf9343)
-2.  [Installation](#org529424a)
-3.  [Simulation](#orgaf70f3c)
-    1.  [Mapping](#org8390ab9)
-4.  [Package Info](#org023e5b6)
-    1.  [`final_project`](#orge4f9dd4)
-    2.  [`ign_gazebo`](#org80e2732)
-    3.  [`navtopose`](#org03d4ac7)
-    4.  [`maze_msgs`](#org6a36af1)
-    5.  [`turtlebot_actionlib`](#orga050abb)
-    6.  afdoiva
-
-
-
-<a id="orgbbf9343"></a>
-
-# Introduction
-
-This project shows how two turtlebots can cooperate with each other to finish a task.
-
--   Turtlebot3 Burger: The burger bot wants to go to a target destination. However, it has to pass through a gap to achieve that. The gap is sufficiently wide so that without the aid from waffle bot, it will never reach its target. Therefore, when it reaches the gap, it will wait and requests help from waffle until the gap is filled.
--   Turtlebot3 Waffle: The waffle bot stays on the ground until it receives a &ldquo;help&rdquo; message from burger. Then, it will navigate to the gap and push a box to fill the gap to allow the burger bot pass through.
-
-
-<a id="org529424a"></a>
-
-# Installation
+![]()
+## Required Versions
+- Ubuntu 20.04 
+- ![https://gazebosim.org/docs](Gazebo Fortress)
 
 Here are some essential packages to install on your PC. Taking ROS Galactic as an example,
 
