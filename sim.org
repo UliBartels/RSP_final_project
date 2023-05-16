@@ -23,8 +23,18 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
    #+begin_src shell
     ros2 run turtlebot_actionlib client
    #+end_src
+
+#+CAPTION: SLAM Reving in Rviz2
+#+ATTR_HTML: :width 300px
+[[/home/huan/RSP_final_project/src/docs/sim_rviz.png]]
+#+CAPTION: Simulation Opening in ignition Gazebo
+#+ATTR_HTML: :width 300px
+[[/home/huan/RSP_final_project/src/docs/sim_gazebo.png]]
+
+
 ** Action Server and Client
 #+CAPTION: Action Server and Client Diagram
-#+NAME:   fig:SED-HR4049
-[[/home/huan/RSP_final_project/src/docs/action_diagrampng.png
-]]
+#+ATTR_HTML: :width 500px
+[[./docs/action_diagrampng.png]]
+
+You could read the [[file:./maze_msgs/README.md][`Maze_msgs` readme]] to better understand the action message type and functionality.
