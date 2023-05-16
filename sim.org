@@ -38,3 +38,4 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
 [[./docs/action_diagrampng.png]]
 
 You could read the [[file:./maze_msgs/README.md][`Maze_msgs` readme]] to better understand the action message type and functionality.
+To start the Arudo node, you could refer to Aruco chapter.
