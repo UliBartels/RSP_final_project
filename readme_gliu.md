@@ -7,12 +7,14 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 
 - Turtlebot3 Burger: The Burger bot wants to go to a target destination on a platform. However, it has to pass through a gap to achieve that. As soon as Burger reaches the gap, it request Waffle for help, wait until Waffle sucessfully finishes its task and continues driving to reach its destination.
 - Turtlebot3 Waffle: The Waffle bot stays on the ground until it receives a “help” message from Burger. Then, it will navigate to the gap, push the box to fill the gap, and will drive back to its starting position.
-![]()
-## Required Versions
-- Ubuntu 20.04 
-- [Gazebo Fortress](https://gazebosim.org/docs)
 
-Here are some essential packages to install on your PC. Taking ROS Galactic as an example,
+## System Requirements
+- Ubuntu Linux-Focal Fossa(20.04)
+- [Gazebo Fortress](https://gazebosim.org/docs)
+- [ROS2 galactic](https://docs.ros.org/en/galactic/Installation/Alternatives/Ubuntu-Development-Setup.html)
+
+## Turtlebot3 PC Setup Requirements
+Here are some essential packages that needs to be installed on your PC. 
 
 1.  Cartographer
     
