@@ -14,17 +14,17 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 - [ROS2 galactic](https://docs.ros.org/en/galactic/Installation/Alternatives/Ubuntu-Development-Setup.html)
 
 ## Turtlebot3 PC Setup Requirements
-Here are some essential packages that needs to be installed on your PC. 
+Here are some essential packages that needs to be installed on your PC.
 
-1.  Cartographer
+1.  Install Cartographer
     
         sudo apt install ros-<ros2-distro>-cartographer
         sudo apt install ros-<ros2-distro>-cartographer-ros
-2.  Nav2
+2.  Install Navigation
     
         sudo apt install ros-<ros2-distro>-navigation2
         sudo apt install ros-<ros2-distro>-nav2-bringup
-3.  Turtlebot3 packages
+3.  Install additional Turtlebot3 packages
     
         sudo apt install ros-<ros2-distro>-dynamixel-sdk
         sudo apt install ros-<ros2-distro>-turtlebot3-msgs
