@@ -13,7 +13,17 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 - [Gazebo Fortress](https://gazebosim.org/docs)
 - [ROS2 galactic](https://docs.ros.org/en/galactic/Installation/Alternatives/Ubuntu-Development-Setup.html)
 
-## Turtlebot3 PC Setup Requirements
+## Installation 
+- Build your own workspace and clone the repository.
+- Install the necessary packages and dependencies with following commands
+``` cd src/
+vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
+cd ..
+ rosdep install --from-paths src --ignore-src -r -y
+colcon build ```
+
+
+### Turtlebot3 PC Setup Requirements
 Here are some essential packages that needs to be installed on your PC.
 
 1.  Install Cartographer
