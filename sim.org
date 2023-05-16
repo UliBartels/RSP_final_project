@@ -1,0 +1,26 @@
+* RSP Final Project - Mutlibots Maze
+Simple two Turtlebots cooperate by using Nav2 SLAM and navigation,Aruco,and Action server and client methods.
+** Installation
+1. Build your own workspace and download the repository
+#+begin_src shell
+git clone https://github.com/Mixmorks/RSP_final_project.git
+#+end_src
+2. Install the necessary packages and dependencies(include nav2) with following commands
+   #+begin_src shell
+    cd src/
+    vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
+    cd ..
+    rosdep install --from-paths src --ignore-src -r -y
+    colcon build
+   #+end_src
+** Run the simulation
+1. To launch the simulation with predefined worlds and parameter, you can  Runnymede
+   #+begin_src shell
+    ros2 launch final_project maze_action_simulation.launch
+   #+end_src
+
+2. Open an new terminal and run
+   #+begin_src shell
+    ros2 run turtlebot_actionlib client
+   #+end_src
+** Action Server and Client
