@@ -26,5 +26,4 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
 ** Action Server and Client
 #+CAPTION: Action Server and Client Diagram
 #+NAME:   fig:SED-HR4049
-[[/home/huan/RSP_final_project/src/docs/action_diagrampng.png
-]]
+[[/home/huan/RSP_final_project/src/docs/action_diagrampng.png]]
