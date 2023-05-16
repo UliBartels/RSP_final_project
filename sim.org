@@ -10,7 +10,7 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
     cd src/
     vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
     cd ..
-    rosdep install --from-paths src --ignore-src -r -y
+     rosdep install --from-paths src --ignore-src -r -y
     colcon build
    #+end_src
 ** Run the simulation
@@ -24,3 +24,7 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
     ros2 run turtlebot_actionlib client
    #+end_src
 ** Action Server and Client
+#+CAPTION: Action Server and Client Diagram
+#+NAME:   fig:SED-HR4049
+[[/home/huan/RSP_final_project/src/docs/action_diagrampng.png
+]]
