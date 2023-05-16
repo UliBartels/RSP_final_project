@@ -1,5 +1,13 @@
 
-# Table of Contents
+# Turtlebot Teaming 
+
+# Objective 
+
+This project shows how two turtlebots can cooperate with each other to finish a task.
+
+Turtlebot3 Burger: The Burger bot wants to go to a target destination on a platform. However, it has to pass through a gap to achieve that. As soon as Burger reaches the gap, it request Waffle for help, wait until Waffle sucessfully finishes its task and continues driving to reach its destination.
+Turtlebot3 Waffle: The Waffle bot stays on the ground until it receives a “help” message from Burger. Then, it will navigate to the gap, push the box to fill the gap, and will drive back to its starting position.
+
 
 1.  [Introduction](#orgbbf9343)
 2.  [Installation](#org529424a)
@@ -11,6 +19,7 @@
     3.  [`navtopose`](#org03d4ac7)
     4.  [`maze_msgs`](#org6a36af1)
     5.  [`turtlebot_actionlib`](#orga050abb)
+    6.  afdoiva
 
 
 
