@@ -138,6 +138,6 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
 
 1. ssh into turtlebots. 
 2. 
-
+![](./docs/Maze_Setup.jpg) 
 #TODO
 
