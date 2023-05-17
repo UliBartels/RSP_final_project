@@ -179,7 +179,6 @@ You can close all the terminals after your map is saved!
         ros2 launch final_project real_world_multibots.launch
 
 3. Before you correctly give it a initial pose estimation, the map sensed by waffle may not overlap with the map you created previously like the figure shown below.
- FIGURE HERE！！！
 ![](./docs/rviz_pre_initial_pose.png) 
    
    You will need `rqt` gui to set initial pose. Open up a new terminal, and then type
