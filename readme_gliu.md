@@ -109,7 +109,7 @@ Note: The map saver command saves two files on your PC. You can visualize your m
     
         ros2 launch final_project maze_action_simulation.launch
 
-2.  Open an new terminal and run the following command. This command initiates the process of Burger driving, and starts communication between the two bots.
+2.  Open a new terminal and run the following command. This command initiates the process of Burger driving, and starts communication between the two bots.
     
         ros2 run turtlebot_actionlib client
         
@@ -117,7 +117,10 @@ Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 :-------------------------:|:-------------------------:
 ![](./docs/sim_gazebo.png) |  ![](./docs/sim_rviz.png)
 
-The LiDAR on Waffle scans the world to create a map and localize itself. Whereas Burger scans the ArUco markers using its camera to localize itself.  
+The lidar on Waffle scans the world to create a map and localize itself. Whereas Burger scans the ArUco markers using its camera to localize itself.  
+
+3. Burger localization depends on the `ros2_aruco` package. This package locates Aruco AR markers in images and publishes their ids and poses.
+4
 
 
 
