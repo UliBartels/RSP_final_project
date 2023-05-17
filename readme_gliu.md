@@ -189,7 +189,7 @@ You can close all terminal after your map is saved!
    - Under `header`, change `frame_id` to `'map'`;
    - Under `pose` > `pose` > `position`, change `x` to `0.152`, `y` to `-0.0101`;
    - Under `pose` > `pose` > `orientation`, change `z` to `0.315`, `w` to `0.949`;
-   - Under `pose` > `covariance`, change `[0]` to `0.05`, [7] to `0.05`, `[35]` to `0.05`.
+   - Under `pose` > `covariance`, change `[0]` to `0.05`, `[7]` to `0.05`, `[35]` to `0.05`.
    
    After you enter the initial pose and covariance, check the box in front of the `/initialpose`, to publish it. Then, in rviz, your waffle's sensed map will overlap with the loaded map. Now, you can uncheck the box in `rqt` to stop publishing it. NOTE: it is crucial to stop publishing the initial pose before you run the following commands!
 ![](./docs/rviz_post_initial_pose.png) 
