@@ -131,5 +131,10 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
 
 4. #TODO Add nodes, published topics and subscriptions to expect from action files and important nav2 files. 
 
+# On the real bots 
 
+1. ssh into turtlebots. 
+2. 
+
+#TODO
 
