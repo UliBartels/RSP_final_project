@@ -9,9 +9,14 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 - Turtlebot3 Waffle: The Waffle bot stays on the ground until it receives a “help” message from Burger. Then, it will navigate to the gap, push the box to fill the gap, and will drive back to its starting position.
 
 ## System Requirements
+
+### For Simulation  
 - Ubuntu Linux-Focal Fossa(20.04)
 - [Gazebo Fortress](https://gazebosim.org/docs)
 - [ROS2 galactic](https://docs.ros.org/en/galactic/Installation/Alternatives/Ubuntu-Development-Setup.html)
+
+### For real robots
+This project uses a Raspberry Pi 4B. To setup the real bots follow the instructions [here](https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup)
 
 ## Installation 
 
