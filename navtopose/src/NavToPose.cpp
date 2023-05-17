@@ -63,7 +63,7 @@ nav2pose_client::nav2pose_client( const std::string& name ):
                                 rclcpp_action::ClientGoalHandle<nav2_msgs::action::NavigateToPose>::SharedPtr handle,
                                 const std::shared_ptr<const nav2_msgs::action::NavigateToPose::Feedback> feedback
                                                ){
-  /* this-> get_pose( feedback->current_pose  ); */
+  this-> get_pose( feedback->current_pose  );
 
 }
 
