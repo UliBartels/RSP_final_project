@@ -16,7 +16,7 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 - [ROS2 galactic](https://docs.ros.org/en/galactic/Installation/Alternatives/Ubuntu-Development-Setup.html)
 
 ### For real robots
-This project uses a Raspberry Pi 4B. To setup the real bots follow the instructions [here](https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup)
+This project uses a Raspberry Pi 4B, Turtlebot3 Burger, Turtlebot3 Waffle and USB camera. To setup the real bots using Raspberry Pi follow the instructions [here](https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup)
 
 ## Installation 
 
@@ -98,12 +98,9 @@ The navtopose package can be used to send a target location to waffle. There are
     
         ros2 run turtlebot_actionlib client
 
-<figure>
-  <img
-  src="./docs/sim_rviz.png "
-  alt="The beautiful MDN logo.">
-  <figcaption>Map and Waffle in Rviz environment</figcaption>
-</figure>
+     Map and Waffle in Rviz environment       |  Bots in Ignition Gazebo
+:-------------------------:|:-------------------------:
+![img](./docs/sim_rviz.png)  |  ![img](./docs/sim_gazebo.png)
 
 ## Mapping
 
