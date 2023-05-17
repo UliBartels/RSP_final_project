@@ -119,9 +119,7 @@ Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 
 The lidar on Waffle scans the world to create a map and localize itself. Whereas Burger scans the Aruco AR markers using its camera to localize itself.  
         
-Server-Client Workflow            |  
-:--------------------------------:|:
-![](./docs/action_diagrampng.png) | 
+![](./docs/action_diagrampng.png) 
 
 
 3. Burger localization depends on the `ros2_aruco` package. This package locates Aruco AR markers in images and publishes their ids and poses. 
