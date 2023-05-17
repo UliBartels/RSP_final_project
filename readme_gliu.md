@@ -19,7 +19,7 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 ``` cd src/
 vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
 cd ..
- rosdep install --from-paths src --ignore-src -r -y
+rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
 
