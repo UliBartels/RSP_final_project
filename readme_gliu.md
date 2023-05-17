@@ -103,7 +103,7 @@ This command saves map files to a user defined path. For example, if you want to
 
 Note: The map saver command saves two files on your PC. You can visualize your map in &ldquo;map.pgm&rdquo;. The &ldquo;map.yaml&rdquo; file contains some parameters and the path to your &ldquo;map.pgm&rdquo; file. If you want to load your map into rviz, you might want to change your &ldquo;pgm&rdquo; file&rsquo;s path in the &ldquo;yaml&rdquo; file so that rviz can find and load your map correctly. You can `Ctrl+C` to stop the `simulation_draw_map.launch` that is running once you save the map. 
 
-
+## Visulaize the teaming on ignition gazebo and rviz
 
 1.  To launch the simulation with predefined worlds and parameter, you can 
     
@@ -119,9 +119,5 @@ Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 
 The LiDAR on Waffle scans the world to create a map and localize itself. Whereas Burger scans the ArUco markers using its camera to localize itself.  
 
-## Mapping
 
-<a id="org023e5b6"></a>
-
-## `turtlebot_actionlib`
 
