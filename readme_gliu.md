@@ -49,37 +49,35 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
 
-<a id="orgaf70f3c"></a>
-
 
 # Package Info
 
-<a id="orge4f9dd4"></a>
 
 ## `final_project`
 
 This package contains the main launch files that are used to launch simulation in ignition gazebo  or to control the real robots. The `urdf` folder contains all xacro files used to spawn waffle and burger in ignition gazebo. Note that you will not need these urdfs files for the real robots.  The config files that nav2 uses are located in `param` folder. By default, `waffle.yaml` is used for simulation and `waffle_real.yaml` is used to navigate the real Waffle. `rviz` file has all the rviz configurations used for the simulations and real robots. All map files are stored in `map` folder. If you want to create your own map, we suggest you to store your map files under this folder. 
 
 
-<a id="org80e2732"></a>
-
 ## `ign_gazebo`
 
 This package contains meshes and models for the ArUco markers and entities in the world for ignition gazebo simulation. You can change the world by changing the `bot_world.xacro` in `urdf` file. You can add your own markers by importing the meshes and models into this package.   
 
+## `maze_msgs`
 
-<a id="org03d4ac7"></a>
+All the source files required to run the actions that enable this team task are located in [this package](https://github.com/Mixmorks/RSP_final_project/tree/main/maze_msgs). This package has an `action` directory that contains the goal, result and feedback information for all the actions used for the project. 
+
 
 ## `navtopose`
 
-The navtopose package can be used to sending a target location to waffle. If you want to navigate waffle to a specific location via nav2, you can utilize this package to send the goal instead of pointing out the goal in rviz. In our case, this package is called by the `turtlebot_actionlib` package.
+The navtopose package can be used to send a target location to waffle. There are two ways to set a goal pose through nav2 - one is to use the Nav2Goal option in Rviz while running the simulation and the second one is to utilize this package to set the goal.
+
+## `turtlebot_action`
+
+#TODO
 
 
 <a id="org6a36af1"></a>
 
-## `maze_msgs`
-
-All the source files required to run the actions that enable this team task are located in [this package](https://github.com/Mixmorks/RSP_final_project/tree/main/maze_msgs)
 
 <a id="orga050abb"></a>
 
