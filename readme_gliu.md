@@ -134,9 +134,78 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
 4. #TODO Add nodes, published topics and subscriptions to expect from action files and important nav2 files. 
 
 # On the real bots 
+## Mapping the environment
+Please driving waffle through the environment to create a 2D map!
+1. ssh into waffle.
+2. On waffle, run
+    
+        ros2 launch final_project waffle_setup.launch.py
 
-1. ssh into turtlebots. 
-2. 
-![](./docs/Maze_Setup.jpg) 
-#TODO
+3. On your PC, start the SLAM node by
+    
+        ros2 launch final_project turtlebot_draw_map.launch
+
+4. To save your map, run
+    
+        ros2 run nav2_map_server map_saver_cli -f <path/to/save/your/map>
+    
+You can close all terminal after your map is saved!
+
+## Waffle-burger cooperation task
+
+1. Setting up waffle and burger. 
+   On your PC, open a terminal and ssh to waffle. Then run,
+    
+        ros2 launch final_project waffle_setup.launch.py
+
+   On your PC, open another terminal and ssh to burger. Then run,
+    
+        ros2 launch final_project burger_setup.launch.py
+
+   Note: it is common to have errors related to the `v4l2` package on burger. This package deals with Logitech Webcam, since the default Raspberry Pi Camera module is not working! Once everything is up and running, you should see something similar to the screenshot below.
+![](./docs/Turtlebot_Running.png) 
+2. On your PC, open up a terminal and run the `real_world_multibots.launch` file.
+   Go to your workspace and source the corresponding `.sh` file.
+    
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
+
+   Then,
+    
+        ros2 launch final_project real_world_multibots.launch
+
+3. Before you correctly give it a initial pose estimation, the map sensed by waffle may not overlapped with the map you created previously like the figure showing below.
+ FIGURE HERE！！！
+![](./docs/rviz_pre_initial_pose.png) 
+   
+   You will need `rqt` gui to set initial pose. Open up a new terminal, and then type
+    
+        rqt
+
+   The following window will show up.
+![](./docs/rqt_initialpose.png) 
+
+   Then under `Plugin` tab, select `Topics` > `Message Publisher`. Then in the drop down menu closed to `Topic`, select `/initialpose`. Its type is set to `geometry_msgs/msg/PointWithCovarianceStamped` by default. By clicking the `+` button, you can enter the initial pose esitmation and the covariance. To run our task, we suggest you to enter the following values to the initial pose.
+   - Under `header`, change `frame_id` to `'map'`;
+   - Under `pose` > `pose` > `position`, change `x` to `0.152`, `y` to `-0.0101`;
+   - Under `pose` > `pose` > `orientation`, change `z` to `0.315`, `w` to `0.949`;
+   - Under `pose` > `covariance`, change `[0]` to `0.05`, [7] to `0.05`, `[35]` to `0.05`.
+   
+   After you enter the initial pose and covariance, check the box in front of the `/initialpose`, to publish it. Then, in rviz, your waffle's sensed map will overlap with the loaded map. Now, you can uncheck the box in `rqt` to stop publishing it. NOTE: it is crucial to stop publishing the initial pose before you run the following commands!
+![](./docs/rviz_post_initial_pose.png) 
+4. Open a new terminal to run server.
+    
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
+        ros2 run turtlebot_actionlib server
+
+5. Open a new terminal to run robot client.
+    
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
+        ros2 run turtlebot_actionlib robot_client
+
+Then you will see waffle and burger cooperating with each other to finish task!
+   
+   
 
