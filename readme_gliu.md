@@ -65,7 +65,7 @@ This package contains the main launch files that are used to launch simulation i
 
 ## `ign_gazebo`
 
-This package contains meshes and models for the ArUco markers and entities in the world for ignition gazebo simulation. You can change the world by changing the `bot_world.xacro` in `urdf` file. You can add your own markers by importing the meshes and models into this package.   
+This package contains meshes and models for the Aruco AR markers and entities in the world for ignition gazebo simulation. You can change the world by changing the `bot_world.xacro` in `urdf` file. You can add your own markers by importing the meshes and models into this package.   
 
 ## `maze_msgs`
 
@@ -117,10 +117,19 @@ Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 :-------------------------:|:-------------------------:
 ![](./docs/sim_gazebo.png) |  ![](./docs/sim_rviz.png)
 
-The lidar on Waffle scans the world to create a map and localize itself. Whereas Burger scans the ArUco markers using its camera to localize itself.  
+The lidar on Waffle scans the world to create a map and localize itself. Whereas Burger scans the Aruco AR markers using its camera to localize itself.  
 
-3. Burger localization depends on the `ros2_aruco` package. This package locates Aruco AR markers in images and publishes their ids and poses.
-4
+3. Burger localization depends on the `ros2_aruco` package. This package locates Aruco AR markers in images and publishes their ids and poses. 
+- Node `aruco_node`
+- Subscribes to 
+    `/camera/image_raw`
+    `/camera/camera_info` 
+- Publishes 
+    `/aruco_poses` 
+    `/aruco_markers`
+`/aruco_markers` gives the pose of the AR tag relative to the camera link on Burger bot. 
+
+4. #TODO Add nodes, published topics and subscriptions to expect from action files and important nav2 files. 
 
 
 
