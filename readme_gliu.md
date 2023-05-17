@@ -51,6 +51,40 @@ colcon build
 
 <a id="orgaf70f3c"></a>
 
+
+# Package Info
+
+<a id="orge4f9dd4"></a>
+
+## `final_project`
+
+This package contains the main launch files that are used to launch simulation in ignition gazebo  or to control the real robots. The `urdf` folder contains all xacro files used to spawn waffle and burger in ignition gazebo. Note that you will not need these urdfs files for the real robots.  The config files that nav2 uses are located in `param` folder. By default, `waffle.yaml` is used for simulation and `waffle_real.yaml` is used to navigate the real Waffle. `rviz` file has all the rviz configurations used for the simulations and real robots. All map files are stored in `map` folder. If you want to create your own map, we suggest you to store your map files under this folder. 
+
+
+<a id="org80e2732"></a>
+
+## `ign_gazebo`
+
+This package contains meshes and models for the ArUco markers and entities in the world for ignition gazebo simulation. You can change the world by changing the `bot_world.xacro` in `urdf` file. You can add your own markers by importing the meshes and models into this package.   
+
+
+<a id="org03d4ac7"></a>
+
+## `navtopose`
+
+The navtopose package can be used to sending a target location to waffle. If you want to navigate waffle to a specific location via nav2, you can utilize this package to send the goal instead of pointing out the goal in rviz. In our case, this package is called by the `turtlebot_actionlib` package.
+
+
+<a id="org6a36af1"></a>
+
+## `maze_msgs`
+
+All the source files required to run the actions that enable this team task are located in [this package](https://github.com/Mixmorks/RSP_final_project/tree/main/maze_msgs)
+
+<a id="orga050abb"></a>
+
+
+
 # Simulation
 
 
@@ -81,37 +115,6 @@ Note: the map saver command saves two files on your PC. You can visualize your m
 
 
 <a id="org023e5b6"></a>
-
-# Package Info
-
-
-<a id="orge4f9dd4"></a>
-
-## `final_project`
-
-This package contains the main launch files that used to launch simulation in gazebo or to control the physical robots. The `urdf` folder contains all xacro files used to spawn waffle and burger in ignition gazebo. The config files used by nav2 are located in `param` folder. By default, `waffle.yaml` is used for simulation and `waffle_real.yaml` is used to navigate the real waffle. All map files are stored in `map` folder. If you want to create your own map, we suggest you to store your map files under this folder.
-
-
-<a id="org80e2732"></a>
-
-## `ign_gazebo`
-
-This package is used to spawn the simulation world file in ignition gazebo.
-
-
-<a id="org03d4ac7"></a>
-
-## `navtopose`
-
-The navtopose package can be used to sending a target location to waffle. If you want to navigate waffle to a specific location via nav2, you can utilize this package to send the goal instead of pointing out the goal in rviz. In our case, this package is called by the `turtlebot_actionlib` package.
-
-
-<a id="org6a36af1"></a>
-
-## `maze_msgs`
-
-
-<a id="orga050abb"></a>
 
 ## `turtlebot_actionlib`
 
