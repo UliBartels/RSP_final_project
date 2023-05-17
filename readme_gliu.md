@@ -93,11 +93,7 @@ The navtopose package can be used to send a target location to waffle. There are
     
         ros2 run turtlebot_actionlib client
 
-![img](./docs/sim_rviz.png "SLAM Reving in Rviz2")
-
-<a id="org8390ab9"></a>
-
-![img](./docs/sim_rviz.png "SLAM Reving in Rviz2")
+![Map and Waffle in Rviz environment](./docs/sim_rviz.png "SLAM Reving in Rviz2")
 
 ## Mapping
 
