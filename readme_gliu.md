@@ -85,8 +85,19 @@ The navtopose package can be used to send a target location to waffle. There are
 
 # Simulation
 
+1.  To launch the simulation with predefined worlds and parameter, you can  Runnymede
+    
+        ros2 launch final_project maze_action_simulation.launch
+
+2.  Open an new terminal and run the following command. This command initiates the process of Burger driving, and starts communication between the two bots.
+    
+        ros2 run turtlebot_actionlib client
+
+![img](./docs/sim_rviz.png "SLAM Reving in Rviz2")
 
 <a id="org8390ab9"></a>
+
+![img](./docs/sim_rviz.png "SLAM Reving in Rviz2")
 
 ## Mapping
 
