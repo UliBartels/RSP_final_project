@@ -97,10 +97,13 @@ The navtopose package can be used to send a target location to waffle. There are
 2.  Open an new terminal and run the following command. This command initiates the process of Burger driving, and starts communication between the two bots.
     
         ros2 run turtlebot_actionlib client
-
-     Map and Waffle in Rviz environment       |  Bots in Ignition Gazebo
+        
+Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
-![img](./docs/sim_rviz.png)  |  ![img](./docs/sim_gazebo.png)
+![](./docs/sim_gazebo.png)  |  ![](./docs/sim_rviz.png)
+
+
+(./docs/sim_gazebo.png)
 
 ## Mapping
 
