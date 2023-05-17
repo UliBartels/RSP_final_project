@@ -16,7 +16,6 @@ namespace turtlebot_action{
 	std::bind( &waffle_server::accept_goal, this, _1 ) );
 
 
-    /* cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/cmd_vel" , 10 ); */
     cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/cmd_vel" , 10 );
   }
   

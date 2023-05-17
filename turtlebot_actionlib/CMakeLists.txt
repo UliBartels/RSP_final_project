@@ -24,13 +24,17 @@ add_executable( server src/maze_server.cpp )
 target_link_libraries( server maze ${nav2})
 ament_target_dependencies( server rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces )
 
-add_executable( client src/maze_client.cpp )
-target_link_libraries( client maze ${nav2})
+add_executable( sim_client src/maze_client.cpp )
+target_link_libraries( sim_client maze ${nav2})
+ament_target_dependencies( client rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces)
+
+add_executable( robot_client src/maze_client_OnRealRobot.cpp )
+target_link_libraries( robot_client maze ${nav2})
 ament_target_dependencies( client rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces)
 
 install( DIRECTORY include/ DESTINATION include )
 install( TARGETS maze  LIBRARY DESTINATION lib )
-install( TARGETS server client  DESTINATION lib/${PROJECT_NAME} )
+install( TARGETS server sim_client robot_client DESTINATION lib/${PROJECT_NAME} )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
