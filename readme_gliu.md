@@ -133,9 +133,13 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
 
 4. #TODO Add nodes, published topics and subscriptions to expect from action files and important nav2 files. 
 
+## Troubleshooting
+
+1. If the simulation does not start automatically once you launch `maze_action_simulation.launch`, click on the hamburger icon on the right corner of the ignition gazebo window and search for 'Image display'. Once you scroll down this panel you should be able to see what Burger's camera is seeing. Make sure that you see the AR tag. To verify this you can echo `\burger_camera` topic to see Burger's camera is sending out images. In another terminal echo `/aruco_markers` to see if the AR tag is being detected. If Burger's camera is running, `\aruco_markers` should work. If the frame rate of `\burger_camera` is too slow, then it was found that `\aruco_markers` does not echo anything.
+
 # On the real bots 
 ## Mapping the environment
-Please driving waffle through the environment to create a 2D map!
+Please drive waffle through the environment to create a 2D map!
 1. ssh into waffle.
 2. On waffle, run
     
@@ -149,7 +153,7 @@ Please driving waffle through the environment to create a 2D map!
     
         ros2 run nav2_map_server map_saver_cli -f <path/to/save/your/map>
     
-You can close all terminal after your map is saved!
+You can close all the terminals after your map is saved!
 
 ## Waffle-burger cooperation task
 
@@ -162,7 +166,7 @@ You can close all terminal after your map is saved!
     
         ros2 launch final_project burger_setup.launch.py
 
-   Note: it is common to have errors related to the `v4l2` package on burger. This package deals with Logitech Webcam, since the default Raspberry Pi Camera module is not working! Once everything is up and running, you should see something similar to the screenshot below.
+   Note: it is common to have errors related to the `v4l2` package on burger. This package deals with Logitech Webcam, since the default Raspberry Pi Camera module did not work for Ubuntu 20.04! Once everything is up and running, you should see something similar to the screenshot below.
 ![](./docs/Turtlebot_Running.png) 
 2. On your PC, open up a terminal and run the `real_world_multibots.launch` file.
    Go to your workspace and source the corresponding `.sh` file.
@@ -174,7 +178,7 @@ You can close all terminal after your map is saved!
     
         ros2 launch final_project real_world_multibots.launch
 
-3. Before you correctly give it a initial pose estimation, the map sensed by waffle may not overlapped with the map you created previously like the figure showing below.
+3. Before you correctly give it a initial pose estimation, the map sensed by waffle may not overlap with the map you created previously like the figure shown below.
  FIGURE HERE！！！
 ![](./docs/rviz_pre_initial_pose.png) 
    
@@ -185,13 +189,13 @@ You can close all terminal after your map is saved!
    The following window will show up.
 ![](./docs/rqt_initialpose.png) 
 
-   Then under `Plugin` tab, select `Topics` > `Message Publisher`. Then in the drop down menu closed to `Topic`, select `/initialpose`. Its type is set to `geometry_msgs/msg/PointWithCovarianceStamped` by default. By clicking the `+` button, you can enter the initial pose esitmation and the covariance. To run our task, we suggest you to enter the following values to the initial pose.
+   Then under `Plugin` tab, select `Topics` > `Message Publisher`. Then in the drop down menu of `Topic`, select `/initialpose`. Its type is set to `geometry_msgs/msg/PointWithCovarianceStamped` by default. By clicking the `+` button, you can edit the pose and covriance and enter the initial pose esitmation and the covariance. To run our task for our specific map, we suggest you to enter the following values to the initial pose.
    - Under `header`, change `frame_id` to `'map'`;
    - Under `pose` > `pose` > `position`, change `x` to `0.152`, `y` to `-0.0101`;
    - Under `pose` > `pose` > `orientation`, change `z` to `0.315`, `w` to `0.949`;
    - Under `pose` > `covariance`, change `[0]` to `0.05`, `[7]` to `0.05`, `[35]` to `0.05`.
    
-   After you enter the initial pose and covariance, check the box in front of the `/initialpose`, to publish it. Then, in rviz, your waffle's sensed map will overlap with the loaded map. Now, you can uncheck the box in `rqt` to stop publishing it. NOTE: it is crucial to stop publishing the initial pose before you run the following commands!
+   After you enter the initial pose and covariance, check the box in front of the `/initialpose`, to publish it. Then, in rviz, your waffle's sensed map will overlap with the loaded map and you'll be able to see the paricles around the robot from the Monte Carlo localization that Nav2 does. Now, you can uncheck the box in `rqt` to stop publishing it. If the particles seem too dispersed you can play around with the values of covariances for x, y, yaw. NOTE: it is crucial to stop publishing the initial pose before you run the following commands!
 ![](./docs/rviz_post_initial_pose.png) 
 4. Open a new terminal to run server.
     
