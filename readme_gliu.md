@@ -14,14 +14,6 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 - [ROS2 galactic](https://docs.ros.org/en/galactic/Installation/Alternatives/Ubuntu-Development-Setup.html)
 
 ## Installation 
-- Build your own workspace and clone the repository.
-- Install the necessary packages and dependencies with following commands
-``` cd src/
-vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
-cd ..
-rosdep install --from-paths src --ignore-src -r -y
-colcon build
-```
 
 ### Navigation2 packages
 We use Nav2 packages to from localization and mapping.
@@ -47,6 +39,15 @@ Here are some essential packages that needs to be installed on your PC.
         sudo apt install ros-<ros2-distro>-turtlebot3-msgs
         sudo apt install ros-<ros2-distro>-turtlebot3
 
+### Build your workspace
+- Build your own workspace and clone the repository.
+- Install the necessary packages and dependencies with following commands
+``` cd src/
+vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+```
 
 <a id="orgaf70f3c"></a>
 
