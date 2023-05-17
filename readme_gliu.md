@@ -83,7 +83,29 @@ The navtopose package can be used to send a target location to waffle. There are
 
 # Simulation
 
-1.  To launch the simulation with predefined worlds and parameter, you can  Runnymede
+## Mapping 
+
+SLAM toolbox was used to create the map. Follow the instructions in this section to generate a map. 
+
+1.  Run the `simulation_draw_map.launch` file in a new terminal.
+    
+        ros2 launch final_project simulation_draw_map.launch
+    
+This launch file will start up rviz and use waffle&rsquo;s lidar data to create a map. It also starts up a teleop node that allows users to drive around in their simualtion world. The map will update periodically in rviz while the waffle is moving.
+    
+2.  Save the map. Open a brand new terminal and run the map saver command.
+    
+        ros2 run nav2_map_server map_saver_cli -f <path/to/save/your/map>
+    
+This command saves map files to a user defined path. For example, if you want to save the map files under you home directory. You can run
+    
+        ros2 run nav2_map_server map_saver_cli -f ~/map
+
+Note: The map saver command saves two files on your PC. You can visualize your map in &ldquo;map.pgm&rdquo;. The &ldquo;map.yaml&rdquo; file contains some parameters and the path to your &ldquo;map.pgm&rdquo; file. If you want to load your map into rviz, you might want to change your &ldquo;pgm&rdquo; file&rsquo;s path in the &ldquo;yaml&rdquo; file so that rviz can find and load your map correctly. You can `Ctrl+C` to stop the `simulation_draw_map.launch` that is running once you save the map. 
+
+
+
+1.  To launch the simulation with predefined worlds and parameter, you can 
     
         ros2 launch final_project maze_action_simulation.launch
 
@@ -98,28 +120,6 @@ Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 The LiDAR on Waffle scans the world to create a map and localize itself. Whereas Burger scans the ArUco markers using its camera to localize itself.  
 
 ## Mapping
-
-We use the SLAM toolbox to create a map.
-
-1.  Create a simulation scene in ignition gazebo. For example, our scene looks like this.
-
-![img](/docs/sim_gazebo.png "Simulation Opening in ignition Gazebo")
-
-1.  Run the `simulation_draw_map.launch` file in a new terminal.
-    
-        ros2 launch final_project simulation_draw_map.launch
-    
-    This launch file will start up rviz and use waffle&rsquo;s lidar data to create a map. It also starts up a teleop node that allows users to drive around in their simualtion world. The map will update periodically in rviz while the waffle is moving.
-2.  Save the map. Open a brand new terminal and run the map saver command.
-    
-        ros2 run nav2_map_server map_saver_cli -f <path/to/save/your/map>
-    
-    This command saves map files to a user defined path. For example, if you want to save the map files under you home directory. You can run
-    
-        ros2 run nav2_map_server map_saver_cli -f ~/map
-
-Note: the map saver command saves two files on your PC. You can visualize your map in &ldquo;map.pgm&rdquo;. The &ldquo;map.yaml&rdquo; file contains some parameters and the path to your &ldquo;map.pgm&rdquo; file. If you want to load your map into rviz, you might want to change your &ldquo;pgm&rdquo; file&rsquo;s path in the &ldquo;yaml&rdquo; file so that rviz can find and load your map correctly.
-
 
 <a id="org023e5b6"></a>
 
