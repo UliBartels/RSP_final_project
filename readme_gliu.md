@@ -78,7 +78,7 @@ The navtopose package can be used to send a target location to waffle. There are
 
 ## `turtlebot_actionlib`
 
-The turtblebot_actionlib package contains multiple action servers and clients that execute the actions in `maze_msgs`. It has three nodes: 'maze', 'waffle',and 'burger',and their relationship shown in ![action diagram](./docs/action_diagrampng.png). To run the simulation and real robot separately, just tuning the parameters in [maze_client.cpp](./turtblebot_actionlib/src/maze_client.cpp). 
+The turtblebot_actionlib package contains multiple action servers and clients that execute the actions in `maze_msgs`. It has three nodes: 'maze', 'waffle',and 'burger',and their relationship shown in [action diagram](./docs/action_diagrampng.png). To run the simulation and real robot separately, just tuning the parameters in ![maze_client.cpp](./turtblebot_actionlib/src/maze_client.cpp). 
 
 
 # Simulation
