@@ -110,7 +110,7 @@ Note: The map saver command saves two files on your PC. You can visualize your m
 
 2.  Open a new terminal and run the following command. This command initiates the process of Burger driving, and starts communication between the two bots.
     
-        ros2 run turtlebot_actionlib client
+        ros2 run turtlebot_actionlib sim_client
         
 Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 :-------------------------:|:-------------------------:
@@ -131,7 +131,12 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
     `/aruco_markers`
 `/aruco_markers` gives the pose of the AR tag relative to the camera link on Burger bot. 
 
-4. #TODO Add nodes, published topics and subscriptions to expect from action files and important nav2 files. 
+4. Nav2 helps us to localize and navigate waffle. The most important two things that related to our task are
+   - initial pose
+     - For simulation, the param file, `waffle.yaml`, has initial pose variables that allow user to give their own initial pose estimation. Alternatively, users can also use rviz to do it. Click the `2D Pose Estimate` button in the RViz2 menu. Then, click on the map where the actual robot is located and drag the large green arrow toward the direction where the robot is facing.
+     - For real robots, you can use `rqt` gui as detaied in *Waffle-burger cooperation task session*.
+   - sending goals to nav2
+     In our project, we used `navtopose` package to send goal requests to nav2. The goal position was sent by the `robot_client` of the `turtlebot_actionlib` package. Alternatively, you can use rviz to set the goal. First, click the Navigation2 Goal button in the RViz2 menu. Then, similar to setting the initial pose in rviz, you need to click on the map to set the destination of the robot and drag the green arrow toward the direction where the robot will be facing.
 
 ## Troubleshooting
 
