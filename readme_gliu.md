@@ -196,6 +196,16 @@ You can close all the terminals after your map is saved!
    
    After you enter the initial pose and covariance, check the box in front of the `/initialpose`, to publish it. Then, in rviz, your waffle's sensed map will overlap with the loaded map and you'll be able to see the paricles around the robot from the Monte Carlo localization that Nav2 does. Now, you can uncheck the box in `rqt` to stop publishing it. If the particles seem too dispersed you can play around with the values of covariances for x, y, yaw. NOTE: it is crucial to stop publishing the initial pose before you run the following commands!
 ![](./docs/rviz_post_initial_pose.png) 
+
+
+*optional* 
+Intead of open rqt, you can run the `initialpose_pub` node to publish the initial pose. 
+```
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
+        ros2 run turtlebot_actionlib initialpose_pub
+```
+Note: Ctrl+C the terminal after rviz received the initial pose. 
 4. Open a new terminal to run server.
     
         cd <YOUR/WORKSPACE>
