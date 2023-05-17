@@ -14,8 +14,6 @@ int main( int argc, char** argv ){
 
   s3->NavToPose_client = c1;
   s1->Aruco_subscriber = s4;
- 
-
 
   rclcpp::executors::MultiThreadedExecutor executor;
   executor.add_node(s1);

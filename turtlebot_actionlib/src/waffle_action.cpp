@@ -43,6 +43,8 @@ namespace turtlebot_action{
     auto feedback = std::make_shared<WaffleAction::Feedback>();
     auto goal = goal_handle -> get_goal();
     
+    //publish the inital pose to nav2
+    /* initial_pose_publish(); */
     //call NavToPose
     NavToPose_client -> call_server(goal->target);
     // get result

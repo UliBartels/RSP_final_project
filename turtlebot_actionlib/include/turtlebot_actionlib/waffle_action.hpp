@@ -3,7 +3,6 @@
 #include <maze_msgs/action/waffle.hpp>
 #include <NavToPose/NavToPose.hpp>
 #include <geometry_msgs/msg/twist.hpp>
-#include <geometry_msgs/msg/twist.hpp>
 
 namespace turtlebot_action{
 
@@ -16,7 +15,7 @@ namespace turtlebot_action{
     rclcpp_action::Server<WaffleAction>::SharedPtr server;
 
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher;
-    rclcpp::Publisher<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr cmd_publisher;
+    /* rclcpp::Publisher<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr Nav2InitPose_publisher; */
   public:
 
     waffle_server( const std::string& name );

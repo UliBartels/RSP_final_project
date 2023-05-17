@@ -17,7 +17,7 @@ find_package(ros2_aruco_interfaces REQUIRED)
 
 find_library(nav2 nav2pose_lib)
 include_directories( include )
-add_library( maze SHARED src/burger_action.cpp src/waffle_action.cpp src/maze_action.cpp src/camera_subscriber.cpp)
+add_library( maze SHARED src/burger_action.cpp src/waffle_action.cpp src/maze_action.cpp src/camera_subscriber.cpp src/initialpose_publisher.cpp)
 ament_target_dependencies(maze rclcpp rclcpp_action maze_msgs navtopose ros2_aruco_interfaces)
 
 add_executable( server src/maze_server.cpp )
@@ -26,15 +26,19 @@ ament_target_dependencies( server rclcpp rclcpp_action maze_msgs navtopose nav2_
 
 add_executable( sim_client src/maze_client.cpp )
 target_link_libraries( sim_client maze ${nav2})
-ament_target_dependencies( client rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces)
+ament_target_dependencies( sim_client rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces)
 
 add_executable( robot_client src/maze_client_OnRealRobot.cpp )
 target_link_libraries( robot_client maze ${nav2})
-ament_target_dependencies( client rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces)
+ament_target_dependencies( robot_client rclcpp rclcpp_action maze_msgs navtopose nav2_msgs ros2_aruco_interfaces)
+
+add_executable( initialpose_pub  src/initialpose_pub.cpp )
+target_link_libraries( initialpose_pub maze ${nav2})
+ament_target_dependencies( initialpose_pub rclcpp )
 
 install( DIRECTORY include/ DESTINATION include )
 install( TARGETS maze  LIBRARY DESTINATION lib )
-install( TARGETS server sim_client robot_client DESTINATION lib/${PROJECT_NAME} )
+install( TARGETS server sim_client robot_client initialpose_pub DESTINATION lib/${PROJECT_NAME} )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
