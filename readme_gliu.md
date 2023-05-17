@@ -81,13 +81,6 @@ The navtopose package can be used to send a target location to waffle. There are
 #TODO
 
 
-<a id="org6a36af1"></a>
-
-
-<a id="orga050abb"></a>
-
-
-
 # Simulation
 
 1.  To launch the simulation with predefined worlds and parameter, you can  Runnymede
@@ -102,8 +95,7 @@ Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 :-------------------------:|:-------------------------:
 ![](./docs/sim_gazebo.png) |  ![](./docs/sim_rviz.png)
 
-
-(./docs/sim_gazebo.png)
+The LiDAR on Waffle scans the world to create a map and localize itself. Whereas Burger scans the ArUco markers using its camera to localize itself.  
 
 ## Mapping
 
