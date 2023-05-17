@@ -98,9 +98,9 @@ The navtopose package can be used to send a target location to waffle. There are
     
         ros2 run turtlebot_actionlib client
         
-Solarized dark             |  Solarized Ocean
+Map and Waffle in Rviz     |  Bots in Ignition Gazebo
 :-------------------------:|:-------------------------:
-![](./docs/sim_gazebo.png)  |  ![](./docs/sim_rviz.png)
+![](./docs/sim_gazebo.png) |  ![](./docs/sim_rviz.png)
 
 
 (./docs/sim_gazebo.png)
