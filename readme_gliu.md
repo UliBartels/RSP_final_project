@@ -97,9 +97,8 @@ The navtopose package can be used to send a target location to waffle. There are
   <img
   src="./docs/sim_rviz.png "
   alt="The beautiful MDN logo.">
-  <figcaption>MDN Logo</figcaption>
+  <figcaption>Map and Waffle in Rviz environment</figcaption>
 </figure>
-![img](./docs/sim_rviz.png "Map and Waffle in Rviz environment")
 
 ## Mapping
 
