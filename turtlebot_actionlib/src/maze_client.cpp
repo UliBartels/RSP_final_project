@@ -35,17 +35,17 @@ int main( int argc, char** argv ){
   W1.header.frame_id = "map";
   W1.pose.position.x = 0.74;
   W1.pose.position.y = 0.57;
-  W1.pose.orientation.z = 0.7071;
-  W1.pose.orientation.w = -0.7071;
+  W1.pose.orientation.z = -.431381;
+  W1.pose.orientation.w = 0.90217;
   W2.header.frame_id = "map";
-  W2.pose.position.x = 0.152;
-  W2.pose.position.y = -0.010;
+  W2.pose.position.x = 0.224;
+  W2.pose.position.y = -0.025;
   W2.pose.orientation.z = 0.315;
   W2.pose.orientation.w = 0.949;
 
   
   float S1 = 0.56;
-  float S2 = 0.28;
+  float S2 = 0.29;
   client->call(S1,S2,W1,W2);
   rclcpp::spin(client);
   rclcpp::shutdown();

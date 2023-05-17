@@ -155,8 +155,6 @@ void action_server::execute
     auto goal = goal_handle -> get_goal();
     auto waffle_result = 0;
     auto burger_result = 0;
-    
-
 
     // -----------------Test Burger ---------------------------//
 // Burger start Moving 
@@ -181,7 +179,6 @@ void action_server::execute
     goal_handle->publish_feedback(feedback);
     waffle_result = waffle_call(goal -> w1); 
     feedback->message = "Waffle finish bridge";
-    /* auto waffle_result =  1; */
     if (waffle_result == 1){
       rclcpp::sleep_for(500ms);
       burger_result = burger_call("Forward");
@@ -197,10 +194,10 @@ void action_server::execute
     feedback->message = "Stop";
     goal_handle->publish_feedback( feedback );
 
-    feedback->message = "Waffle come to W2";
-    goal_handle->publish_feedback(feedback);
-    waffle_result = waffle_call(goal -> w2); 
-    feedback->message = "back to origin place";
+    /* feedback->message = "Waffle come to W2"; */
+    /* goal_handle->publish_feedback(feedback); */
+    /* waffle_result = waffle_call(goal -> w2); */ 
+    /* feedback->message = "back to origin place"; */
 
 // Butger stop when close to the gap
 

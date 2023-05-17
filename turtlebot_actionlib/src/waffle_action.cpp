@@ -15,6 +15,8 @@ namespace turtlebot_action{
 	std::bind( &waffle_server::cancel_callback, this, _1 ),
 	std::bind( &waffle_server::accept_goal, this, _1 ) );
 
+
+    /* cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/cmd_vel" , 10 ); */
     cmd_publisher = create_publisher<geometry_msgs::msg::Twist>("/waffle/cmd_vel" , 10 );
   }
   
@@ -50,13 +52,15 @@ namespace turtlebot_action{
     while ( NavToPose_client -> get_result() != 1 ){}
     result->result = NavToPose_client -> get_result();
     // add the teleop operation after it get w1
-    if (result->result == 1){
 
+
+    /* rclcpp::sleep_for(5000ms); */
+    if (result->result == 1){
       teleop_publish("Forward");
-      rclcpp::sleep_for(4000ms);
+      rclcpp::sleep_for(3000ms);
       teleop_publish("Stop");
       teleop_publish("Backward");
-      rclcpp::sleep_for(4000ms);
+      rclcpp::sleep_for(1000ms);
       teleop_publish("Stop");
       goal_handle -> succeed(result);
       feedback->progress = "finish waffle nav2 path";
@@ -70,7 +74,7 @@ namespace turtlebot_action{
   void waffle_server::teleop_publish(const std::string& command){
     geometry_msgs::msg::Twist v;
     if (command == "Forward"){
-      v.linear.x = 0.3;
+      v.linear.x = 0.2;
       cmd_publisher->publish(v);
     }
     else if (command == "Stop"){
@@ -78,7 +82,7 @@ namespace turtlebot_action{
       cmd_publisher->publish(v);
     }
     else if (command == "Backward"){
-      v.linear.x = -.3;
+      v.linear.x = -.2;
       cmd_publisher->publish(v);
     }
   }
