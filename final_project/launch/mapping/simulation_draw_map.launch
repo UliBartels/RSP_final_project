@@ -26,7 +26,7 @@
   <node
     pkg="ros_ign_gazebo"
     exec="create"
-    args="-topic robot_description -name $(var entity_name) -y 1 -z -0.11"
+    args="-topic robot_description -name $(var entity_name) -y 1 -z 0"
     output="screen"/>
 
 
