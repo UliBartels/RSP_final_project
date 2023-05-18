@@ -52,6 +52,11 @@ sudo apt install xterm -y
 
 ### Build your workspace
 - Build your own workspace and clone the repository.
+- Under your workspace, make a new directory `src`.
+- Go to the `src` folder you just created and clone this repository
+```
+git clone https://github.com/Mixmorks/RSP_final_project.git
+```
 - Install the necessary packages and dependencies with following commands
 ``` cd src/
 vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
