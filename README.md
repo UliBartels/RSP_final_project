@@ -119,7 +119,7 @@ For simulation:
   This launch file will spawn both waffle and burger in our simulation world and open up the rviz to show you the movement of waffle. Note that the rviz does not display burger in it. Spawning two turtletbots may be troublesome if you don't do the followings correctly!
   1. Remap `/robot_description` topic correctly so that both robots will not publish their urdf message to the same topic. You can do this either via namespace or hard code their `/robot_description` topics to different names.
   2. Remap `/odom` topic correctly so that both robots will not publish their odometry readings to the same topic. You can do this either via namespace or hard code their `/odom` topics to different names.
-  3. Using `frame_prefix` parameter to add a prefix to robots' links. Since both waffle and burger have same link names. Without `frame_prefix`, the `\tf` topic cannot distinguish which frames belong to waffle and those belong to burger. As a result, the Nav2 package will have a problem about robot's localization. The `frame_prefix` is a ROS parameter of the `robot_state_publisher` package.
+  3. Using `frame_prefix` parameter to add a prefix to robots' links. Since both waffle and burger have same link names. Without `frame_prefix`, the `/tf` topic cannot distinguish which frames belong to waffle and those belong to burger. As a result, the Nav2 package will have a problem about robot's localization. The `frame_prefix` is a ROS parameter of the `robot_state_publisher` package.
   4. Right now, only waffle is controlled by Nav2. If you wish to control multiple robots via Nav2, you have to do the above correctly and change each robot's odom `frame_id` to different names.
 For real robots:
 - `turtlebot_draw_map.launch`
@@ -152,6 +152,8 @@ SLAM toolbox was used to create the map. Follow the instructions in this section
 
 1.  Run the `simulation_draw_map.launch` file in a new terminal.
     
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
         ros2 launch final_project simulation_draw_map.launch
     
 This launch file will start up rviz and use waffle&rsquo;s lidar data to create a map. It also starts up a teleop node that allows users to drive around in their simualtion world. The map will update periodically in rviz while the waffle is moving.
@@ -170,10 +172,14 @@ Note: The map saver command saves two files on your PC. You can visualize your m
 
 1.  To launch the simulation with predefined worlds and parameter, you can 
     
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
         ros2 launch final_project maze_action_simulation.launch
 
 2.  Open a new terminal and run the following command. This command initiates the process of Burger driving, and starts communication between the two bots.
     
+        cd <YOUR/WORKSPACE>
+        source install/setup.bash
         ros2 run turtlebot_actionlib sim_client
         
 Map and Waffle in Rviz     |  Bots in Ignition Gazebo
@@ -204,7 +210,7 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
 
 ## Troubleshooting
 
-1. If the simulation does not start automatically once you launch `maze_action_simulation.launch`, click on the hamburger icon on the right corner of the ignition gazebo window and search for 'Image display'. Once you scroll down this panel you should be able to see what Burger's camera is seeing. Make sure that you see the AR tag. To verify this you can echo `\burger_camera` topic to see Burger's camera is sending out images. In another terminal echo `/aruco_markers` to see if the AR tag is being detected. If Burger's camera is running, `\aruco_markers` should work. If the frame rate of `\burger_camera` is too slow, then it was found that `\aruco_markers` does not echo anything.
+1. If the simulation does not start automatically once you launch `maze_action_simulation.launch`, click on the hamburger icon on the right corner of the ignition gazebo window and search for 'Image display'. Once you scroll down this panel you should be able to see what Burger's camera is seeing. Make sure that you see the AR tag. To verify this you can echo `/burger_camera` topic to see Burger's camera is sending out images. In another terminal echo `/aruco_markers` to see if the AR tag is being detected. If Burger's camera is running, `/aruco_markers` should work. If the frame rate of `/burger_camera` is too slow, then it was found that `/aruco_markers` does not echo anything.
 
 # On the real bots 
 ## Mapping the environment
