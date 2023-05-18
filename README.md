@@ -28,7 +28,7 @@ sudo apt install ros-<ros2-distro>-nav2-bringup
 ```
 
 ### Turtlebot3 PC Setup Requirements
-Here are some essential packages that needs to be installed on your PC.
+Here are some essential packages that needs to be installed on your PC (NOT ON Waffle or Burger!).
 
 1.  Install Cartographer
     
@@ -43,6 +43,12 @@ Here are some essential packages that needs to be installed on your PC.
         sudo apt install ros-<ros2-distro>-dynamixel-sdk
         sudo apt install ros-<ros2-distro>-turtlebot3-msgs
         sudo apt install ros-<ros2-distro>-turtlebot3
+        
+### xterm
+If you don't have xterm installed on your ubuntu system, please install it.
+```
+sudo apt install xterm -y
+```
 
 ### Build your workspace
 - Build your own workspace and clone the repository.
@@ -61,7 +67,21 @@ colcon build
 ## `final_project`
 
 This package contains the main launch files that are used to launch simulation in ignition gazebo  or to control the real robots. The `urdf` folder contains all xacro files used to spawn waffle and burger in ignition gazebo. Note that you will not need these urdfs files for the real robots.  The config files that nav2 uses are located in `param` folder. By default, `waffle.yaml` is used for simulation and `waffle_real.yaml` is used to navigate the real Waffle. `rviz` file has all the rviz configurations used for the simulations and real robots. All map files are stored in `map` folder. If you want to create your own map, we suggest you to store your map files under this folder. 
-
+There are four launch files you will use to run our projet. 
+For simulation:
+- `simulation_draw_map.launch`
+  This launch file will create our simulation world in ignition gazebo and spawn a waffle in this world. It will also open up the rviz so that you can visualize the waffle and the world it is sensing via its lidar sensor. An external terminal will also be launched allowing users to drive the waffle around in this world. The SLAM toolbox will update the map periodically.
+- `simulation_multibots.launch`
+  This launch file will spawn both waffle and burger in our simulation world and open up the rviz to show you the movement of waffle. Note that the rviz does not display burger in it. Spawning two turtletbots may be troublesome if you don't do the followings correctly!
+  1. Remap `/robot_description` topic correctly so that both robots will not publish their urdf message to the same topic. You can do this either via namespace or hard code their `/robot_description` topics to different names.
+  2. Remap `/odom` topic correctly so that both robots will not publish their odometry readings to the same topic. You can do this either via namespace or hard code their `/odom` topics to different names.
+  3. Using `frame_prefix` parameter to add a prefix to robots' links. Since both waffle and burger have same link names. Without `frame_prefix`, the `\tf` topic cannot distinguish which frames belong to waffle and those belong to burger. As a result, the Nav2 package will have a problem about robot's localization. The `frame_prefix` is a ROS parameter of the `robot_state_publisher` package.
+  4. Right now, only waffle is controlled by Nav2. If you wish to control multiple robots via Nav2, you have to do the above correctly and change each robot's odom `frame_id` to different names.
+For real robots:
+- `turtlebot_draw_map.launch`
+  Similar to `simulation_draw_map.launch`, this launch file will open up both rviz and an external terminal that allows users to drive around a real waffle robot in their real world environments.
+- `real_world_multibots.launch`
+  Simular to `simulation_multibots.launch`, this launch file is used in our *Waffle-burger cooperation task*.
 
 ## `ign_gazebo`
 
