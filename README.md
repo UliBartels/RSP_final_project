@@ -19,6 +19,14 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 This project uses a Raspberry Pi 4B, Turtlebot3 Burger, Turtlebot3 Waffle and USB camera. To setup the real bots using Raspberry Pi follow the instructions [here](https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup)
 
 ## Installation 
+### vcs
+Follow the instructions [here](https://github.com/dirk-thomas/vcstool) to install vcs.
+
+### rosdep
+Install rosdep 0.22.2 by 
+```
+pip install rosdep
+```
 
 ### Navigation2 packages
 We use Nav2 packages to from localization and mapping.
@@ -55,11 +63,13 @@ sudo apt install xterm -y
 - Under your workspace, make a new directory `src`.
 - Go to the `src` folder you just created and clone this repository
 ```
+cd src/
 git clone https://github.com/Mixmorks/RSP_final_project.git
 ```
+  Now, you should have a `RSP_final_project` folder under your `src` folder.
 - Install the necessary packages and dependencies with following commands
-``` cd src/
-vcs import < src/RSP_final_project/final_project/RSP_final_project.repos
+``` 
+vcs import < RSP_final_project/final_project/RSP_final_project.repos
 cd ..
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
