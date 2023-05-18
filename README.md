@@ -231,6 +231,11 @@ Please drive waffle through the environment to create a 2D map!
 You can close all the terminals after your map is saved!
 
 ## Waffle-burger cooperation task
+Before start the task, we have made some additional modifications to burger so that two robots can works simultaneously.
+- Add frame_prefix
+  Under `turtlebot3_ws`, there is a `turtlebot3_state_publisher.launch.py` file in the `turtlebot3_bringup` package, we changed `parameters=[rsp_params, {'use_sim_time': use_sim_time}],` -> `parameters=[rsp_params, {'use_sim_time': use_sim_time}, {'frame_prefix': 'burger/'}]`,
+- Change `odom`'s `frame_id` and `child_frame_id`.
+  We modified the `burger.yaml` located in `turtlebot3_bringup/param`. The `frame_id` is changed to `"burger/odom"`, and the `child_frame_id` is changed to `"burger/base_footprint"`.
 
 1. Setting up waffle and burger. 
    On your PC, open a terminal and ssh to waffle. Then run,
