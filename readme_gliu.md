@@ -133,10 +133,10 @@ The lidar on Waffle scans the world to create a map and localize itself. Whereas
 
 4. Nav2 helps us to localize and navigate waffle. The most important two things that related to our task are
    - initial pose
-     - For simulation, the param file, `waffle.yaml`, has initial pose variables that allow user to give their own initial pose estimation. Alternatively, users can also use rviz to do it. Click the `2D Pose Estimate` button in the RViz2 menu. Then, click on the map where the actual robot is located and drag the large green arrow toward the direction where the robot is facing.
-     - For real robots, you can use `rqt` gui as detaied in *Waffle-burger cooperation task session*.
+     - For simulation, the param file, [waffle.yaml](https://github.com/Mixmorks/RSP_final_project/blob/main/final_project/param/waffle.yaml), has initial pose variables that allows users to give their own initial pose estimation. Alternatively, users can also use rviz to do it. Click the `2D Pose Estimate` button in the Rviz2 menu. Then, click on the map where the actual robot is located and drag the large green arrow towards the direction where the robot is facing.
+     - For real robots, you can use `rqt` gui as detaied in *Waffle-burger cooperation task* section.
    - sending goals to nav2
-     In our project, we used `navtopose` package to send goal requests to nav2. The goal position was sent by the `robot_client` of the `turtlebot_actionlib` package. Alternatively, you can use rviz to set the goal. First, click the Navigation2 Goal button in the RViz2 menu. Then, similar to setting the initial pose in rviz, you need to click on the map to set the destination of the robot and drag the green arrow toward the direction where the robot will be facing.
+     In our project, we used `navtopose` package to send goal requests to nav2. The goal position was sent by the `robot_client` of the `turtlebot_actionlib` package. Alternatively, you can use rviz to set the goal. First, click the 'Nav2Goal' button in the Rviz2 menu. Then, similar to setting the initial pose in rviz, you need to click on the map to set the desired position of the robot and drag the green arrow such that it faces the desired orientation.
 
 ## Troubleshooting
 
