@@ -28,6 +28,13 @@ Install rosdep 0.22.2 by
 pip install rosdep
 ```
 
+### ROS2 igition integration
+In case you don't have these packages,
+```
+sudo apt install ros-<ros2-distro>-ros-ign-gazebo
+sudo apt install ros-<ros2-distro>-ros-ign-bridge
+```
+
 ### Navigation2 packages
 We use Nav2 packages to from localization and mapping.
 ```
@@ -58,7 +65,7 @@ If you don't have xterm installed on your ubuntu system, please install it.
 sudo apt install xterm -y
 ```
 
-### Build your workspace
+### Build your workspace on your PC
 - Build your own workspace and clone the repository.
 - Under your workspace, make a new directory `src`.
 - Go to the `src` folder you just created and clone this repository
@@ -69,12 +76,34 @@ git clone https://github.com/Mixmorks/RSP_final_project.git
   Now, you should have a `RSP_final_project` folder under your `src` folder.
 - Install the necessary packages and dependencies with following commands
 ``` 
-vcs import < RSP_final_project/final_project/RSP_final_project.repos
+vcs import < RSP_final_project/final_project/PC.repos
 cd ..
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
 
+### Build your waffle
+To run our project, you need to download and compile some additional packages. After you follow the instructions from the turtlebot3 website, you should have a workspace called `turtlebot3_ws`. Clone the `waffle-foxy` branch from our repository to the `src` folder and build the whole packages as instructed below.
+``` 
+cd ~/turtlebot_3/src
+git clone -b waffle-foxy https://github.com/Mixmorks/RSP_final_project.git
+vcs import < RSP_final_project/final_project/waffle.repos
+cd ~/turtlebot_3
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+```
+
+
+### Build your burger
+To run our project, you need to download and compile some additional packages. After you follow the instructions from the turtlebot3 website, you should have a workspace called `turtlebot3_ws`. Clone the `burger-foxy` branch from our repository to the `src` folder and build the whole packages as instructed below.
+``` 
+cd ~/turtlebot_3/src
+git clone -b burger-foxy https://github.com/Mixmorks/RSP_final_project.git
+vcs import < RSP_final_project/final_project/burger.repos
+cd ~/turtlebot_3
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+```
 
 # Package Info
 
