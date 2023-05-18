@@ -203,7 +203,7 @@ You can close all the terminals after your map is saved!
 ![](./docs/rviz_post_initial_pose.png) 
 
 
-**optional** 
+**Optional**  
 Intead of open rqt, you can run the `initialpose_pub` node to publish the initial pose. 
 ```
         cd <YOUR/WORKSPACE>
