@@ -20,7 +20,7 @@ int main( int argc, char** argv ){
   W2.pose.orientation.w = 0.949;
 
   float S1 = 0.56;
-  float S2 = 0.29;
+  float S2 = 0.32;
   // start running the client
   client->call(S1,S2,W1,W2);
   rclcpp::spin(client);
