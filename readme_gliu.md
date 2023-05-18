@@ -203,14 +203,15 @@ You can close all the terminals after your map is saved!
 ![](./docs/rviz_post_initial_pose.png) 
 
 
-*optional* 
+**optional** 
 Intead of open rqt, you can run the `initialpose_pub` node to publish the initial pose. 
 ```
         cd <YOUR/WORKSPACE>
         source install/setup.bash
         ros2 run turtlebot_actionlib initialpose_pub
 ```
-Note: Ctrl+C the terminal after rviz received the initial pose. 
+Note: Ctrl+C the terminal after rviz received the initial pose.
+
 4. Open a new terminal to run server.
     
         cd <YOUR/WORKSPACE>
