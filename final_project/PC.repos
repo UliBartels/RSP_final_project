@@ -1,0 +1,5 @@
+repositories:
+  ros2_aruco:
+    type: git
+    url: https://github.com/Mixmorks/ros2_aruco.git
+    version: main

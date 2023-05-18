@@ -1,0 +1,25 @@
+repositories:
+  demos:
+    type: git
+    url: https://github.com/ros2/demos.git
+    version: foxy
+  example_interfaces:
+    type: git
+    url: https://github.com/ros2/example_interfaces.git
+    version: foxy
+  ld08_driver:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/ld08_driver.git
+    version: ros2-devel
+  ros2_aruco:
+    type: git
+    url: https://github.com/Mixmorks/ros2_aruco.git
+    version: main
+  ros2_v4l2_camera:
+    type: git
+    url: https://gitlab.com/boldhearts/ros2_v4l2_camera.git
+    version: foxy
+  turtlebot3:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3.git
+    version: foxy-devel
