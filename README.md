@@ -28,7 +28,7 @@ Install rosdep 0.22.2 by
 pip install rosdep
 ```
 
-### ROS2 igition integration
+### ROS2 ignition integration
 In case you don't have these packages,
 ```
 sudo apt install ros-<ros2-distro>-ros-ign-gazebo
