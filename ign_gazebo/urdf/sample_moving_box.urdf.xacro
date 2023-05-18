@@ -1,7 +1,0 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="box">
-
-       <xacro:include filename="$(find ign_gazebo)/urdf/sample_moving_box.xacro"/> 
-       
-       <xacro:box_world name="moving_box"/>
-       
-</robot>
