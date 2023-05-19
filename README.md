@@ -18,29 +18,16 @@ This project shows how two turtlebots can cooperate with each other to finish a 
 ### For real robots
 This project uses a Raspberry Pi 4B, Turtlebot3 Burger, Turtlebot3 Waffle and USB camera. To setup the real bots using Raspberry Pi follow the instructions [here](https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup)
 
-## Installation 
+## Installation
 ### vcs
-Follow the instructions [here](https://github.com/dirk-thomas/vcstool) to install vcs.
+Follow the instructions [here](https://github.com/dirk-thomas/vcstool) to install vcs. Pleae install `vcs` on your PC, waffle, and burger.
 
 ### rosdep
 Install rosdep 0.22.2 by 
 ```
 pip install rosdep
 ```
-
-### ROS2 ignition integration
-In case you don't have these packages,
-```
-sudo apt install ros-<ros2-distro>-ros-ign-gazebo
-sudo apt install ros-<ros2-distro>-ros-ign-bridge
-```
-
-### Navigation2 packages
-We use Nav2 packages to from localization and mapping.
-```
-sudo apt install ros-<ros2-distro>-navigation2
-sudo apt install ros-<ros2-distro>-nav2-bringup
-```
+Pleae install `rosdep` on your PC, waffle, and burger.
 
 ### Turtlebot3 PC Setup Requirements
 Here are some essential packages that needs to be installed on your PC (NOT ON Waffle or Burger!).
@@ -49,7 +36,7 @@ Here are some essential packages that needs to be installed on your PC (NOT ON W
     
         sudo apt install ros-<ros2-distro>-cartographer
         sudo apt install ros-<ros2-distro>-cartographer-ros
-2.  Install Navigation
+2.  Install Navigation2
     
         sudo apt install ros-<ros2-distro>-navigation2
         sudo apt install ros-<ros2-distro>-nav2-bringup
@@ -59,12 +46,15 @@ Here are some essential packages that needs to be installed on your PC (NOT ON W
         sudo apt install ros-<ros2-distro>-turtlebot3-msgs
         sudo apt install ros-<ros2-distro>-turtlebot3
         
-### xterm
-If you don't have xterm installed on your ubuntu system, please install it.
-```
-sudo apt install xterm -y
-```
-
+4.  ROS2 ignition integration. In case you don't have these packages,
+    
+        sudo apt install ros-<ros2-distro>-ros-ign-gazebo
+        sudo apt install ros-<ros2-distro>-ros-ign-bridge
+        
+6.  xterm. If you don't have xterm installed on your ubuntu system, please install it.
+    
+        sudo apt install xterm -y
+        
 ### Build your workspace on your PC
 - Build your own workspace and clone the repository.
 - Under your workspace, make a new directory `src`.
