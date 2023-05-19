@@ -2,7 +2,7 @@
   <include file="$(find-pkg-share final_project)/launch/navigation_multibot/simulation_multibots.launch"/>
 
   <group>
-<executable cmd = "ros2 topic echo /burger_camera" output = "screen"/>
+    <executable cmd = "ros2 topic echo /burger_camera" output = "screen"/>
 
     <node
       pkg = "ros2_aruco"
@@ -20,13 +20,6 @@
     output = "screen"
     launch-prefix = "xterm -e">
   </node>
-
-  <!-- <node -->
-  <!--   pkg = "turtlebot_actionlib" -->
-  <!--   exec = "client" -->
-  <!--   output = "screen" -->
-  <!--   launch-prefix = "xterm -e"> -->
-  <!-- </node> -->
 
   </group>
 </launch>
