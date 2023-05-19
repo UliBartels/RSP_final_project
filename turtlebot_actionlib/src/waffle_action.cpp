@@ -58,7 +58,7 @@ namespace turtlebot_action{
     /* rclcpp::sleep_for(5000ms); */
     if (result->result == 1){
       teleop_publish("Forward");
-      rclcpp::sleep_for(3000ms);
+      rclcpp::sleep_for(4000ms);
       teleop_publish("Stop");
       teleop_publish("Backward");
       rclcpp::sleep_for(1000ms);

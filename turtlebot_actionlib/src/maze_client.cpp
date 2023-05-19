@@ -10,7 +10,7 @@ int main( int argc, char** argv ){
   // run following
   geometry_msgs::msg::PoseStamped W1,W2;
   W1.header.frame_id = "map";
-  W1.pose.position.x = -0.25;
+  W1.pose.position.x = -0.2;
   W1.pose.position.y = -1.5;
   W1.pose.orientation.z = 0.7071;
   W1.pose.orientation.w = 0.7071;
