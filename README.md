@@ -29,6 +29,13 @@ pip install rosdep
 ```
 Pleae install `rosdep` on your PC, waffle, and burger.
 
+### ros2_aruco
+This package is required for both PC and burger. It requires you have `opencv` with version greater than `4.7` installed on your system. Please check your opencv version! If you don't have opencv installed, use the following command.
+```
+pip install opencv-contrib-python
+```
+MAKE SURE you installed the `contrib` verion. If you install `opencv-python`, it WON'T work!
+
 ### Turtlebot3 PC Setup Requirements
 Here are some essential packages that needs to be installed on your PC (NOT ON Waffle or Burger!).
 
@@ -105,7 +112,7 @@ There are four launch files you will use to run our projet.
 For simulation:
 - `simulation_draw_map.launch`
   This launch file will create our simulation world in ignition gazebo and spawn a waffle in this world. It will also open up the rviz so that you can visualize the waffle and the world it is sensing via its lidar sensor. An external terminal will also be launched allowing users to drive the waffle around in this world. The SLAM toolbox will update the map periodically.
-- `simulation_multibots.launch`
+- `maze_action_simulation.launch`
   This launch file will spawn both waffle and burger in our simulation world and open up the rviz to show you the movement of waffle. Note that the rviz does not display burger in it. Spawning two turtletbots may be troublesome if you don't do the followings correctly!
   1. Remap `/robot_description` topic correctly so that both robots will not publish their urdf message to the same topic. You can do this either via namespace or hard code their `/robot_description` topics to different names.
   2. Remap `/odom` topic correctly so that both robots will not publish their odometry readings to the same topic. You can do this either via namespace or hard code their `/odom` topics to different names.
