@@ -30,7 +30,7 @@ pip install rosdep
 Pleae install `rosdep` on your PC, waffle, and burger.
 
 ### ros2_aruco
-This package is required for both PC and burger. It requires you have `opencv` with version greater than `4.7` installed on your system. Please check your opencv version! If you don't have opencv installed, use the following command.
+This package is required for both PC and burger. The package will be installed by our `.repos` file. However, it requires you to have `opencv` with version greater than `4.7` installed on your system. Please check your opencv version! If you don't have opencv installed, use the following command.
 ```
 pip install opencv-contrib-python
 ```
